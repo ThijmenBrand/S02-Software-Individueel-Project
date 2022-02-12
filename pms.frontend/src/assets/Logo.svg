@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="55.336" height="55.336" viewBox="0 0 55.336 55.336">
+  <defs>
+    <linearGradient id="linear-gradient" x1="0.281" y1="0.081" x2="0.561" y2="0.616" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#004dc1"/>
+      <stop offset="1" stop-color="#730062"/>
+    </linearGradient>
+    <clipPath id="clip-path">
+      <circle id="Ellipse_10" data-name="Ellipse 10" cx="22.591" cy="22.591" r="22.591" transform="translate(2416 -548)" fill="url(#linear-gradient)"/>
+    </clipPath>
+    <linearGradient id="linear-gradient-2" x1="0.154" y1="0.2" x2="0.403" y2="0.804" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#06f"/>
+      <stop offset="1" stop-color="#730062"/>
+    </linearGradient>
+    <filter id="Path_4" x="-37.268" y="-18.574" width="73.336" height="73.336" filterUnits="userSpaceOnUse">
+      <feOffset dy="-2" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feFlood flood-opacity="0.38"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="Logo" transform="translate(0 0)">
+    <g id="Logo-2" data-name="Logo" transform="matrix(-0.966, -0.259, 0.259, -0.966, 2519.151, 151.315)" clip-path="url(#clip-path)">
+      <circle id="Ellipse_9" data-name="Ellipse 9" cx="22.591" cy="22.591" r="22.591" transform="translate(2430.889 -573.158)" fill="url(#linear-gradient-2)"/>
+      <g transform="matrix(-0.97, 0.26, -0.26, -0.97, 2472.48, -505.85)" filter="url(#Path_4)">
+        <path id="Path_4-2" data-name="Path 4" d="M22.591,0A22.591,22.591,0,1,1,0,22.591,22.591,22.591,0,0,1,22.591,0Z" transform="matrix(-0.97, -0.26, 0.26, -0.97, 15.37, 47.76)" fill="url(#linear-gradient)"/>
+      </g>
+    </g>
+  </g>
+</svg>

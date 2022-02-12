@@ -24,7 +24,7 @@ namespace pms.backend.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<List<ProjectsModel>>> Get(int id)
         {
-            var project = _context.projectsModel.Where(s => s.ProjectId == id);
+            var project = await _context.projectsModel.FindAsync(id);
             if (project == null)
             {
                 return NotFound();

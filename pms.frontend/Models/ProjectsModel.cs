@@ -8,7 +8,5 @@ namespace pms.backend.Models
         public int ProjectId { get; set; }
         public string ProjectName { get; set; }
         public string ProjectDiscription { get; set; }
-        public string ProjectOwnerId { get; set; }
-        public DateTime ProjectDate { get; set; }
     }
 }

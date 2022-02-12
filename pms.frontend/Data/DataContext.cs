@@ -8,6 +8,5 @@ namespace pms.backend.Data
         public DataContext(DbContextOptions<DataContext> options) : base(options) { }
 
         public DbSet<ProjectsModel> projectsModel { get; set; }
-        public DbSet<TasksModel> tasksModel { get; set; }
     }
 }
