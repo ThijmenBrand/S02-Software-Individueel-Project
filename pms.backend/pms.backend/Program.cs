@@ -1,9 +1,19 @@
-global using pms.backend.Data;
 global using Microsoft.EntityFrameworkCore;
+global using pms.backend.Data;
+
+var AllowFrontend = "_AllowFrontend";
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: AllowFrontend,
+                      builder =>
+                      {
+                          builder.WithOrigins("http://localhost:8080/");
+                      });
+});
 
 builder.Services.AddControllers();
 builder.Services.AddDbContext<DataContext>(options =>
@@ -29,5 +39,7 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.UseCors(AllowFrontend);
 
 app.Run();

@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using pms.backend.Models;
+using pms.backend.Models.Projects;
 
 namespace pms.backend.Controllers
 {
@@ -16,13 +16,13 @@ namespace pms.backend.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<ProjectsModel>>> GetProjects()
+        public async Task<ActionResult<List<ProjectsModel>>> GetAllProjects()
         {
             return Ok(await _context.projectsModel.ToListAsync());
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<List<ProjectsModel>>> Get(int id)
+        public async Task<ActionResult<List<ProjectsModel>>> GetOneProject(int id)
         {
             var project = _context.projectsModel.Where(s => s.ProjectId == id);
             if (project == null)
@@ -51,7 +51,7 @@ namespace pms.backend.Controllers
             }
 
             project.ProjectName = updateData.ProjectName;
-            project.ProjectDiscription = updateData.ProjectDiscription;
+            project.ProjectDescription = updateData.ProjectDescription;
 
             await _context.SaveChangesAsync();
 

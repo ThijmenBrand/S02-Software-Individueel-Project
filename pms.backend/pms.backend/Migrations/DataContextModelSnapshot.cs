@@ -33,7 +33,7 @@ namespace pms.backend.Migrations
                     b.Property<DateTime>("ProjectDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("ProjectDiscription")
+                    b.Property<string>("ProjectDescription")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -61,7 +61,7 @@ namespace pms.backend.Migrations
                     b.Property<int>("ProjectId")
                         .HasColumnType("int");
 
-                    b.Property<string>("TaskDiscription")
+                    b.Property<string>("TaskDescription")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 

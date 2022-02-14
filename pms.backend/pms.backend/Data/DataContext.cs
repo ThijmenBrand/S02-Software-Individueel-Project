@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using pms.backend.Models;
+using pms.backend.Models.Projects;
+using pms.backend.Models.Tasks;
 
 namespace pms.backend.Data
 {

@@ -5,21 +5,25 @@
       <th>Project owner</th>
       <th>Created on</th>
     </tr>
-    <tr>
-      <td>DelotteETP</td>
-      <td>You</td>
-      <td>11-02-2022</td>
+    <tr v-for="project in projects" :key="project.projectId">
+      <td>{{ project.projectName }}</td>
+      <td>{{ project.projectDescription }}</td>
+      <td>{{ project.projectDate }}</td>
     </tr>
   </div>
 </template>
 
-<script>
-export default {};
+<script lang="ts">
+export default {
+  props: {
+    projects: { type: Array, required: true },
+  },
+};
 </script>
 
 <style scoped>
 .content {
-  width: 50%;
+  width: 300px;
   margin: auto;
 }
 </style>
