@@ -1,6 +1,10 @@
 <template>
-  <top-header />
-  <router-view />
+  <div id="app">
+    <top-header />
+    <div class="main">
+      <router-view />
+    </div>
+  </div>
 </template>
 
 <script>
@@ -10,3 +14,11 @@ export default {
   components: { TopHeader },
 };
 </script>
+
+<style lang="scss" scoped>
+@import url("./styles/main.scss");
+
+.main {
+  margin-top: 80px;
+}
+</style>

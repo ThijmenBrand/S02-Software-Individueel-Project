@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using pms.backend.Models.Projects;
+using DataAccessLayer.contracts;
 
 namespace pms.backend.Controllers
 {
@@ -7,70 +7,18 @@ namespace pms.backend.Controllers
     [ApiController]
     public class ProjectsController : ControllerBase
     {
-        
-        private readonly DataContext _context;
 
-        public ProjectsController(DataContext context)
+        private readonly IRepository<Project> serviceProject;
+
+        public ProjectsController(IRepository<Project> serviceProject)
         {
-            _context = context;
+            this.serviceProject = serviceProject;
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<ProjectsModel>>> GetAllProjects()
+        public async Task<ActionResult<List<Project>>> GetAllProjects()
         {
-            return Ok(await _context.projectsModel.ToListAsync());
-        }
-
-        [HttpGet("{id}")]
-        public async Task<ActionResult<List<ProjectsModel>>> GetOneProject(int id)
-        {
-            var project = _context.projectsModel.Where(s => s.ProjectId == id);
-            if (project == null)
-            {
-                return NotFound();
-            }
-            return Ok(project);
-        }
-
-        [HttpPost]
-        public async Task<ActionResult<List<ProjectsModel>>> AddProject([FromBody] ProjectsModel project)
-        {
-            _context.projectsModel.Add(project);
-            await _context.SaveChangesAsync();
-
-            return Ok(await _context.projectsModel.ToListAsync());
-        }
-
-        [HttpPut]
-        public async Task<ActionResult<List<ProjectsModel>>> UpdateProject([FromBody] ProjectsModel updateData)
-        {
-            var project = await _context.projectsModel.FindAsync(updateData.ProjectId);
-            if (project == null)
-            {
-                return NotFound();
-            }
-
-            project.ProjectName = updateData.ProjectName;
-            project.ProjectDescription = updateData.ProjectDescription;
-
-            await _context.SaveChangesAsync();
-
-            return Ok(project);
-        }
-
-        [HttpDelete("{id}")]
-        public async Task<ActionResult<List<ProjectsModel>>> Delete(int id)
-        {
-            var project = _context.projectsModel.Find(id);
-            if(project == null)
-            {
-                return NoContent();
-            }
-
-            _context.projectsModel.Remove(project);
-            await _context.SaveChangesAsync();
-
-            return Ok();
+            return Ok(serviceProject.GetAll());
         }
 
     }

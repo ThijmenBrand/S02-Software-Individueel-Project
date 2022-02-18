@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="62" height="60" viewBox="0 0 62 60">
+  <g id="board-icon" transform="translate(0 0.386)">
+    <g id="Rectangle_34" data-name="Rectangle 34" transform="translate(0 -0.386)" fill="none" stroke="#9da4bd" stroke-width="2">
+      <rect width="30" height="60" rx="4" stroke="none"/>
+      <rect x="1" y="1" width="28" height="58" rx="3" fill="none"/>
+    </g>
+    <g id="Rectangle_35" data-name="Rectangle 35" transform="translate(32 -0.386)" fill="none" stroke="#9da4bd" stroke-width="2">
+      <rect width="30" height="43" rx="4" stroke="none"/>
+      <rect x="1" y="1" width="28" height="41" rx="3" fill="none"/>
+    </g>
+  </g>
+</svg>

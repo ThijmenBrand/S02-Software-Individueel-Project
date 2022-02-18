@@ -10,7 +10,22 @@
       "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
       "DisplayName": "Miscellaneous Files",
       "ColorIndex": -1
+    },
+    "069b8621-6323-4c13-9787-a8a898469053": {
+      "ProjectGuid": "069b8621-6323-4c13-9787-a8a898469053",
+      "DisplayName": "DataAccessLayer",
+      "ColorIndex": 1
+    },
+    "11cf9255-10d3-42b2-a865-a101a0e87206": {
+      "ProjectGuid": "11cf9255-10d3-42b2-a865-a101a0e87206",
+      "DisplayName": "BusinessAccessLayer",
+      "ColorIndex": 2
+    },
+    "47859159-38d1-4b87-8d99-f9ceb2ec651e": {
+      "ProjectGuid": "47859159-38d1-4b87-8d99-f9ceb2ec651e",
+      "DisplayName": "BusinessAccessLayer",
+      "ColorIndex": 3
     }
   },
-  "NextColorIndex": 1
+  "NextColorIndex": 4
 }

@@ -1,7 +1,9 @@
 import { createApp } from "vue";
 import App from "./App.vue";
-import Router from "./router/router";
-import Store from "./store/store";
-const Styles = require("./styles/main.css");
+import router from "./router";
+import store from "./store";
+import 'element-plus/dist/index.css';
+import VueSidebarMenu from 'vue-sidebar-menu'
+import 'vue-sidebar-menu/dist/vue-sidebar-menu.css'
 
-createApp(App).use(Router).use(Styles).use(Store).mount("#app");
+createApp(App).use(store).use(router).mount("#app");

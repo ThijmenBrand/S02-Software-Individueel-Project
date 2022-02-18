@@ -1,6 +1,8 @@
 <template>
   <div class="top-header">
-    <img class="logo" src="@/assets/Logo.svg" />
+    <router-link to="/">
+      <img class="logo" src="@/assets/Logo.svg" />
+    </router-link>
     <div class="profile-info">
       <div class="profile-picture"></div>
       <p class="profile-name">Anne fleur</p>
@@ -15,6 +17,9 @@ export default {};
 
 <style scoped>
 .top-header {
+  position: fixed;
+  top: 0;
+  width: 100%;
   background-color: white;
   border: 0.5px solid #d4d4d4;
   height: 80px;
