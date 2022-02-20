@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using DataAccessLayer.contracts;
+using BusinessAccessLayer.services;
 
 namespace pms.backend.Controllers
 {
@@ -8,18 +8,24 @@ namespace pms.backend.Controllers
     public class ProjectsController : ControllerBase
     {
 
-        private readonly IRepository<Project> serviceProject;
+        private readonly IServiceProject serviceProject;
 
-        public ProjectsController(IRepository<Project> serviceProject)
+        public ProjectsController(IServiceProject serviceProject)
         {
             this.serviceProject = serviceProject;
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<Project>>> GetAllProjects()
+        public ActionResult<List<Project>> GetAllProjects()
         {
-            return Ok(serviceProject.GetAll());
+            return Ok(serviceProject.GetAllProjects());
         }
 
+        [HttpPost]
+        public ActionResult<List<Project>> AddProject(Project project)
+        {
+            serviceProject.AddProject(project);
+            return Ok("Apple");
+        }
     }
 }

@@ -1,15 +1,11 @@
 ﻿using DataAccessLayer.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
 
 namespace BusinessAccessLayer.services
 {
     public interface IServiceProject
     {
-        Task<Project> AddProject(Project project);
+        Task AddProject(Project project);
         void DeleteProject(int id);
         void UpdateProject(int id);
         IEnumerable<Project> GetAllProjects();

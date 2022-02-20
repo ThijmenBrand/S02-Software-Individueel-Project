@@ -3,6 +3,7 @@ global using DataAccessLayer.Models;
 using DataAccessLayer.data;
 using DataAccessLayer.repositories;
 using DataAccessLayer.contracts;
+using BusinessAccessLayer.services;
 
 var AllowFrontend = "_AllowFrontend";
 
@@ -23,9 +24,8 @@ builder.Services.AddDbContext<DataContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
+builder.Services.AddScoped<IServiceProject, ServiceProject>();
 builder.Services.AddScoped<IRepository<Project>, RepositoryProject>();
-builder.Services.AddScoped<IServiceProvider, ServiceProvider>();
-
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

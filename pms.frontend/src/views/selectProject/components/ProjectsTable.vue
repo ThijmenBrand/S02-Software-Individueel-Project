@@ -67,7 +67,6 @@ export default defineComponent({
       }).then(({ value }) => {
         store.dispatch("addNewProject", {
           projectName: value,
-          projectOwnerId: "1",
         });
         ElMessage({
           type: "success",

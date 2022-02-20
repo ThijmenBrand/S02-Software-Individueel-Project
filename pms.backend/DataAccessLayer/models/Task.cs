@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.Text.Json.Serialization;
 
 namespace DataAccessLayer.Models
 {
@@ -14,8 +13,7 @@ namespace DataAccessLayer.Models
         public DateTime TaskStartTime { get; set; }
         public DateTime TaskEndTime { get; set; }
 
-        [JsonIgnore]
-        public Project Project { get; set; }
         public int ProjectId { get; set; }
+        public virtual Project Project { get; set; }
     }
 }

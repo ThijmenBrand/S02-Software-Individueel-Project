@@ -1,28 +1,35 @@
 ﻿using DataAccessLayer.contracts;
 using DataAccessLayer.Models;
 using DataAccessLayer.repositories;
+using BusinessAccessLayer.extensions;
+using Microsoft.AspNetCore.Mvc;
 
 namespace BusinessAccessLayer.services
 {
     public class ServiceProject : IServiceProject
     {
         private readonly IRepository<Project> _repository;
+        private readonly ProjectValidator _validator = new ProjectValidator();
         
         public ServiceProject(IRepository<Project> _repository)
         {
             this._repository = _repository;
         }
 
-        public async Task<Project> AddProject(Project project)
+        public async Task AddProject(Project project)
         {
             try
             {
+                if (!_validator.ProjectParameterValidator(project))
+                    throw new ArgumentException();
+
                 if (project == null)
                 {
-                    throw new ArgumentNullException(nameof(project));
+                    throw new ArgumentNullException();
                 } else
                 {
-                    return await _repository.Create(project);
+                    project.ProjectDate = DateTime.Now;
+                    await _repository.Create(project);
                 }
             } catch (Exception)
             {

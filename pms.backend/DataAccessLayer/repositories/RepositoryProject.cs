@@ -27,6 +27,7 @@ namespace DataAccessLayer.repositories
             {
                 if (project != null)
                 {
+                    project.Tasks = null;
                     var obj = _DataContext.Add<Project>(project);
                     await _DataContext.SaveChangesAsync();
                     return obj.Entity;

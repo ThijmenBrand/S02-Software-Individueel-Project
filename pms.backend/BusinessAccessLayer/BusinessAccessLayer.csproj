@@ -15,11 +15,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DataAccessLayer\DataAccessLayer.csproj" />
-    <ProjectReference Include="..\pms.backend\pms.backend.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="extensions\" />
   </ItemGroup>
 
 </Project>
