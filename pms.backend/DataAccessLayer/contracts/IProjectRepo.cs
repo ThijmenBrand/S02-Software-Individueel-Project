@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer.contracts
 {
-    public interface IRepository<T>
+    public interface IProjectRepo<T>
     {
-        public Task<T> Create(T entity);
+        public Task<bool> Create(T entity);
         public void Delete(T entity);
         public void Update(T entity);
         public IEnumerable<T> GetAll();

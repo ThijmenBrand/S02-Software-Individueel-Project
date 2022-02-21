@@ -8,28 +8,30 @@ namespace BusinessAccessLayer.services
 {
     public class ServiceProject : IServiceProject
     {
-        private readonly IRepository<Project> _repository;
+        private readonly IProjectRepo<Project> _repository;
         private readonly ProjectValidator _validator = new ProjectValidator();
         
-        public ServiceProject(IRepository<Project> _repository)
+        public ServiceProject(IProjectRepo<Project> _repository)
         {
             this._repository = _repository;
         }
 
-        public async Task AddProject(Project project)
+        public async Task<bool> AddProject(Project project)
         {
             try
             {
-                if (!_validator.ProjectParameterValidator(project))
-                    throw new ArgumentException();
-
-                if (project == null)
+                if(project == null)
                 {
-                    throw new ArgumentNullException();
+                    throw new Exception("Project cant be null");
+                }
+
+                if (!_validator.ProjectParameterValidator(project))
+                {
+                    throw new Exception("One or more project parameters are invalid");
                 } else
                 {
                     project.ProjectDate = DateTime.Now;
-                    await _repository.Create(project);
+                    return await _repository.Create(project);
                 }
             } catch (Exception)
             {

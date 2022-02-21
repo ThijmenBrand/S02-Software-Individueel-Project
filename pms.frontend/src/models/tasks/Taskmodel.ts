@@ -1,9 +1,16 @@
+export interface tasksItem {
+    id: number,
+    group: number,
+    start: Date,
+    end: Date
+}
+
+export interface taskGroup {
+    id: number,
+    content: string
+}
+
 export default interface ITaskModel {
-    taskId: number,
-    taskName: string,
-    taskDescription: string,
-    taskTag: number,
-    taskStartTime: Date,
-    taskEndTime: Date,
-    projectId: Number
+    item: tasksItem,
+    group: taskGroup
 }

@@ -25,7 +25,17 @@
       "ProjectGuid": "47859159-38d1-4b87-8d99-f9ceb2ec651e",
       "DisplayName": "BusinessAccessLayer",
       "ColorIndex": 3
+    },
+    "970fc59b-5993-48fe-b4de-0aeb93dba4bb": {
+      "ProjectGuid": "970fc59b-5993-48fe-b4de-0aeb93dba4bb",
+      "DisplayName": "pms.unittest",
+      "ColorIndex": 4
+    },
+    "5e9b4ed2-c35c-40be-8708-7f9f60b6a90c": {
+      "ProjectGuid": "5e9b4ed2-c35c-40be-8708-7f9f60b6a90c",
+      "DisplayName": "pms.unittests",
+      "ColorIndex": 5
     }
   },
-  "NextColorIndex": 4
+  "NextColorIndex": 6
 }

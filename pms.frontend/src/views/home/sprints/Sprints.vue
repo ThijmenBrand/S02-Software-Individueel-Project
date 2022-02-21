@@ -21,28 +21,15 @@ export default {
     tasks() {
       let items = [];
       store.getters.tasks.forEach((task) => {
-        let item = {};
-
-        item.id = task.taskId;
-        item.group = task.taskId;
-        item.start = task.taskStartTime;
-        item.end = task.taskEndTime;
-
-        items.push(item);
+        items.push({ ...task.item, className: "taskItem" });
       });
       return items;
     },
     groups() {
       let groups = [];
       store.getters.tasks.forEach((task) => {
-        let group = {};
-
-        group.id = task.taskId;
-        group.content = task.taskName;
-
-        groups.push(group);
+        groups.push(task.group);
       });
-      console.log(groups);
       return groups;
     },
     planningView() {

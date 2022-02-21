@@ -22,10 +22,10 @@ namespace pms.backend.Controllers
         }
 
         [HttpPost]
-        public ActionResult<List<Project>> AddProject(Project project)
+        public async Task<ActionResult<List<Project>>> AddProject(Project project)
         {
-            serviceProject.AddProject(project);
-            return Ok("Apple");
+            await serviceProject.AddProject(project);
+            return Ok(serviceProject.GetAllProjects());
         }
     }
 }

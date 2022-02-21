@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BusinessAccessLayer.extensions
 {
-    internal class ProjectValidator
+    public class ProjectValidator
     {
         public bool ProjectParameterValidator(Project project)
         {

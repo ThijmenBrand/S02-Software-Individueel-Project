@@ -10,27 +10,26 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer.repositories
 {
-    public class RepositoryProject : IRepository<Project>
+    public class RepositoryProject : IProjectRepo<Project>
     {
         private readonly DataContext _DataContext;
-        private readonly ILogger _Logger;
 
-        public RepositoryProject(ILogger<Project> logger, DataContext dataContext)
+        public RepositoryProject(DataContext dataContext)
         {
-            _Logger = logger;
             _DataContext = dataContext;
         }
 
-        public async Task<Project> Create(Project project)
+        public async Task<bool> Create(Project project)
         {
             try
             {
                 if (project != null)
                 {
                     project.Tasks = null;
-                    var obj = _DataContext.Add<Project>(project);
+                    _DataContext.Add(project);
                     await _DataContext.SaveChangesAsync();
-                    return obj.Entity;
+
+                    return true;
                 } else
                 {
                     throw new ArgumentNullException("The input is not a valid project");

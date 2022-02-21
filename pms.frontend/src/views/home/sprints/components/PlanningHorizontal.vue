@@ -56,14 +56,12 @@ export default {
           end: "2022-02-16 06:00:00",
           repeat: "daily",
         },
-        start: "2022-02-16",
-        end: "2022-02-16",
+        start: "2022-02-21",
+        end: "2022-02-22",
       },
     };
   },
   mounted() {
-    console.log(this.groups);
-    console.log(this.items);
     let timeline = new Timeline(document.getElementById("visualization"));
     timeline.setOptions(this.options);
     timeline.setGroups(this.groups);
@@ -73,16 +71,11 @@ export default {
 </script>
 
 <style>
-.vis-time-axis .vis-grid.vis-odd {
-  background: #f5f5f5;
+.vis-timeline {
+  border: none;
 }
-.vis-time-axis .vis-grid.vis-saturday,
-.vis-time-axis .vis-grid.vis-sunday {
-  background: gray;
-}
-.vis-time-axis .vis-text.vis-saturday,
-.vis-time-axis .vis-text.vis-sunday {
-  color: white;
+.vis-panel.vis-left {
+  border-top-style: none;
 }
 .vis-item {
   background-color: #d6e6ff;
@@ -94,6 +87,29 @@ export default {
   opacity: 0.8;
   font-size: 13px;
   height: 55px;
+}
+.vis-labelset .vis-label .vis-inner {
+  min-width: 200px;
+}
+
+.vis-panel.vis-center,
+.vis-panel.vis-top {
+  border: none;
+}
+
+.vis-panel {
+  box-sizing: none;
+}
+
+.vis-foreground .vis-group {
+  border: none;
+}
+
+.vis-item.taskItem {
+  background-color: orange;
+  height: 40px;
+  border-radius: 15px;
+  border: none;
 }
 .vis-active {
   box-shadow: none;

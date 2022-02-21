@@ -45,7 +45,7 @@ actions: {
         
         const CurrentProjectId: number = localStorage['currentProjectId'];
         const response = await Axios.get(
-            `http://localhost:8080/api/Tasks/ProjectTask?ProjectId=${CurrentProjectId}`
+            `http://localhost:8080/api/Tasks/${CurrentProjectId}`
         );
     
         commit(ACTION_TYPES.getTasksByProject, response.data);
@@ -65,4 +65,3 @@ mutations: {
     },
 },
 });
-
