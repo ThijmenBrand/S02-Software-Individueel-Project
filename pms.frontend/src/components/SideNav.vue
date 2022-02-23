@@ -1,104 +1,171 @@
 <template>
-  <sidebar-menu
-    :menu="menu"
-    :theme="theme"
-    :width="width"
-    :hideToggle="hideToggle"
-  />
+  <div class="side-nav-menu">
+    <router-link to="/">
+      <div class="logo-header-container">
+        <img class="logo" src="@/assets/Logo.svg" />
+        <h2 class="title">PMS</h2>
+      </div>
+    </router-link>
+    <div class="menu-items-container">
+      <hr />
+      <div class="menu-links-container">
+        <router-link
+          :to="{ name: 'Dashboard', params: { id: this.$route.params.id } }"
+        >
+          <div class="menu-nav-item">
+            <el-icon><house /></el-icon>
+            <p class="item-title">Home</p>
+          </div>
+        </router-link>
+        <router-link
+          :to="{ name: 'Files', params: { id: this.$route.params.id } }"
+        >
+          <div class="menu-nav-item">
+            <el-icon><collection /></el-icon>
+            <p class="item-title">Assets</p>
+          </div>
+        </router-link>
+        <router-link
+          :to="{ name: 'Sprints', params: { id: this.$route.params.id } }"
+        >
+          <div class="menu-nav-item">
+            <el-icon><eleme /></el-icon>
+            <p class="item-title">Sprints</p>
+          </div>
+        </router-link>
+        <router-link
+          :to="{ name: 'Board', params: { id: this.$route.params.id } }"
+        >
+          <div class="menu-nav-item">
+            <el-icon><calendar /></el-icon>
+            <p class="item-title">Planning</p>
+          </div>
+        </router-link>
+        <router-link
+          :to="{ name: 'TimeTracking', params: { id: this.$route.params.id } }"
+        >
+          <div class="menu-nav-item">
+            <el-icon><clock /></el-icon>
+            <p class="item-title">Time</p>
+          </div>
+        </router-link>
+        <router-link
+          :to="{ name: 'Settings', params: { id: this.$route.params.id } }"
+        >
+          <div class="menu-nav-item">
+            <el-icon><setting /></el-icon>
+            <p class="item-title">Settings</p>
+          </div>
+        </router-link>
+      </div>
+      <div class="user-container">
+        <router-link
+          :to="{ name: 'Account', params: { id: this.$route.params.id } }"
+        >
+          <img class="profile-picture" src="@/assets/pf.jpg" />
+        </router-link>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
-import { SidebarMenu } from "vue-sidebar-menu";
+import {
+  House,
+  Collection,
+  Eleme,
+  Calendar,
+  Clock,
+  Setting,
+} from "@element-plus/icons-vue";
+import ElIcon from "element-plus/lib/components/icon";
+
 export default {
   components: {
-    SidebarMenu,
-  },
-  data() {
-    return {
-      menu: [
-        {
-          title: "Assets",
-          icon: {
-            element: "img",
-            attributes: {
-              src: "https://img.icons8.com/ios-glyphs/30/ffffff/project.png",
-            },
-          },
-          child: [
-            {
-              href: { name: "Files", params: { id: this.$route.params.id } },
-              title: "Files",
-              icon: {
-                element: "img",
-                attributes: {
-                  src: "https://img.icons8.com/small/16/000000/opened-folder--v1.png",
-                },
-              },
-            },
-            {
-              href: { name: "Links", params: { id: this.$route.params.id } },
-              title: "Links",
-              icon: {
-                element: "img",
-                attributes: {
-                  src: "https://img.icons8.com/ios-glyphs/20/000000/link--v1.png",
-                },
-              },
-            },
-          ],
-        },
-        {
-          href: { name: "Sprints", params: { id: this.$route.params.id } },
-          title: "Sprints",
-          icon: {
-            element: "img",
-            attributes: {
-              src: "https://img.icons8.com/ios-filled/50/ffffff/sprint-iteration.png",
-            },
-          },
-        },
-        {
-          href: { name: "Board", params: { id: this.$route.params.id } },
-          title: "Board",
-          icon: {
-            element: "img",
-            attributes: {
-              src: "https://img.icons8.com/ios-filled/50/ffffff/trello.png",
-            },
-          },
-        },
-        {
-          href: { name: "TimeTracking", params: { id: this.$route.params.id } },
-          title: "Time",
-          icon: {
-            element: "img",
-            attributes: {
-              src: "https://img.icons8.com/ios-filled/50/ffffff/important-time.png",
-            },
-          },
-        },
-        {
-          href: { name: "Settings", params: { id: this.$route.params.id } },
-          title: "Settings",
-          icon: {
-            element: "img",
-            attributes: {
-              src: "https://img.icons8.com/ios-glyphs/30/ffffff/settings--v1.png",
-            },
-          },
-        },
-      ],
-      width: "150px",
-      theme: "white-theme",
-      hideToggle: true,
-    };
+    Setting,
+    Clock,
+    Calendar,
+    Eleme,
+    Collection,
+    House,
+    ElIcon,
   },
 };
 </script>
 
 <style scoped>
 .v-sidebar-menu {
-  margin-top: 80px;
   border-right: 0.5px solid #d4d4d4;
+}
+
+.title {
+  display: inline-block;
+}
+
+.logo {
+  display: inline-block;
+}
+
+.logo-header-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+el-icon {
+  display: inline-block;
+}
+
+.item-title {
+  display: inline-block;
+  margin-left: 20px;
+}
+
+.side-nav-menu {
+  width: 150px;
+  float: left;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  background-color: #f0f0f0;
+}
+
+.router-link-exact-active {
+  color: blue;
+}
+
+a {
+  color: black;
+  text-decoration: none;
+}
+
+.menu-nav-item {
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  margin-left: 20px;
+}
+
+.user-container {
+  position: absolute;
+  bottom: 10px;
+  width: 150px;
+  display: flex;
+  justify-content: center;
+}
+
+.profile-picture {
+  background-color: orange;
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+  display: inline-block;
+}
+
+hr {
+  width: 120px;
+  height: 1px;
+  border: none;
+  background-color: gray;
 }
 </style>

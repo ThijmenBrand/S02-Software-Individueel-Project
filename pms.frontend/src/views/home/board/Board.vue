@@ -1,20 +1,43 @@
 <template>
-  <h1>Board</h1>
-  <p>{{ currentProject }}</p>
+  <h1>Sprints</h1>
+  <p v-if="groups.length == 0">Loading you board...</p>
+  <Timeline
+    v-else
+    :items="tasks"
+    :groups="groups"
+    :PlanningView="planningView"
+  />
 </template>
 
 <script>
-import { useStore } from "vuex";
+import Timeline from "./components/PlanningHorizontal.vue";
+import store from "@/store";
+
 export default {
-  setup() {
-    const store = useStore();
-
-    const currentProject = store.state.currentProject.projectName;
-
-    return { currentProject };
+  components: {
+    Timeline,
+  },
+  computed: {
+    tasks() {
+      let items = [];
+      store.getters.tasks.forEach((task) => {
+        items.push({ ...task.item, className: "taskItem" });
+      });
+      return items;
+    },
+    groups() {
+      let groups = [];
+      store.getters.tasks.forEach((task) => {
+        groups.push(task.group);
+      });
+      return groups;
+    },
+    planningView() {
+      return "hour";
+    },
+  },
+  beforeMount() {
+    store.dispatch("getTasksByProject", this.$route.params.id);
   },
 };
 </script>
-
-<style>
-</style>

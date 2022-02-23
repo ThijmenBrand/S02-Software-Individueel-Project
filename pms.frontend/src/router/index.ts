@@ -8,6 +8,8 @@ import Sprints from "@/views/home/sprints/Sprints.vue";
 import Board from "@/views/home/board/Board.vue";
 import TimeTracking from "@/views/home/timeTracking/TimeTracking.vue";
 import Settings from "@/views/home/settings/Settings.vue";
+import Dashboard from "@/views/home/home/Home.vue";
+import Account from "@/views/home/account/Account.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -20,6 +22,11 @@ const routes: Array<RouteRecordRaw> = [
     name: "Home",
     component: Home,
     children: [
+      {
+        path: "dashboard",
+        name: "Dashboard",
+        component: Dashboard,
+      },
       {
         path: "assets",
         name: "Assets",
@@ -56,9 +63,14 @@ const routes: Array<RouteRecordRaw> = [
         path: "settings",
         name: "Settings",
         component: Settings,
-      }
+      },
     ]
-  }
+  },
+  {
+    path: "/account",
+    name: "Account",
+    component: Account,
+  } 
 ];
 
 const router = createRouter({

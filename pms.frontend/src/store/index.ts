@@ -20,14 +20,14 @@ getters: {
 actions: {
     onFetchProjects: async ({ commit }) => {
         const response = await Axios.get(
-            "http://localhost:8080/api/Projects"
+            "http://localhost:8081/api/Projects"
         );
         commit(ACTION_TYPES.fetchProjects, response.data);
     },
 
     addNewProject: async ({ commit }, projectDetails ) => {
         const response = await Axios.post(
-            "http://localhost:8080/api/Projects",
+            "http://localhost:8081/api/Projects",
             {
                 "projectName": projectDetails.projectName,
                 "projectDescription": "",
@@ -45,7 +45,7 @@ actions: {
         
         const CurrentProjectId: number = localStorage['currentProjectId'];
         const response = await Axios.get(
-            `http://localhost:8080/api/Tasks/${CurrentProjectId}`
+            `http://localhost:8081/api/Tasks/${CurrentProjectId}`
         );
     
         commit(ACTION_TYPES.getTasksByProject, response.data);
