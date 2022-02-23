@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Thijmen\\OneDrive\\Fontys\\S02\\s02-software-individueel-project\\PMS.backend\\pms.unittests\\pms.unittests.csproj": {}
+    "C:\\Users\\Thijmen\\OneDrive\\Fontys\\S02\\s02-software-individueel-project\\pms.backend\\pms.unittests\\pms.unittests.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Thijmen\\OneDrive\\Fontys\\S02\\s02-software-individueel-project\\PMS.backend\\BusinessAccessLayer\\BusinessAccessLayer.csproj": {
+    "C:\\Users\\Thijmen\\OneDrive\\Fontys\\S02\\s02-software-individueel-project\\pms.backend\\BusinessAccessLayer\\BusinessAccessLayer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Thijmen\\OneDrive\\Fontys\\S02\\s02-software-individueel-project\\PMS.backend\\BusinessAccessLayer\\BusinessAccessLayer.csproj",
+        "projectUniqueName": "C:\\Users\\Thijmen\\OneDrive\\Fontys\\S02\\s02-software-individueel-project\\pms.backend\\BusinessAccessLayer\\BusinessAccessLayer.csproj",
         "projectName": "BusinessAccessLayer",
-        "projectPath": "C:\\Users\\Thijmen\\OneDrive\\Fontys\\S02\\s02-software-individueel-project\\PMS.backend\\BusinessAccessLayer\\BusinessAccessLayer.csproj",
+        "projectPath": "C:\\Users\\Thijmen\\OneDrive\\Fontys\\S02\\s02-software-individueel-project\\pms.backend\\BusinessAccessLayer\\BusinessAccessLayer.csproj",
         "packagesPath": "C:\\Users\\Thijmen\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Thijmen\\OneDrive\\Fontys\\S02\\s02-software-individueel-project\\PMS.backend\\BusinessAccessLayer\\obj\\",
+        "outputPath": "C:\\Users\\Thijmen\\OneDrive\\Fontys\\S02\\s02-software-individueel-project\\pms.backend\\BusinessAccessLayer\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Thijmen\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -28,8 +28,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\Thijmen\\OneDrive\\Fontys\\S02\\s02-software-individueel-project\\PMS.backend\\DataAccessLayer\\DataAccessLayer.csproj": {
-                "projectPath": "C:\\Users\\Thijmen\\OneDrive\\Fontys\\S02\\s02-software-individueel-project\\PMS.backend\\DataAccessLayer\\DataAccessLayer.csproj"
+              "C:\\Users\\Thijmen\\OneDrive\\Fontys\\S02\\s02-software-individueel-project\\pms.backend\\DataAccessLayer\\DataAccessLayer.csproj": {
+                "projectPath": "C:\\Users\\Thijmen\\OneDrive\\Fontys\\S02\\s02-software-individueel-project\\pms.backend\\DataAccessLayer\\DataAccessLayer.csproj"
               }
             }
           }
@@ -80,14 +80,14 @@
         }
       }
     },
-    "C:\\Users\\Thijmen\\OneDrive\\Fontys\\S02\\s02-software-individueel-project\\PMS.backend\\DataAccessLayer\\DataAccessLayer.csproj": {
+    "C:\\Users\\Thijmen\\OneDrive\\Fontys\\S02\\s02-software-individueel-project\\pms.backend\\DataAccessLayer\\DataAccessLayer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Thijmen\\OneDrive\\Fontys\\S02\\s02-software-individueel-project\\PMS.backend\\DataAccessLayer\\DataAccessLayer.csproj",
+        "projectUniqueName": "C:\\Users\\Thijmen\\OneDrive\\Fontys\\S02\\s02-software-individueel-project\\pms.backend\\DataAccessLayer\\DataAccessLayer.csproj",
         "projectName": "DataAccessLayer",
-        "projectPath": "C:\\Users\\Thijmen\\OneDrive\\Fontys\\S02\\s02-software-individueel-project\\PMS.backend\\DataAccessLayer\\DataAccessLayer.csproj",
+        "projectPath": "C:\\Users\\Thijmen\\OneDrive\\Fontys\\S02\\s02-software-individueel-project\\pms.backend\\DataAccessLayer\\DataAccessLayer.csproj",
         "packagesPath": "C:\\Users\\Thijmen\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Thijmen\\OneDrive\\Fontys\\S02\\s02-software-individueel-project\\PMS.backend\\DataAccessLayer\\obj\\",
+        "outputPath": "C:\\Users\\Thijmen\\OneDrive\\Fontys\\S02\\s02-software-individueel-project\\pms.backend\\DataAccessLayer\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Thijmen\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -152,14 +152,14 @@
         }
       }
     },
-    "C:\\Users\\Thijmen\\OneDrive\\Fontys\\S02\\s02-software-individueel-project\\PMS.backend\\pms.unittests\\pms.unittests.csproj": {
+    "C:\\Users\\Thijmen\\OneDrive\\Fontys\\S02\\s02-software-individueel-project\\pms.backend\\pms.unittests\\pms.unittests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Thijmen\\OneDrive\\Fontys\\S02\\s02-software-individueel-project\\PMS.backend\\pms.unittests\\pms.unittests.csproj",
+        "projectUniqueName": "C:\\Users\\Thijmen\\OneDrive\\Fontys\\S02\\s02-software-individueel-project\\pms.backend\\pms.unittests\\pms.unittests.csproj",
         "projectName": "pms.unittests",
-        "projectPath": "C:\\Users\\Thijmen\\OneDrive\\Fontys\\S02\\s02-software-individueel-project\\PMS.backend\\pms.unittests\\pms.unittests.csproj",
+        "projectPath": "C:\\Users\\Thijmen\\OneDrive\\Fontys\\S02\\s02-software-individueel-project\\pms.backend\\pms.unittests\\pms.unittests.csproj",
         "packagesPath": "C:\\Users\\Thijmen\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Thijmen\\OneDrive\\Fontys\\S02\\s02-software-individueel-project\\PMS.backend\\pms.unittests\\obj\\",
+        "outputPath": "C:\\Users\\Thijmen\\OneDrive\\Fontys\\S02\\s02-software-individueel-project\\pms.backend\\pms.unittests\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Thijmen\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -176,11 +176,11 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\Thijmen\\OneDrive\\Fontys\\S02\\s02-software-individueel-project\\PMS.backend\\BusinessAccessLayer\\BusinessAccessLayer.csproj": {
-                "projectPath": "C:\\Users\\Thijmen\\OneDrive\\Fontys\\S02\\s02-software-individueel-project\\PMS.backend\\BusinessAccessLayer\\BusinessAccessLayer.csproj"
+              "C:\\Users\\Thijmen\\OneDrive\\Fontys\\S02\\s02-software-individueel-project\\pms.backend\\BusinessAccessLayer\\BusinessAccessLayer.csproj": {
+                "projectPath": "C:\\Users\\Thijmen\\OneDrive\\Fontys\\S02\\s02-software-individueel-project\\pms.backend\\BusinessAccessLayer\\BusinessAccessLayer.csproj"
               },
-              "C:\\Users\\Thijmen\\OneDrive\\Fontys\\S02\\s02-software-individueel-project\\PMS.backend\\DataAccessLayer\\DataAccessLayer.csproj": {
-                "projectPath": "C:\\Users\\Thijmen\\OneDrive\\Fontys\\S02\\s02-software-individueel-project\\PMS.backend\\DataAccessLayer\\DataAccessLayer.csproj"
+              "C:\\Users\\Thijmen\\OneDrive\\Fontys\\S02\\s02-software-individueel-project\\pms.backend\\DataAccessLayer\\DataAccessLayer.csproj": {
+                "projectPath": "C:\\Users\\Thijmen\\OneDrive\\Fontys\\S02\\s02-software-individueel-project\\pms.backend\\DataAccessLayer\\DataAccessLayer.csproj"
               }
             }
           }

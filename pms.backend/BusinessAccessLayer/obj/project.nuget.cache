@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "hB81A0+mIvQzMWV/YD1VxWlRjP/y2L7UHayBpzExk4X8DVDMogC0+SOw2JBL89E9Z92ioVlB06f0mhVvyZQi+w==",
+  "dgSpecHash": "3k/u9Fa8D14g+w9qR/CFRyDQLqe4HxUzYkL5obgNztc3+cbl5W6YJp+PBE0vO8kzegh4EOB2vw/MIZY4ICopEg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Thijmen\\OneDrive\\Fontys\\S02\\s02-software-individueel-project\\PMS.backend\\BusinessAccessLayer\\BusinessAccessLayer.csproj",
+  "projectFilePath": "C:\\Users\\Thijmen\\OneDrive\\Fontys\\S02\\s02-software-individueel-project\\pms.backend\\BusinessAccessLayer\\BusinessAccessLayer.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Thijmen\\.nuget\\packages\\microsoft.aspnet.cors\\5.2.7\\microsoft.aspnet.cors.5.2.7.nupkg.sha512",
     "C:\\Users\\Thijmen\\.nuget\\packages\\microsoft.aspnet.webapi.client\\5.2.7\\microsoft.aspnet.webapi.client.5.2.7.nupkg.sha512",
