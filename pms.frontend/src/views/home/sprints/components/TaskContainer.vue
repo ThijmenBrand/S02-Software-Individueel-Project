@@ -1,48 +1,52 @@
 <template>
-  <ElDialog v-model="modalIsOpen" :title="openTask.taskName" width="30%">
-    <span>{{ openTask.taskId }}</span>
-  </ElDialog>
-  <ElCard
+  <Modal
+    v-show="modalIsOpen"
+    @close="openTaskModal"
+    :taskId="openTask.taskId"
+  />
+  <div
     class="task-container"
     :class="containerClassName"
     style="background-color: transparent"
   >
-    <template #header>
-      <div>
-        <span>{{ containerName }}</span>
-        <ElButton type="text" class="add-item-button"
-          ><ElIcon :size="20" @click="addItem(containerName)"><plus /></ElIcon
-        ></ElButton>
-      </div>
-    </template>
-    <AddTaskCard
-      :containerName="containerName"
-      :class="activeAdd ? 'show-add' : 'show-not'"
-    />
-    <draggable
-      @end="update"
-      :options="{ group: containerName }"
-      :group="{ name: containerName, put: true, pull: true }"
-      ghost-class="ghost"
-      :attr="containerName"
-    >
-      <TaskCard
-        v-for="(task, index) in tasks"
-        :key="index"
-        :task="task"
-        @open-modal="openTaskModal"
+    <div class="container-header">
+      <h3>{{ containerName }}</h3>
+      <ElButton type="text" class="add-item-button"
+        ><ElIcon :size="20" @click="addItem(containerName)"><plus /></ElIcon
+      ></ElButton>
+    </div>
+    <hr :class="containerName + '-line'" />
+    <div class="container-body">
+      <AddTaskCard
+        :containerName="containerName"
+        :class="activeAdd ? 'show-add' : 'show-not'"
       />
-    </draggable>
-  </ElCard>
+      <draggable
+        @end="update"
+        :options="{ group: containerName }"
+        :group="{ name: containerName, put: true, pull: true }"
+        ghost-class="ghost"
+        :attr="containerName"
+      >
+        <TaskCard
+          v-for="(task, index) in tasks"
+          :key="index"
+          :task="task"
+          @open-modal="openTaskModal"
+        />
+      </draggable>
+    </div>
+  </div>
 </template>
 
 <script lang="ts">
-import { ElCard, ElButton, ElIcon, ElDialog } from "element-plus";
+import { ElButton, ElIcon } from "element-plus";
 import { VueDraggableNext } from "vue-draggable-next";
 
 import TaskCard from "./TaskCard.vue";
 import AddTaskCard from "./AddTaskCard.vue";
 import TaskModel from "@/models/tasks/Taskmodel";
+import Modal from "@/components/modal/TaskModal.vue";
 
 import { Plus } from "@element-plus/icons-vue";
 
@@ -52,12 +56,11 @@ import { computed, onMounted, ref } from "vue";
 export default {
   name: "TaskContainer",
   components: {
-    ElCard,
     ElButton,
     ElIcon,
     Plus,
+    Modal,
     TaskCard,
-    ElDialog,
     AddTaskCard,
     draggable: VueDraggableNext,
   },
@@ -142,7 +145,33 @@ export default {
 };
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+.todo-line {
+  background-color: #fc5e03;
+}
+.doing-line {
+  background-color: #03fc7b;
+}
+.done-line {
+  background-color: #036bfc;
+}
+hr {
+  width: 100%;
+  border: none;
+  height: 2px;
+  border-radius: 2px;
+}
+.container-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  h3 {
+    display: inline-block;
+  }
+}
+.container-body {
+  min-height: 300px;
+}
 .task-container {
   box-shadow: none;
   min-height: 100px;

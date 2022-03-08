@@ -1,19 +1,17 @@
 <template>
-  <ElCard class="task-card" :attr="taskId" @click="openTask">
-    <div>
+  <div class="task-card" :attr="taskId" @click="openTask">
+    <div class="task-content">
       <h3>{{ task.taskName }}</h3>
       <p>{{ task.taskDescription }}</p>
     </div>
-  </ElCard>
+  </div>
 </template>
 
 <script lang="ts">
-import { ElCard } from "element-plus";
 import TaskModel from "@/models/tasks/Taskmodel";
 import { computed } from "vue";
 export default {
   name: "TaskCard",
-  components: { ElCard },
   props: {
     task: {
       type: Object as () => TaskModel,
@@ -26,8 +24,7 @@ export default {
       return props.task.taskId;
     });
 
-    const openTask = () => {
-      console.log("opening task");
+    const openTask = (): void => {
       emit("open-modal", props.task);
     };
 
@@ -37,8 +34,12 @@ export default {
 </script>
 
 <style scoped>
+.task-content {
+  padding: 2px 5px 2px 5px;
+}
 .task-card {
-  width: 250px;
+  width: 100%;
+  border-radius: 10px;
   background-color: rgb(233, 233, 233);
   margin-bottom: 10px;
   max-height: 170px;

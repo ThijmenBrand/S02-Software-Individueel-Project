@@ -1,5 +1,5 @@
 <template>
-  <ElCard class="task-card">
+  <div class="task-card">
     <div>
       <ElInput
         v-model="taskName"
@@ -7,17 +7,17 @@
         placeholder="New task name"
       />
     </div>
-  </ElCard>
+  </div>
 </template>
 
 <script lang="ts">
-import { ElCard, ElInput } from "element-plus";
+import { ElInput } from "element-plus";
 import { ref } from "vue";
 import { useStore } from "vuex";
 import { IBaseTaskShape } from "@/models/tasks/Taskmodel";
 export default {
   name: "TaskCard",
-  components: { ElCard, ElInput },
+  components: { ElInput },
   props: {
     containerName: {
       type: String,
@@ -46,10 +46,12 @@ export default {
 
 <style scoped>
 .task-card {
-  width: 250px;
+  width: 100%;
+  border-radius: 10px;
   background-color: rgb(233, 233, 233);
   margin-bottom: 10px;
   max-height: 170px;
+  cursor: pointer;
 }
 .el-card__body {
   display: none;
