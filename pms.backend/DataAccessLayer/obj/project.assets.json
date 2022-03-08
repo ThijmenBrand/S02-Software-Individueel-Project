@@ -7107,11 +7107,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Thijmen\\OneDrive\\Fontys\\S02\\s02-software-individueel-project\\PMS.backend\\DataAccessLayer\\DataAccessLayer.csproj",
+      "projectUniqueName": "C:\\Users\\Thijmen\\OneDrive\\Fontys\\S02\\S02-Software-Individueel-Project-\\pms.backend\\DataAccessLayer\\DataAccessLayer.csproj",
       "projectName": "DataAccessLayer",
-      "projectPath": "C:\\Users\\Thijmen\\OneDrive\\Fontys\\S02\\s02-software-individueel-project\\PMS.backend\\DataAccessLayer\\DataAccessLayer.csproj",
+      "projectPath": "C:\\Users\\Thijmen\\OneDrive\\Fontys\\S02\\S02-Software-Individueel-Project-\\pms.backend\\DataAccessLayer\\DataAccessLayer.csproj",
       "packagesPath": "C:\\Users\\Thijmen\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Thijmen\\OneDrive\\Fontys\\S02\\s02-software-individueel-project\\PMS.backend\\DataAccessLayer\\obj\\",
+      "outputPath": "C:\\Users\\Thijmen\\OneDrive\\Fontys\\S02\\S02-Software-Individueel-Project-\\pms.backend\\DataAccessLayer\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Thijmen\\AppData\\Roaming\\NuGet\\NuGet.Config",
