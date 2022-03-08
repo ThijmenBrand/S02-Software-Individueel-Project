@@ -40,17 +40,6 @@ namespace DataAccessLayer.repositories
             }
         }
 
-        public IEnumerable<Tasks> GetAll()
-        {
-            try
-            {
-                return _DataContext.task.ToList();
-            } catch (Exception)
-            {
-                throw;
-            }
-        }
-
         public IEnumerable<Tasks> GetTasksByProject(int id)
         {
             try
@@ -60,6 +49,27 @@ namespace DataAccessLayer.repositories
                     .ToList();
             }
             catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public async Task<bool> UpdateTaskTag(int taskId, string taskTag)
+        {
+            try
+            {
+                var task = await _DataContext.task.FindAsync(taskId);
+                if(task == null)
+                {
+                    return false;
+                }
+
+                task.TaskTag = taskTag;
+
+                await _DataContext.SaveChangesAsync();
+
+                return true;
+            } catch(Exception)
             {
                 throw;
             }

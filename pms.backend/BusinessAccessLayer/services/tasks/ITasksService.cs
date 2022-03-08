@@ -6,7 +6,8 @@ namespace BusinessAccessLayer.services.tasks
     public interface ITasksService
     {
         Task<bool> CreateTask(Tasks task);
-        IEnumerable<Tasks> GetAllTasks();
+        Task<bool> UpdateTaskTag(int id, string taskTag);
+        IEnumerable<Tasks> GetAllTasksByProject(int id);
         IEnumerable<SprintView> GetTasksByProjectModeledToSprintData(int id);
 
     }

@@ -1,67 +1,45 @@
 import { createStore } from "vuex";
-import { ACTION_TYPES } from "./ACTION_TYPES/ActionTypes";
-import IProjectModel from "@/models/projects/ProjectsModel";
-import ITaskModel from "@/models/tasks/Taskmodel";
 import Axios from "axios";
+import ProjectModel from "@/models/project/ProjectsModel";
+import SelectProject from "@/views/selectProject/store/selectProject";
+import Sprints from "@/views/home/sprints/store/sprints";
+import TaskModel from "@/models/tasks/Taskmodel";
 
 export default createStore({
-state: {
-    projectList: Array<IProjectModel>(),
-    taskList: Array<ITaskModel>(),
-    currentProject: <IProjectModel>{},
-    loggedUser: "1"
-},
-getters: {
-    tasks: state => {
-        return state.taskList;
-    }
-},
-    
-actions: {
-    onFetchProjects: async ({ commit }) => {
-        const response = await Axios.get(
-            "http://localhost:8081/api/Projects"
-        );
-        commit(ACTION_TYPES.fetchProjects, response.data);
+  state: {
+    taskList: Array<TaskModel>(),
+    currentProject: <ProjectModel>{},
+    loggedUser: "1",
+  },
+  getters: {
+    tasks: (state) => {
+      return state.taskList;
     },
+  },
 
-    addNewProject: async ({ commit }, projectDetails ) => {
-        const response = await Axios.post(
-            "http://localhost:8081/api/Projects",
-            {
-                "projectName": projectDetails.projectName,
-                "projectDescription": "",
-                "projectOwnerId": "1"
-            }
-        );
-        commit(ACTION_TYPES.fetchProjects, response.data);
-    },
+  actions: {
+    //Project actions
 
-    selectCurrentProject: async ({ commit }, project) => {
-        commit(ACTION_TYPES.currentProject, project.projectId);
-    },
+    //tasks actions
+    fetchTasks: async ({ commit }) => {
+      const CurrentProjectId: number = localStorage["currentProjectId"];
+      const { data } = await Axios.get(
+        `http://localhost:8080/api/Tasks/${CurrentProjectId}`
+      );
 
-    getTasksByProject: async ({ commit, state }) => {
-        
-        const CurrentProjectId: number = localStorage['currentProjectId'];
-        const response = await Axios.get(
-            `http://localhost:8081/api/Tasks/${CurrentProjectId}`
-        );
-    
-        commit(ACTION_TYPES.getTasksByProject, response.data);
-        return true;
-    }
-},
-    
-mutations: {
-    [ACTION_TYPES.fetchProjects]: (state, projects) => (state.projectList = projects),
-    [ACTION_TYPES.currentProject]: (state, projectId: number) => {
-        const project = state.projectList.find(element => element.projectId == projectId)!;
-        state.currentProject = project;
-        localStorage['currentProjectId'] = project.projectId.toString();
+      commit("getTasksByProject", data);
+      return true;
     },
-    [ACTION_TYPES.getTasksByProject]: (state, tasks) => {
-        state.taskList = tasks
+  },
+
+  mutations: {
+    //Task mutations
+    getTasksByProject: (state, tasks: TaskModel[]) => {
+      state.taskList = tasks;
     },
-},
+  },
+  modules: {
+    selectProject: SelectProject,
+    sprints: Sprints,
+  },
 });

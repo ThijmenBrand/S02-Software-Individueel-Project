@@ -5,7 +5,7 @@ import Assets from "@/views/home/assets/Assets.vue";
 import Files from "@/views/home/assets/files/Files.vue";
 import Links from "@/views/home/assets/links/Links.vue";
 import Sprints from "@/views/home/sprints/Sprints.vue";
-import Board from "@/views/home/board/Board.vue";
+import Calender from "@/views/home/calender/Calender.vue";
 import TimeTracking from "@/views/home/timeTracking/TimeTracking.vue";
 import Settings from "@/views/home/settings/Settings.vue";
 import Dashboard from "@/views/home/home/Home.vue";
@@ -41,8 +41,8 @@ const routes: Array<RouteRecordRaw> = [
             path: "links",
             name: "Links",
             component: Links,
-          }
-        ]
+          },
+        ],
       },
       {
         path: "sprints",
@@ -50,9 +50,9 @@ const routes: Array<RouteRecordRaw> = [
         component: Sprints,
       },
       {
-        path: "board",
-        name: "Board",
-        component: Board,
+        path: "calender",
+        name: "Calender",
+        component: Calender,
       },
       {
         path: "timetracking",
@@ -64,13 +64,13 @@ const routes: Array<RouteRecordRaw> = [
         name: "Settings",
         component: Settings,
       },
-    ]
+    ],
   },
   {
     path: "/account",
     name: "Account",
     component: Account,
-  } 
+  },
 ];
 
 const router = createRouter({

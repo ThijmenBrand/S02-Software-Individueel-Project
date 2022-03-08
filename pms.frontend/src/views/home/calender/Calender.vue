@@ -14,6 +14,7 @@ import Timeline from "./components/PlanningHorizontal.vue";
 import store from "@/store";
 
 export default {
+  //todo, needs large rethinking and refactoring
   components: {
     Timeline,
   },
@@ -37,7 +38,7 @@ export default {
     },
   },
   beforeMount() {
-    store.dispatch("getTasksByProject", this.$route.params.id);
+    store.dispatch("fetchTasks", this.$route.params.id);
   },
 };
 </script>

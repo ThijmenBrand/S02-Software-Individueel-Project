@@ -13,9 +13,11 @@ export default {
   components: { ProjectsTable },
   setup() {
     const store = useStore();
-    const projects = computed(() => store.state.projectList);
+
+    const projects = computed(() => store.getters["selectProject/projectList"]);
+    
     onMounted(() => {
-      store.dispatch("onFetchProjects");
+      store.dispatch("selectProject/fetchProjects");
     });
 
     return {

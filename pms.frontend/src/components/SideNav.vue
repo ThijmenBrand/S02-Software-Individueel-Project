@@ -34,11 +34,11 @@
           </div>
         </router-link>
         <router-link
-          :to="{ name: 'Board', params: { id: this.$route.params.id } }"
+          :to="{ name: 'Calender', params: { id: this.$route.params.id } }"
         >
           <div class="menu-nav-item">
             <el-icon><calendar /></el-icon>
-            <p class="item-title">Planning</p>
+            <p class="item-title">Calender</p>
           </div>
         </router-link>
         <router-link
@@ -123,8 +123,10 @@ el-icon {
 
 .side-nav-menu {
   width: 150px;
+  height: 100%;
   float: left;
-  position: absolute;
+  position: fixed;
+  z-index: 1;
   top: 0;
   bottom: 0;
   background-color: #f0f0f0;

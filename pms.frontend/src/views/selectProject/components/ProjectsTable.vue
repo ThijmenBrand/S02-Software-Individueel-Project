@@ -33,22 +33,22 @@
 import { ElMessageBox, ElTable, ElTableColumn, ElMessage } from "element-plus";
 
 import BaseButton from "@/components/buttons/BaseButton.vue";
-import IProjectModel from "@/models/projects/ProjectsModel";
+import ProjectModel from "@/models/project/ProjectsModel";
 
 import { useStore } from "vuex";
-import { defineComponent } from "@vue/runtime-core";
-import router from "@/router";
+import { useRouter } from "vue-router";
 
-export default defineComponent({
+export default {
   components: { ElTable, ElTableColumn, BaseButton },
   props: {
-    projects: { type: Array as () => Array<IProjectModel>, required: true },
+    projects: { type: Array as () => Array<ProjectModel>, required: true },
   },
   setup() {
     const store = useStore();
+    const router = useRouter();
 
-    const HandleRoute = (val: IProjectModel): void => {
-      store.dispatch("selectCurrentProject", val).then(() => {
+    const HandleRoute = (val: ProjectModel): void => {
+      store.dispatch("selectProject/selectCurrentProject", val).then(() => {
         router.push(`/home/${val.projectName}`);
       });
     };
@@ -77,7 +77,7 @@ export default defineComponent({
 
     return { formatDate, addProject, HandleRoute };
   },
-});
+};
 </script>
 
 <style scoped lang="scss">

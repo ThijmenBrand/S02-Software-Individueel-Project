@@ -33,11 +33,11 @@ namespace BusinessAccessLayer.services.tasks
             }
         }
 
-        public IEnumerable<Tasks> GetAllTasks()
+        public IEnumerable<Tasks> GetAllTasksByProject(int projectId)
         {
             try
             {
-                return _repository.GetAll().ToList();
+                return _repository.GetTasksByProject(projectId).ToList();
             } catch (Exception)
             {
                 throw;
@@ -66,6 +66,22 @@ namespace BusinessAccessLayer.services.tasks
                 }
 
                 return sprintViewList;
+            } catch(Exception)
+            {
+                throw;
+            }
+        }
+
+        public async Task<bool> UpdateTaskTag(int taskId, string taskTag)
+        {
+            try
+            {
+                if (taskId == 0)
+                    return false;
+
+                bool updated = await _repository.UpdateTaskTag(taskId, taskTag);
+
+                return updated;
             } catch(Exception)
             {
                 throw;
