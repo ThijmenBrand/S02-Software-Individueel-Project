@@ -51,12 +51,10 @@ const sprints = {
   },
   actions: {
     getSprints: async ({ commit }: any) => {
-      console.log("getting it");
       const CurrentProjectId: number = localStorage["currentProjectId"];
       const url = `http://localhost:8080/api/Sprints/${CurrentProjectId}`;
       const { data } = await Axios.get(url);
 
-      console.log(data);
       commit("getAllSprints", data);
       commit("setInitalSprint", data);
     },
@@ -72,8 +70,6 @@ const sprints = {
       } else {
         CurrentSprintId = currentSprintId;
       }
-
-      console.log(CurrentSprintId);
       const { data } = await Axios.get(
         `http://localhost:8080/api/Tasks/Sprint/${CurrentSprintId}/${CurrentProjectId}`
       );
@@ -89,11 +85,9 @@ const sprints = {
           taskDescription: "",
           taskTag: task.taskTag,
           projectId: CurrentProjectId,
-          sprintId: 1,
+          sprintId: CurrentSprintId,
         }
       );
-
-      console.log(data, status);
 
       if (status >= 200 && status <= 299) {
         commit("getAllTasks", data);
