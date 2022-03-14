@@ -1,6 +1,6 @@
 ﻿using BusinessAccessLayer.services.tasks.DataModels;
-using DataAccessLayer.contracts;
 using DataAccessLayer.Models;
+using DataLayer.repos.task;
 
 namespace BusinessAccessLayer.services.tasks
 {
@@ -38,6 +38,31 @@ namespace BusinessAccessLayer.services.tasks
             try
             {
                 return _repository.GetTasksByProject(projectId).ToList();
+            } catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public IEnumerable<Tasks> GetTasksByProjectBySprint(int projectId, int sprintId)
+        {
+            try
+            {
+                if(projectId == 0 || sprintId == 0)
+                {
+                    throw new ArgumentNullException();
+                }
+
+                var allTasks = _repository.GetTasksByProject(projectId);
+                List<Tasks> applyingTasks = new List<Tasks>();
+
+                foreach(var task in allTasks)
+                {
+                    if(task.SprintId == sprintId)
+                        applyingTasks.Add(task);
+                }
+
+                return applyingTasks;
             } catch (Exception)
             {
                 throw;

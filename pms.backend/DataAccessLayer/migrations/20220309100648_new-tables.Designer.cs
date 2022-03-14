@@ -4,6 +4,7 @@ using DataAccessLayer.data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccessLayer.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20220309100648_new-tables")]
+    partial class newtables
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -114,9 +116,6 @@ namespace DataAccessLayer.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SprintId"), 1L, 1);
 
-                    b.Property<int?>("ProjectId")
-                        .HasColumnType("int");
-
                     b.Property<int>("SprintDuration")
                         .HasColumnType("int");
 
@@ -124,8 +123,6 @@ namespace DataAccessLayer.Migrations
                         .HasColumnType("datetime2");
 
                     b.HasKey("SprintId");
-
-                    b.HasIndex("ProjectId");
 
                     b.ToTable("sprint");
                 });
@@ -244,13 +241,6 @@ namespace DataAccessLayer.Migrations
                     b.Navigation("Project");
                 });
 
-            modelBuilder.Entity("DataAccessLayer.Models.Sprint", b =>
-                {
-                    b.HasOne("DataAccessLayer.Models.Project", null)
-                        .WithMany("Sprints")
-                        .HasForeignKey("ProjectId");
-                });
-
             modelBuilder.Entity("DataAccessLayer.Models.Tasks", b =>
                 {
                     b.HasOne("DataAccessLayer.Models.Project", "Project")
@@ -287,8 +277,6 @@ namespace DataAccessLayer.Migrations
 
                     b.Navigation("Links");
 
-                    b.Navigation("Sprints");
-
                     b.Navigation("Tasks");
                 });
 
@@ -299,7 +287,8 @@ namespace DataAccessLayer.Migrations
 
             modelBuilder.Entity("DataAccessLayer.Models.Tasks", b =>
                 {
-                    b.Navigation("TaskTime");
+                    b.Navigation("TaskTime")
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

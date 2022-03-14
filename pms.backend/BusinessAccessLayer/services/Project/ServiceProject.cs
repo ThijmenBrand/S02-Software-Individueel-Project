@@ -1,6 +1,5 @@
-﻿using DataAccessLayer.contracts;
-using DataAccessLayer.Models;
-using DataAccessLayer.repositories;
+﻿using DataAccessLayer.Models;
+using DataLayer.repos.project;
 using BusinessAccessLayer.extensions;
 using Microsoft.AspNetCore.Mvc;
 
