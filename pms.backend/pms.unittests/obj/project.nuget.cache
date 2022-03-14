@@ -1,6 +1,10 @@
 {
   "version": 2,
+<<<<<<< HEAD
   "dgSpecHash": "ycDH/XaQLSlrudO6fo3TlONAVfi7XCuaNiTINUIX/YZA/tKo8gHWCDVGyDYVW8Fj9hFSiMLceR04jYaXJxWDDQ==",
+=======
+  "dgSpecHash": "lu8c0iz5KDfl/I9nQYYBQ9oGl6gLLT6B+N7G3LsMK/hYe4FJKj9Js2DqcXjd0Le420fYclk41QAUN7Wo2ZajVQ==",
+>>>>>>> main
   "success": true,
   "projectFilePath": "C:\\Users\\Thijmen\\OneDrive\\Fontys\\S02\\S02-Software-Individueel-Project-\\pms.backend\\pms.unittests\\pms.unittests.csproj",
   "expectedPackageFiles": [

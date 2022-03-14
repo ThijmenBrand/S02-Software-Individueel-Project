@@ -28,8 +28,13 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
+<<<<<<< HEAD
               "C:\\Users\\Thijmen\\OneDrive\\Fontys\\S02\\S02-Software-Individueel-Project-\\pms.backend\\DataAccessLayer\\DataLayer.csproj": {
                 "projectPath": "C:\\Users\\Thijmen\\OneDrive\\Fontys\\S02\\S02-Software-Individueel-Project-\\pms.backend\\DataAccessLayer\\DataLayer.csproj"
+=======
+              "C:\\Users\\Thijmen\\OneDrive\\Fontys\\S02\\S02-Software-Individueel-Project-\\pms.backend\\DataAccessLayer\\DataAccessLayer.csproj": {
+                "projectPath": "C:\\Users\\Thijmen\\OneDrive\\Fontys\\S02\\S02-Software-Individueel-Project-\\pms.backend\\DataAccessLayer\\DataAccessLayer.csproj"
+>>>>>>> main
               }
             }
           }
@@ -80,12 +85,21 @@
         }
       }
     },
+<<<<<<< HEAD
     "C:\\Users\\Thijmen\\OneDrive\\Fontys\\S02\\S02-Software-Individueel-Project-\\pms.backend\\DataAccessLayer\\DataLayer.csproj": {
       "version": "1.0.0",
       "restore": {
         "projectUniqueName": "C:\\Users\\Thijmen\\OneDrive\\Fontys\\S02\\S02-Software-Individueel-Project-\\pms.backend\\DataAccessLayer\\DataLayer.csproj",
         "projectName": "DataLayer",
         "projectPath": "C:\\Users\\Thijmen\\OneDrive\\Fontys\\S02\\S02-Software-Individueel-Project-\\pms.backend\\DataAccessLayer\\DataLayer.csproj",
+=======
+    "C:\\Users\\Thijmen\\OneDrive\\Fontys\\S02\\S02-Software-Individueel-Project-\\pms.backend\\DataAccessLayer\\DataAccessLayer.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Thijmen\\OneDrive\\Fontys\\S02\\S02-Software-Individueel-Project-\\pms.backend\\DataAccessLayer\\DataAccessLayer.csproj",
+        "projectName": "DataAccessLayer",
+        "projectPath": "C:\\Users\\Thijmen\\OneDrive\\Fontys\\S02\\S02-Software-Individueel-Project-\\pms.backend\\DataAccessLayer\\DataAccessLayer.csproj",
+>>>>>>> main
         "packagesPath": "C:\\Users\\Thijmen\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\Thijmen\\OneDrive\\Fontys\\S02\\S02-Software-Individueel-Project-\\pms.backend\\DataAccessLayer\\obj\\",
         "projectStyle": "PackageReference",
@@ -176,11 +190,19 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
+<<<<<<< HEAD
               "C:\\Users\\Thijmen\\OneDrive\\Fontys\\S02\\S02-Software-Individueel-Project-\\pms.backend\\BusinessAccessLayer\\BusinessLayer.csproj": {
                 "projectPath": "C:\\Users\\Thijmen\\OneDrive\\Fontys\\S02\\S02-Software-Individueel-Project-\\pms.backend\\BusinessAccessLayer\\BusinessLayer.csproj"
               },
               "C:\\Users\\Thijmen\\OneDrive\\Fontys\\S02\\S02-Software-Individueel-Project-\\pms.backend\\DataAccessLayer\\DataLayer.csproj": {
                 "projectPath": "C:\\Users\\Thijmen\\OneDrive\\Fontys\\S02\\S02-Software-Individueel-Project-\\pms.backend\\DataAccessLayer\\DataLayer.csproj"
+=======
+              "C:\\Users\\Thijmen\\OneDrive\\Fontys\\S02\\S02-Software-Individueel-Project-\\pms.backend\\BusinessAccessLayer\\BusinessAccessLayer.csproj": {
+                "projectPath": "C:\\Users\\Thijmen\\OneDrive\\Fontys\\S02\\S02-Software-Individueel-Project-\\pms.backend\\BusinessAccessLayer\\BusinessAccessLayer.csproj"
+              },
+              "C:\\Users\\Thijmen\\OneDrive\\Fontys\\S02\\S02-Software-Individueel-Project-\\pms.backend\\DataAccessLayer\\DataAccessLayer.csproj": {
+                "projectPath": "C:\\Users\\Thijmen\\OneDrive\\Fontys\\S02\\S02-Software-Individueel-Project-\\pms.backend\\DataAccessLayer\\DataAccessLayer.csproj"
+>>>>>>> main
               }
             }
           }

@@ -18,7 +18,10 @@ C:\Users\Thijmen\OneDrive\Fontys\S02\S02-Software-Individueel-Project-\pms.backe
 C:\Users\Thijmen\OneDrive\Fontys\S02\S02-Software-Individueel-Project-\pms.backend\DataAccessLayer\obj\Debug\net6.0\DataAccessLayer.dll
 C:\Users\Thijmen\OneDrive\Fontys\S02\S02-Software-Individueel-Project-\pms.backend\DataAccessLayer\obj\Debug\net6.0\ref\DataAccessLayer.dll
 C:\Users\Thijmen\OneDrive\Fontys\S02\S02-Software-Individueel-Project-\pms.backend\DataAccessLayer\obj\Debug\net6.0\DataAccessLayer.pdb
+<<<<<<< HEAD
 C:\Users\Thijmen\OneDrive\Fontys\S02\S02-Software-Individueel-Project-\pms.backend\DataAccessLayer\bin\Debug\net6.0\DataAccessLayer.deps.json
 C:\Users\Thijmen\OneDrive\Fontys\S02\S02-Software-Individueel-Project-\pms.backend\DataAccessLayer\bin\Debug\net6.0\DataAccessLayer.dll
 C:\Users\Thijmen\OneDrive\Fontys\S02\S02-Software-Individueel-Project-\pms.backend\DataAccessLayer\bin\Debug\net6.0\DataAccessLayer.pdb
+=======
+>>>>>>> main
 C:\Users\Thijmen\OneDrive\Fontys\S02\S02-Software-Individueel-Project-\pms.backend\DataAccessLayer\obj\Debug\net6.0\refint\DataAccessLayer.dll
