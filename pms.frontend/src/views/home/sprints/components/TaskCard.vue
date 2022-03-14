@@ -2,7 +2,7 @@
   <div class="task-card" :attr="taskId" @click="openTask">
     <div class="task-content">
       <h3>{{ task.taskName }}</h3>
-      <p>{{ task.taskDescription }}</p>
+      <p>{{ cutDescription(task.taskDescription) }}</p>
     </div>
   </div>
 </template>
@@ -28,7 +28,14 @@ export default {
       emit("open-modal", props.task);
     };
 
-    return { taskId, openTask };
+    const cutDescription = (taskDescription: string): string => {
+      const maxLength = 100;
+      return taskDescription.length <= maxLength
+        ? taskDescription
+        : taskDescription.substring(0, maxLength) + "...";
+    };
+
+    return { taskId, openTask, cutDescription };
   },
 };
 </script>

@@ -7,13 +7,13 @@
       <p @click="ListView" :class="view != 'board' ? 'active-tab' : ''">List</p>
     </div>
     <div class="sprint-selector">
-      <el-select v-model="currentSprint" class="m-2">
+      <el-select v-model="selectedSprint" class="m-2">
         <el-option
-          v-for="item in options"
-          :value="item.value"
-          :key="item.value"
-          :label="item.label"
-          :currentSprint="item.value"
+          v-for="item in sprints"
+          :value="item.sprintId"
+          :key="item.sprintId"
+          :label="'sprint ' + item.sprintId"
+          :selectedSprint="item.sprintId"
         >
         </el-option>
       </el-select>
@@ -31,11 +31,12 @@
 <script lang="ts">
 import { ElSelect, ElOption } from "element-plus";
 
-import { computed, ref } from "vue";
+import { computed, onMounted, ref, watch } from "vue";
 import { useStore } from "vuex";
 
 import TaskContainerModel from "@/models/tasks/TaskContainerModel";
 import TaskContainer from "./components/TaskContainer.vue";
+import SprintModel from "@/models/sprint/SprintModel";
 
 export default {
   name: "sprints",
@@ -49,29 +50,29 @@ export default {
 
     const view = ref("board");
 
-    const containers = computed((): TaskContainerModel => {
-      const container = store.getters["sprints/getContainers"];
-
-      return container;
+    const sprint = computed({
+      get() {
+        return store.getters["sprints/getCurrentSprint"];
+      },
+      set(newVal) {
+        store.commit("sprints/setCurrentSprint", newVal);
+        store.dispatch("sprints/getTasks");
+      },
     });
 
-    //ToDo: Sprints ophalen uit backend en weergeven.
-    const options = [
-      {
-        value: "Sprint 1",
-        label: "Sprint 1",
-      },
-      {
-        value: "Sprint 2",
-        label: "Sprint 2",
-      },
-      {
-        value: "Sprint 3",
-        label: "Sprint 3",
-      },
-    ];
+    const selectedSprint = ref(sprint);
 
-    const currentSprint = ref(options[0].label);
+    onMounted(() => {
+      store.dispatch("sprints/getSprints");
+    });
+
+    const sprints = computed((): SprintModel[] => {
+      return store.getters["sprints/getSprints"];
+    });
+
+    const containers = computed((): TaskContainerModel => {
+      return store.getters["sprints/getContainers"];
+    });
 
     //ToDO: Sprint data in bord weergaven geven en in cookie en store opslaan
     const BoardView = () => {
@@ -89,7 +90,14 @@ export default {
         : localStorage.setItem("sprint-view", "list");
     };
 
-    return { options, currentSprint, BoardView, ListView, containers, view };
+    return {
+      selectedSprint,
+      BoardView,
+      ListView,
+      containers,
+      view,
+      sprints,
+    };
   },
 };
 </script>

@@ -1,5 +1,4 @@
 ﻿using DataAccessLayer.Models;
-using Microsoft.AspNetCore.Mvc;
 
 namespace BusinessAccessLayer.services
 {

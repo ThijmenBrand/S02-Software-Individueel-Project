@@ -3,6 +3,7 @@
     v-show="modalIsOpen"
     @close="openTaskModal"
     :taskId="openTask.taskId"
+    @save="saveTask"
   />
   <div
     class="task-container"
@@ -15,7 +16,7 @@
         ><ElIcon :size="20" @click="addItem(containerName)"><plus /></ElIcon
       ></ElButton>
     </div>
-    <hr :class="containerName + '-line'" />
+    <hr :class="containerName + '-task'" />
     <div class="container-body">
       <AddTaskCard
         :containerName="containerName"
@@ -93,7 +94,10 @@ export default {
     });
 
     onMounted((): void => {
-      store.dispatch("sprints/getTasks");
+      store.dispatch(
+        "sprints/getTasks",
+        store.getters["sprints/getCurrentSprint"]
+      );
     });
 
     const tasks = computed((): TaskModel[] => {
@@ -131,6 +135,11 @@ export default {
       openTask.value = task;
     };
 
+    const saveTask = (task: TaskModel): void => {
+      console.log("saved");
+      modalIsOpen.value = false;
+    };
+
     return {
       tasks,
       update,
@@ -140,21 +149,13 @@ export default {
       openTaskModal,
       modalIsOpen,
       openTask,
+      saveTask,
     };
   },
 };
 </script>
 
 <style scoped lang="scss">
-.todo-line {
-  background-color: #fc5e03;
-}
-.doing-line {
-  background-color: #03fc7b;
-}
-.done-line {
-  background-color: #036bfc;
-}
 hr {
   width: 100%;
   border: none;

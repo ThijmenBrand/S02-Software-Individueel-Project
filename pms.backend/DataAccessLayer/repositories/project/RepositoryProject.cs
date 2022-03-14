@@ -1,14 +1,8 @@
-﻿using DataAccessLayer.contracts;
+﻿using DataLayer.repos.project;
 using DataAccessLayer.Models;
-using Microsoft.Extensions.Logging;
 using DataAccessLayer.data;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace DataAccessLayer.repositories
+namespace DataLayer.repos.project
 {
     public class RepositoryProject : IProjectRepo<Project>
     {

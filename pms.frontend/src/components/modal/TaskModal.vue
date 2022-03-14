@@ -1,17 +1,44 @@
 <template>
   <div class="modal-backdrop">
     <div class="modal">
-      <header class="modal-header">
-        <div><input v-model="task.taskName" /></div>
-        <button type="button" class="btn-close" @click="close">X</button>
-      </header>
+      <button type="button" class="btn-close" @click="close">X</button>
+      <div>
+        <div class="modal-left-container">
+          <header class="modal-header">
+            <p class="task-tag" :class="task.taskTag + '-tag'">
+              {{ task.taskTag }}
+            </p>
+            <input v-model="task.taskName" class="task-title" />
+          </header>
 
-      <section class="modal-body">
-        <slot name="body"> This is the default body </slot>
-      </section>
+          <section class="modal-body">
+            <textarea
+              v-model="task.taskDescription"
+              placeholder="Add a description"
+              class="task-description"
+            />
+          </section>
+        </div>
+        <div class="modal-right-container">
+          <div class="modal-right-time">
+            <p>Schedule</p>
+            <div v-if="task.taskStartTime == '0001-01-01T00:00:00'">
+              <p class="modal-right-time-content">No date set yet</p>
+            </div>
+            <div v-else>
+              <p class="modal-right-time-content">
+                From: {{ formatDate(task.taskStartTime) }}
+              </p>
+              <p class="modal-right-time-content">
+                To: {{ formatDate(task.taskEndTime) }}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
 
       <footer class="modal-footer">
-        <button type="button" class="btn-default" @click="close">Save</button>
+        <button type="button" class="btn-default" @click="save">Save</button>
       </footer>
     </div>
   </div>
@@ -25,11 +52,12 @@ import { computed, ref } from "vue";
 import { useStore } from "vuex";
 export default {
   name: "Modal",
-  emits: ["close"],
+  emits: ["close", "save"],
   props: {
     taskId: {
       type: Number,
       required: true,
+      default: () => 0,
     },
   },
   setup(props: any, { emit }: any) {
@@ -52,17 +80,72 @@ export default {
             taskTag: "",
           });
     });
+    const formatDate = (date: string): string => {
+      if (date == undefined) return "";
+
+      const today = new Date();
+      const inputDate = new Date(date);
+
+      if (inputDate.setHours(0, 0, 0, 0) == today.setHours(0, 0, 0, 0))
+        return date.split("T")[1];
+
+      const day = date
+        .split("T")[0]
+        .split("-")
+        .reverse()
+        .join("-")
+        .substring(0, 5);
+
+      const time = date.split("T")[1].substring(0, 5);
+      return day + " " + time;
+    };
     const close = () => {
       emit("close", task);
     };
+    const save = () => {
+      emit("save", task);
+    };
 
-    return { close, task };
+    return { close, save, task, formatDate };
   },
 };
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
 @import "@/styles/variables/colors.scss";
+
+.modal-left-container {
+  float: left;
+  width: 70%;
+}
+.modal-right-time-content {
+  font-size: 12px;
+}
+.modal-right-container {
+  float: right;
+  width: 30%;
+  margin-top: 30px;
+}
+
+.task-title {
+  font-size: 20px;
+  border: none;
+  width: 90%;
+}
+
+.task-tag {
+  border-radius: 50px;
+  font-size: 10px;
+  padding: 2px 5px 2px 5px;
+}
+
+.task-description {
+  border: none;
+  width: 100%;
+  font-size: 14px;
+  resize: none;
+  height: 100px;
+}
 
 .modal-backdrop {
   position: fixed;
@@ -79,7 +162,7 @@ export default {
 .modal {
   background: #ffffff;
   height: 50%;
-  width: 60%;
+  width: 50%;
   overflow-x: auto;
   display: flex;
   flex-direction: column;
@@ -102,8 +185,6 @@ export default {
 .modal-footer {
   position: absolute;
   bottom: 0;
-  width: 94%;
-  justify-content: right;
 }
 
 .modal-body {

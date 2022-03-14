@@ -11,5 +11,11 @@ namespace DataAccessLayer.Models
         public string ProjectOwnerId { get; set; }
         public DateTime ProjectDate { get; set; }
         public virtual ICollection<Tasks>? Tasks { get; set; }
+        public virtual ICollection<Sprint>? Sprints { get; set; }
+        public virtual ICollection<Link>? Links { get; set; }
+        public virtual ICollection<Asset>? Assets { get; set; }
+
+
+
     }
 }

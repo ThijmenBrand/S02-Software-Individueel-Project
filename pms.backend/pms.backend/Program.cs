@@ -1,8 +1,9 @@
 global using Microsoft.EntityFrameworkCore;
 global using DataAccessLayer.Models;
 using DataAccessLayer.data;
-using DataAccessLayer.repositories;
-using DataAccessLayer.contracts;
+using DataLayer.repos.task;
+using DataLayer.repos.sprint;
+using DataLayer.repos.project;
 using BusinessAccessLayer.services;
 using BusinessAccessLayer.services.tasks;
 
@@ -29,6 +30,8 @@ builder.Services.AddScoped<IServiceProject, ServiceProject>();
 builder.Services.AddScoped<IProjectRepo<Project>, RepositoryProject>();
 builder.Services.AddScoped<ITasksRepo<Tasks>, TasksRepo>();
 builder.Services.AddScoped<ITasksService, TasksService>();
+builder.Services.AddScoped<ISprintRepo<Sprint>, SprintsRepo>();
+builder.Services.AddScoped<ISprintService, SprintService>();
 
 
 

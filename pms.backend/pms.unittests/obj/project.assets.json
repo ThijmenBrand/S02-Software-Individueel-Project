@@ -2593,24 +2593,24 @@
           "build/netcoreapp2.1/xunit.runner.visualstudio.props": {}
         }
       },
-      "BusinessAccessLayer/1.0.0": {
+      "BusinessLayer/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
-          "DataAccessLayer": "1.0.0",
+          "DataLayer": "1.0.0",
           "Microsoft.AspNet.WebApi.Cors": "5.2.7",
           "Microsoft.EntityFrameworkCore": "6.0.2",
           "Microsoft.EntityFrameworkCore.SqlServer": "6.0.2",
           "Swashbuckle.AspNetCore": "6.2.3"
         },
         "compile": {
-          "bin/placeholder/BusinessAccessLayer.dll": {}
+          "bin/placeholder/BusinessLayer.dll": {}
         },
         "runtime": {
-          "bin/placeholder/BusinessAccessLayer.dll": {}
+          "bin/placeholder/BusinessLayer.dll": {}
         }
       },
-      "DataAccessLayer/1.0.0": {
+      "DataLayer/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
@@ -2620,10 +2620,10 @@
           "Swashbuckle.AspNetCore": "6.2.3"
         },
         "compile": {
-          "bin/placeholder/DataAccessLayer.dll": {}
+          "bin/placeholder/DataLayer.dll": {}
         },
         "runtime": {
-          "bin/placeholder/DataAccessLayer.dll": {}
+          "bin/placeholder/DataLayer.dll": {}
         }
       }
     }
@@ -8752,15 +8752,15 @@
         "xunit.runner.visualstudio.nuspec"
       ]
     },
-    "BusinessAccessLayer/1.0.0": {
+    "BusinessLayer/1.0.0": {
       "type": "project",
-      "path": "../BusinessAccessLayer/BusinessAccessLayer.csproj",
-      "msbuildProject": "../BusinessAccessLayer/BusinessAccessLayer.csproj"
+      "path": "../BusinessAccessLayer/BusinessLayer.csproj",
+      "msbuildProject": "../BusinessAccessLayer/BusinessLayer.csproj"
     },
-    "DataAccessLayer/1.0.0": {
+    "DataLayer/1.0.0": {
       "type": "project",
-      "path": "../DataAccessLayer/DataAccessLayer.csproj",
-      "msbuildProject": "../DataAccessLayer/DataAccessLayer.csproj"
+      "path": "../DataAccessLayer/DataLayer.csproj",
+      "msbuildProject": "../DataAccessLayer/DataLayer.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -8768,8 +8768,8 @@
       "AutoFixture >= 4.17.0",
       "AutoFixture.Xunit2 >= 4.17.0",
       "Autofac.Extras.Moq >= 6.1.0",
-      "BusinessAccessLayer >= 1.0.0",
-      "DataAccessLayer >= 1.0.0",
+      "BusinessLayer >= 1.0.0",
+      "DataLayer >= 1.0.0",
       "FluentAssertions >= 6.5.1",
       "Microsoft.NET.Test.Sdk >= 16.11.0",
       "Moq >= 4.16.1",
@@ -8784,11 +8784,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Thijmen\\OneDrive\\Fontys\\S02\\s02-software-individueel-project\\PMS.backend\\pms.unittests\\pms.unittests.csproj",
+      "projectUniqueName": "C:\\Users\\Thijmen\\OneDrive\\Fontys\\S02\\S02-Software-Individueel-Project-\\pms.backend\\pms.unittests\\pms.unittests.csproj",
       "projectName": "pms.unittests",
-      "projectPath": "C:\\Users\\Thijmen\\OneDrive\\Fontys\\S02\\s02-software-individueel-project\\PMS.backend\\pms.unittests\\pms.unittests.csproj",
+      "projectPath": "C:\\Users\\Thijmen\\OneDrive\\Fontys\\S02\\S02-Software-Individueel-Project-\\pms.backend\\pms.unittests\\pms.unittests.csproj",
       "packagesPath": "C:\\Users\\Thijmen\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Thijmen\\OneDrive\\Fontys\\S02\\s02-software-individueel-project\\PMS.backend\\pms.unittests\\obj\\",
+      "outputPath": "C:\\Users\\Thijmen\\OneDrive\\Fontys\\S02\\S02-Software-Individueel-Project-\\pms.backend\\pms.unittests\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Thijmen\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -8805,11 +8805,11 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Users\\Thijmen\\OneDrive\\Fontys\\S02\\s02-software-individueel-project\\PMS.backend\\BusinessAccessLayer\\BusinessAccessLayer.csproj": {
-              "projectPath": "C:\\Users\\Thijmen\\OneDrive\\Fontys\\S02\\s02-software-individueel-project\\PMS.backend\\BusinessAccessLayer\\BusinessAccessLayer.csproj"
+            "C:\\Users\\Thijmen\\OneDrive\\Fontys\\S02\\S02-Software-Individueel-Project-\\pms.backend\\BusinessAccessLayer\\BusinessLayer.csproj": {
+              "projectPath": "C:\\Users\\Thijmen\\OneDrive\\Fontys\\S02\\S02-Software-Individueel-Project-\\pms.backend\\BusinessAccessLayer\\BusinessLayer.csproj"
             },
-            "C:\\Users\\Thijmen\\OneDrive\\Fontys\\S02\\s02-software-individueel-project\\PMS.backend\\DataAccessLayer\\DataAccessLayer.csproj": {
-              "projectPath": "C:\\Users\\Thijmen\\OneDrive\\Fontys\\S02\\s02-software-individueel-project\\PMS.backend\\DataAccessLayer\\DataAccessLayer.csproj"
+            "C:\\Users\\Thijmen\\OneDrive\\Fontys\\S02\\S02-Software-Individueel-Project-\\pms.backend\\DataAccessLayer\\DataLayer.csproj": {
+              "projectPath": "C:\\Users\\Thijmen\\OneDrive\\Fontys\\S02\\S02-Software-Individueel-Project-\\pms.backend\\DataAccessLayer\\DataLayer.csproj"
             }
           }
         }
@@ -8880,7 +8880,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.102\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
       }
     }
   },

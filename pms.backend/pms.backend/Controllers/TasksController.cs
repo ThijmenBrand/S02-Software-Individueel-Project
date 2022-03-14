@@ -1,6 +1,5 @@
 ﻿using BusinessAccessLayer.services.tasks;
 using BusinessAccessLayer.services.tasks.DataModels;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace pms.backend.Controllers
@@ -20,16 +19,23 @@ namespace pms.backend.Controllers
         public async Task<ActionResult<List<Tasks>>> AddTask(Tasks task)
         {
             await _tasksService.CreateTask(task);
-            return Ok(_tasksService.GetAllTasksByProject(task.ProjectId));
+            return Ok(_tasksService.GetTasksByProjectBySprint(task.ProjectId, task.SprintId));
         }
 
         [HttpGet("{projectId}")]
-        public ActionResult<List<SprintView>> GetTasksByProject(int projectId)
+        public ActionResult<List<Tasks>> GetTasksByProject(int projectId)
         {
             var res = _tasksService.GetAllTasksByProject(projectId).ToList();
             return Ok(res);
             //var res = _tasksService.GetTasksByProjectModeledToSprintData(projectId).ToList();
             //return Ok(res);
+        }
+
+        [HttpGet("Sprint/{sprintId}/{projectId}/")]
+        public ActionResult<List<Tasks>> GetTasksBySprint(int projectId, int sprintId)
+        {
+            var res = _tasksService.GetTasksByProjectBySprint(projectId, sprintId).ToList();
+            return Ok(res);
         }
 
         [HttpPut("{taskId}")]

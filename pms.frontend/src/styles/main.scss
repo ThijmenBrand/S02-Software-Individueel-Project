@@ -9,3 +9,22 @@ body {
   margin: 0;
   font-family: "Segoe UI";
 }
+
+.todo-task {
+  background-color: #fc5e03;
+}
+.doing-task {
+  background-color: #03fc7b;
+}
+.done-task {
+  background-color: #036bfc;
+}
+.todo-tag {
+  border: 1px solid #fc5e03;
+}
+.doing-tag {
+  border: 1px solid #03fc7b;
+}
+.done-tag {
+  border: 1px solid #036bfc;
+}

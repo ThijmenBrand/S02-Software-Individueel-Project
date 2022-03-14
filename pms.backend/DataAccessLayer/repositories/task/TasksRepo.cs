@@ -1,13 +1,7 @@
-﻿using DataAccessLayer.contracts;
-using DataAccessLayer.data;
+﻿using DataAccessLayer.data;
 using DataAccessLayer.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace DataAccessLayer.repositories
+namespace DataLayer.repos.task
 {
     public class TasksRepo : ITasksRepo<Tasks>
     {

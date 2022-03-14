@@ -1,15 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.32106.194
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32228.430
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "pms.backend", "pms.backend\pms.backend.csproj", "{6D347DE7-AF84-49E0-B43C-8168BA9AB15A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApiLayer", "pms.backend\ApiLayer.csproj", "{6D347DE7-AF84-49E0-B43C-8168BA9AB15A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccessLayer", "DataAccessLayer\DataAccessLayer.csproj", "{069B8621-6323-4C13-9787-A8A898469053}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataLayer", "DataAccessLayer\DataLayer.csproj", "{069B8621-6323-4C13-9787-A8A898469053}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BusinessAccessLayer", "BusinessAccessLayer\BusinessAccessLayer.csproj", "{47859159-38D1-4B87-8D99-F9CEB2EC651E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BusinessLayer", "BusinessAccessLayer\BusinessLayer.csproj", "{47859159-38D1-4B87-8D99-F9CEB2EC651E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "pms.unittests", "pms.unittests\pms.unittests.csproj", "{5E9B4ED2-C35C-40BE-8708-7F9F60B6A90C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "pms.unittests", "pms.unittests\pms.unittests.csproj", "{5E9B4ED2-C35C-40BE-8708-7F9F60B6A90C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

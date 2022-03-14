@@ -65,7 +65,7 @@ export default {
         inputPattern: /^(?!\s*$).+/,
         inputErrorMessage: "Please enter a valid project name",
       }).then(({ value }) => {
-        store.dispatch("addNewProject", {
+        store.dispatch("selectProject/addNewProject", {
           projectName: value,
         });
         ElMessage({
