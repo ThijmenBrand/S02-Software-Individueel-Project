@@ -1,14 +1,8 @@
 {
   "version": 2,
-<<<<<<< HEAD
   "dgSpecHash": "63wEZZlZT4t793IXOIR43KXuu5bWKHxVYDq0Af+urrSsYQT1UtGsCwQeFY69YNAxo5kjbArEnAYASVR8Zg93sg==",
   "success": true,
   "projectFilePath": "C:\\Users\\Thijmen\\OneDrive\\Fontys\\S02\\S02-Software-Individueel-Project-\\pms.backend\\DataAccessLayer\\DataLayer.csproj",
-=======
-  "dgSpecHash": "wwp1tnzy6sCzALHZxRuhWrOkZdRx91dn9pTNA8QIhpOnJRKx988jZmW4JVkIg/8oR0uvTwBHENwT+U2mYZcHSA==",
-  "success": true,
-  "projectFilePath": "C:\\Users\\Thijmen\\OneDrive\\Fontys\\S02\\S02-Software-Individueel-Project-\\pms.backend\\DataAccessLayer\\DataAccessLayer.csproj",
->>>>>>> main
   "expectedPackageFiles": [
     "C:\\Users\\Thijmen\\.nuget\\packages\\microsoft.aspnet.cors\\5.2.7\\microsoft.aspnet.cors.5.2.7.nupkg.sha512",
     "C:\\Users\\Thijmen\\.nuget\\packages\\microsoft.aspnet.webapi.client\\5.2.7\\microsoft.aspnet.webapi.client.5.2.7.nupkg.sha512",
@@ -143,6 +137,12 @@
     "C:\\Users\\Thijmen\\.nuget\\packages\\system.xml.xmldocument\\4.3.0\\system.xml.xmldocument.4.3.0.nupkg.sha512"
   ],
   "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file C:\\Users\\Thijmen\\OneDrive\\Fontys\\S02\\S02-Software-Individueel-Project-\\pms.backend\\DataAccessLayer\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+    },
     {
       "code": "NU1701",
       "level": "Warning",
