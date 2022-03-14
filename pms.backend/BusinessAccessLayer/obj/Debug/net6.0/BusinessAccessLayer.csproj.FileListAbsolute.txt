@@ -15,7 +15,6 @@ C:\Users\Thijmen\OneDrive\Fontys\S02\s02-software-individueel-project\pms.backen
 C:\Users\Thijmen\OneDrive\Fontys\S02\s02-software-individueel-project\pms.backend\BusinessAccessLayer\obj\Debug\net6.0\BusinessAccessLayer.pdb
 C:\Users\Thijmen\OneDrive\Fontys\S02\S02-Software-Individueel-Project-\pms.backend\BusinessAccessLayer\bin\Debug\net6.0\BusinessAccessLayer.deps.json
 C:\Users\Thijmen\OneDrive\Fontys\S02\S02-Software-Individueel-Project-\pms.backend\BusinessAccessLayer\bin\Debug\net6.0\BusinessAccessLayer.dll
-C:\Users\Thijmen\OneDrive\Fontys\S02\S02-Software-Individueel-Project-\pms.backend\BusinessAccessLayer\bin\Debug\net6.0\ref\BusinessAccessLayer.dll
 C:\Users\Thijmen\OneDrive\Fontys\S02\S02-Software-Individueel-Project-\pms.backend\BusinessAccessLayer\bin\Debug\net6.0\BusinessAccessLayer.pdb
 C:\Users\Thijmen\OneDrive\Fontys\S02\S02-Software-Individueel-Project-\pms.backend\BusinessAccessLayer\bin\Debug\net6.0\DataAccessLayer.dll
 C:\Users\Thijmen\OneDrive\Fontys\S02\S02-Software-Individueel-Project-\pms.backend\BusinessAccessLayer\bin\Debug\net6.0\DataAccessLayer.pdb
@@ -28,3 +27,4 @@ C:\Users\Thijmen\OneDrive\Fontys\S02\S02-Software-Individueel-Project-\pms.backe
 C:\Users\Thijmen\OneDrive\Fontys\S02\S02-Software-Individueel-Project-\pms.backend\BusinessAccessLayer\obj\Debug\net6.0\BusinessAccessLayer.dll
 C:\Users\Thijmen\OneDrive\Fontys\S02\S02-Software-Individueel-Project-\pms.backend\BusinessAccessLayer\obj\Debug\net6.0\ref\BusinessAccessLayer.dll
 C:\Users\Thijmen\OneDrive\Fontys\S02\S02-Software-Individueel-Project-\pms.backend\BusinessAccessLayer\obj\Debug\net6.0\BusinessAccessLayer.pdb
+C:\Users\Thijmen\OneDrive\Fontys\S02\S02-Software-Individueel-Project-\pms.backend\BusinessAccessLayer\obj\Debug\net6.0\refint\BusinessAccessLayer.dll
