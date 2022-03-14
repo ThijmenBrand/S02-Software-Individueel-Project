@@ -42,17 +42,46 @@ const sprints = {
     getTasks: (state: sprintState): TaskModel[] => {
       return state.taskItemsList;
     },
+    getSprints: (state: sprintState): SprintModel[] => {
+      return state.allSprints;
+    },
+    getCurrentSprint: (state: sprintState): number => {
+      return state.currentSprint;
+    },
   },
   actions: {
-    getTasks: async ({ commit }: any): Promise<void> => {
+    getSprints: async ({ commit }: any) => {
+      console.log("getting it");
       const CurrentProjectId: number = localStorage["currentProjectId"];
+      const url = `http://localhost:8080/api/Sprints/${CurrentProjectId}`;
+      const { data } = await Axios.get(url);
+
+      console.log(data);
+      commit("getAllSprints", data);
+      commit("setInitalSprint", data);
+    },
+    getTasks: async (
+      { commit }: any,
+      currentSprintId: number
+    ): Promise<void> => {
+      const CurrentProjectId: number = localStorage["currentProjectId"];
+      let CurrentSprintId: number;
+
+      if (localStorage["currentProjectId"] != undefined) {
+        CurrentSprintId = localStorage["currentProjectId"];
+      } else {
+        CurrentSprintId = currentSprintId;
+      }
+
+      console.log(CurrentSprintId);
       const { data } = await Axios.get(
-        `http://localhost:8080/api/Tasks/${CurrentProjectId}`
+        `http://localhost:8080/api/Tasks/Sprint/${CurrentSprintId}/${CurrentProjectId}`
       );
       commit("getAllTasks", data);
     },
     addTask: async ({ commit }: any, task: IBaseTaskShape): Promise<void> => {
       const CurrentProjectId: number = localStorage["currentProjectId"];
+      const CurrentSprintId: number = localStorage["currentSprintId"];
       const { data, status } = await Axios.post(
         "http://localhost:8080/api/Tasks",
         {
@@ -60,14 +89,23 @@ const sprints = {
           taskDescription: "",
           taskTag: task.taskTag,
           projectId: CurrentProjectId,
+          sprintId: 1,
         }
       );
+
+      console.log(data, status);
 
       if (status >= 200 && status <= 299) {
         commit("getAllTasks", data);
       } else {
         console.log("Something went wrong");
       }
+    },
+    saveTask: async ({ commit }: any, opts: TaskModel) => {
+      const { data, status } = await Axios.put(
+        `http://localhost:8080/api/Tasks/${opts.taskId}`,
+        {}
+      );
     },
     updateTasks: async (
       { commit }: any,
@@ -87,6 +125,32 @@ const sprints = {
     },
   },
   mutations: {
+    setInitalSprint: async (state: sprintState, sprints: SprintModel[]) => {
+      const TodayDate = new Date().getDate();
+
+      sprints.forEach((sprint) => {
+        const sprintStartDate = new Date(sprint.sprintStart).getDate();
+        let sprintEndDate: number | Date = new Date(sprint.sprintStart);
+        sprintEndDate = sprintEndDate.setDate(
+          sprintEndDate.getDate() + sprint.sprintDuration
+        );
+        if (TodayDate >= sprintStartDate && TodayDate <= sprintEndDate) {
+          state.currentSprint = sprint.sprintId;
+          localStorage.setItem(
+            "currentSprintId",
+            JSON.stringify(sprint.sprintId)
+          );
+          console.log(localStorage["currentSprintId"]);
+        }
+      });
+    },
+    setCurrentSprint: (state: sprintState, sprint: number) => {
+      state.currentSprint = sprint;
+      localStorage["currentSprintId"] = JSON.stringify(sprint);
+    },
+    getAllSprints: (state: sprintState, sprints: SprintModel[]) => {
+      state.allSprints = sprints;
+    },
     updateTasks: (
       state: sprintState,
       opts: { taskId: number; targetContainer: string }

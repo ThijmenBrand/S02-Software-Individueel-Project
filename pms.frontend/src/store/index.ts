@@ -10,6 +10,7 @@ export default createStore({
     taskList: Array<TaskModel>(),
     currentProject: <ProjectModel>{},
     loggedUser: "1",
+    error: 0,
   },
   getters: {
     tasks: (state) => {
