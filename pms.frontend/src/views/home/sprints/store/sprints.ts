@@ -56,20 +56,11 @@ const sprints = {
       const { data } = await Axios.get(url);
 
       commit("getAllSprints", data);
-      commit("setInitalSprint", data);
     },
-    getTasks: async (
-      { commit }: any,
-      currentSprintId: number
-    ): Promise<void> => {
+    getTasks: async ({ commit }: any): Promise<void> => {
       const CurrentProjectId: number = localStorage["currentProjectId"];
-      let CurrentSprintId: number;
+      const CurrentSprintId: number = localStorage["currentSprintId"];
 
-      if (localStorage["currentProjectId"] != undefined) {
-        CurrentSprintId = localStorage["currentProjectId"];
-      } else {
-        CurrentSprintId = currentSprintId;
-      }
       const { data } = await Axios.get(
         `http://localhost:8080/api/Tasks/Sprint/${CurrentSprintId}/${CurrentProjectId}`
       );
@@ -96,10 +87,14 @@ const sprints = {
       }
     },
     saveTask: async ({ commit }: any, opts: TaskModel) => {
-      const { data, status } = await Axios.put(
-        `http://localhost:8080/api/Tasks/${opts.taskId}`,
-        {}
+      const { status } = await Axios.put(
+        `http://localhost:8080/api/Tasks/update`,
+        opts
       );
+
+      if (status >= 200 && status <= 299) {
+        console.log("saved!");
+      }
     },
     updateTasks: async (
       { commit }: any,
@@ -117,26 +112,23 @@ const sprints = {
         console.log("Something went wrong");
       }
     },
+    getCurrentSprint: async ({ commit }: any) => {
+      const currentProjectId = localStorage["currentProjectId"];
+      const { data, status } = await Axios.get(
+        `http://localhost:8080/api/Sprints/currentSprint/${currentProjectId}`
+      );
+
+      if (status >= 200 && status <= 299) {
+        commit("setInitalSprint", data);
+      } else {
+        console.log("Something went wrong");
+      }
+    },
   },
   mutations: {
-    setInitalSprint: async (state: sprintState, sprints: SprintModel[]) => {
-      const TodayDate = new Date().getDate();
-
-      sprints.forEach((sprint) => {
-        const sprintStartDate = new Date(sprint.sprintStart).getDate();
-        let sprintEndDate: number | Date = new Date(sprint.sprintStart);
-        sprintEndDate = sprintEndDate.setDate(
-          sprintEndDate.getDate() + sprint.sprintDuration
-        );
-        if (TodayDate >= sprintStartDate && TodayDate <= sprintEndDate) {
-          state.currentSprint = sprint.sprintId;
-          localStorage.setItem(
-            "currentSprintId",
-            JSON.stringify(sprint.sprintId)
-          );
-          console.log(localStorage["currentSprintId"]);
-        }
-      });
+    setInitalSprint: async (state: sprintState, sprint: SprintModel) => {
+      state.currentSprint = sprint.sprintId;
+      localStorage.setItem("currentSprintId", JSON.stringify(sprint.sprintId));
     },
     setCurrentSprint: (state: sprintState, sprint: number) => {
       state.currentSprint = sprint;

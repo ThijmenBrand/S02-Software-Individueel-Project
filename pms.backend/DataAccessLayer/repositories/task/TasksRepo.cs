@@ -68,6 +68,28 @@ namespace DataLayer.repos.task
                 throw;
             }
         }
+
+        public async Task<bool> UpdateTask(Tasks updatedTask)
+        {
+            try
+            {
+                if (updatedTask == null)
+                    return false;
+
+                var task = await _DataContext.task.FindAsync(updatedTask.TaskId);
+                task.TaskName = updatedTask.TaskName;
+                task.TaskStartTime = updatedTask.TaskStartTime;
+                task.TaskEndTime = updatedTask.TaskEndTime;
+                task.TaskDescription = updatedTask.TaskDescription;
+
+                await _DataContext.SaveChangesAsync();
+
+                return true;
+            } catch (Exception)
+            {
+                throw;
+            }
+        }
     }
 
 }

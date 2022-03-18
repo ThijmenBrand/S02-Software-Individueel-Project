@@ -14,5 +14,5 @@ export default function getCurrentSprint(sprints: SprintModel[]): number {
     }
   });
 
-  return 1;
+  return 0;
 }

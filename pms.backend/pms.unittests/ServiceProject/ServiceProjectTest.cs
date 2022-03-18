@@ -28,5 +28,8 @@ namespace pms.unittests.ServiceProjectTest
 
             await action.Should().ThrowAsync<Exception>().WithMessage("Project cant be null");
         }
+
+        [Theory, AutoData]
+        public async Task ServiceProject_ProjectParamsInvalid
     }
 }

@@ -136,7 +136,7 @@ export default {
     };
 
     const saveTask = (task: TaskModel): void => {
-      console.log("saved");
+      store.dispatch("sprints/saveTask", task);
       modalIsOpen.value = false;
     };
 

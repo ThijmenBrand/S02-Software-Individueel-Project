@@ -49,7 +49,6 @@ export default {
   border-radius: 10px;
   background-color: rgb(233, 233, 233);
   margin-bottom: 10px;
-  max-height: 170px;
   cursor: pointer;
 }
 .el-card__body {

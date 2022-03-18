@@ -33,7 +33,7 @@ export default {
         taskName: taskName.value,
         taskTag: props.containerName,
       };
-      if (taskName.value != "") {
+      if (taskName.value.trim() != "") {
         store.dispatch("sprints/addTask", taskDetails);
       }
       taskName.value = "";
@@ -50,7 +50,6 @@ export default {
   border-radius: 10px;
   background-color: rgb(233, 233, 233);
   margin-bottom: 10px;
-  max-height: 170px;
   cursor: pointer;
 }
 .el-card__body {

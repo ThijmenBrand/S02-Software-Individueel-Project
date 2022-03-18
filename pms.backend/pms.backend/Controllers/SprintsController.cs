@@ -1,5 +1,7 @@
 ﻿using BusinessAccessLayer.services;
 using Microsoft.AspNetCore.Mvc;
+using DataAccessLayer.Models;
+using System;
 
 namespace pms.backend.Controllers
 {
@@ -26,6 +28,27 @@ namespace pms.backend.Controllers
         {
             var res = _sprintService.GetAllSprintsByProject(projectId);
             return Ok(res);
+        }
+
+        
+        [HttpGet("currentSprint/{projectId}")]
+        public ActionResult<int> GetCurrentSprint(int projectId)
+        {
+            DateTime today = DateTime.Today;
+
+            var allSprints = _sprintService.GetAllSprintsByProject(projectId);
+            foreach(Sprint sprint in allSprints)
+            {
+                DateTime sprintStart = sprint.SprintStart;
+                DateTime sprintEnd = sprint.SprintStart.AddDays(sprint.SprintDuration);
+
+                if(today >= sprintStart && today <= sprintEnd)
+                {
+                    return Ok(sprint);
+                }
+            }
+
+            return BadRequest();
         }
 
     }

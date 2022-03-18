@@ -112,5 +112,21 @@ namespace BusinessAccessLayer.services.tasks
                 throw;
             }
         }
+
+        public async Task<bool> UpdateTask(Tasks task)
+        {
+            try
+            {
+                if(task == null)
+                    return false;
+
+                bool updated = await _repository.UpdateTask(task);
+
+                return updated;
+            } catch(Exception)
+            {
+                throw;
+            }
+        }
     }
 }

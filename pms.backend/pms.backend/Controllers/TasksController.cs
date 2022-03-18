@@ -32,7 +32,7 @@ namespace pms.backend.Controllers
         }
 
         [HttpGet("Sprint/{sprintId}/{projectId}/")]
-        public ActionResult<List<Tasks>> GetTasksBySprint(int projectId, int sprintId)
+        public ActionResult<List<Tasks>> GetTasksBySprint(int sprintId, int projectId)
         {
             var res = _tasksService.GetTasksByProjectBySprint(projectId, sprintId).ToList();
             return Ok(res);
@@ -42,6 +42,14 @@ namespace pms.backend.Controllers
         public async Task<ActionResult<bool>> UpdateTaskTag(int taskId, [FromBody] string taskTag)
         {
             bool res = await _tasksService.UpdateTaskTag(taskId, taskTag);
+            return res ? Ok() : BadRequest();
+        }
+
+        [HttpPut("update")]
+        public async Task<ActionResult<bool>> UpdateTask([FromBody] Tasks task)
+        {
+            bool res = await _tasksService.UpdateTask(task);
+
             return res ? Ok() : BadRequest();
         }
     }
