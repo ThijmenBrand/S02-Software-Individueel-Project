@@ -1,8 +1,13 @@
 <template>
   <div class="task-card" :attr="taskId" @click="openTask">
     <div class="task-content">
-      <h3>{{ task.taskName }}</h3>
-      <p>{{ cutDescription(task.taskDescription) }}</p>
+      <p class="task-number">{{ task.taskId }}</p>
+      <h3 class="task-title">{{ task.taskName }}</h3>
+      <div class="task-state-field">
+        State:
+        <div :class="task.taskTag + '-task'" class="state-elipse"></div>
+        {{ task.taskTag }}
+      </div>
     </div>
   </div>
 </template>
@@ -40,9 +45,18 @@ export default {
 };
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .task-content {
   padding: 2px 5px 2px 5px;
+
+  .task-number,
+  .task-title {
+    display: inline-block;
+  }
+
+  .task-title {
+    margin-left: 20px;
+  }
 }
 .task-card {
   width: 100%;

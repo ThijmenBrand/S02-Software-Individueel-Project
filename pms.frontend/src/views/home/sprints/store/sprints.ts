@@ -2,8 +2,10 @@ import Axios from "axios";
 import SprintModel from "@/models/sprint/SprintModel";
 import TaskContainerModel from "@/models/tasks/TaskContainerModel";
 import TaskModel, { IBaseTaskShape } from "@/models/tasks/Taskmodel";
+import { sprintService } from "@/services/sprints/sprintFunctions";
 
 interface sprintState {
+  loading: boolean;
   currentSprint: number;
   allSprints: SprintModel[];
   sprintView: string;
@@ -15,6 +17,7 @@ const sprints = {
   namespaced: true,
   state(): sprintState {
     return {
+      loading: false,
       currentSprint: 0,
       allSprints: [],
       sprintView: "board",
@@ -36,12 +39,41 @@ const sprints = {
     };
   },
   getters: {
+    isLoading: (state: sprintState): boolean => {
+      return state.loading;
+    },
     getContainers: (state: sprintState): TaskContainerModel[] => {
       return state.taskContainersList;
     },
-    getTasks: (state: sprintState): TaskModel[] => {
+    getAllTasks: (state: sprintState): TaskModel[] => {
       return state.taskItemsList;
     },
+    getApplyingTasks:
+      (state: sprintState) =>
+      (container: string): TaskModel[] | undefined => {
+        const applyingTasks: TaskModel[] = [];
+        state.taskItemsList.forEach((task) => {
+          if (task.taskTag == container) applyingTasks.push(task);
+        });
+        return applyingTasks;
+      },
+    getTaskForTaskModal:
+      (state: sprintState) =>
+      (taskId: number): TaskModel => {
+        const task: TaskModel | undefined = state.taskItemsList.find(
+          (task) => task.taskId == taskId
+        );
+        return task != undefined
+          ? task
+          : new TaskModel({
+              taskId: 0,
+              taskName: "",
+              taskDescription: "",
+              taskStartTime: new Date(),
+              taskEndTime: new Date(),
+              taskTag: "",
+            });
+      },
     getSprints: (state: sprintState): SprintModel[] => {
       return state.allSprints;
     },
@@ -51,34 +83,24 @@ const sprints = {
   },
   actions: {
     getSprints: async ({ commit }: any) => {
-      const CurrentProjectId: number = localStorage["currentProjectId"];
-      const url = `http://localhost:8080/api/Sprints/${CurrentProjectId}`;
-      const { data } = await Axios.get(url);
-
+      const { data } = await sprintService.getAllSprints();
       commit("getAllSprints", data);
     },
     getTasks: async ({ commit }: any): Promise<void> => {
-      const CurrentProjectId: number = localStorage["currentProjectId"];
-      const CurrentSprintId: number = localStorage["currentSprintId"];
-
-      const { data } = await Axios.get(
-        `http://localhost:8080/api/Tasks/Sprint/${CurrentSprintId}/${CurrentProjectId}`
-      );
+      const { data } = await sprintService.getTasks();
       commit("getAllTasks", data);
     },
     addTask: async ({ commit }: any, task: IBaseTaskShape): Promise<void> => {
       const CurrentProjectId: number = localStorage["currentProjectId"];
       const CurrentSprintId: number = localStorage["currentSprintId"];
-      const { data, status } = await Axios.post(
-        "http://localhost:8080/api/Tasks",
-        {
-          taskName: task.taskName,
-          taskDescription: "",
-          taskTag: task.taskTag,
-          projectId: CurrentProjectId,
-          sprintId: CurrentSprintId,
-        }
-      );
+
+      const { data, status } = await sprintService.addTask({
+        taskName: task.taskName,
+        taskDescription: "",
+        taskTag: task.taskTag,
+        projectId: CurrentProjectId,
+        sprintId: CurrentSprintId,
+      });
 
       if (status >= 200 && status <= 299) {
         commit("getAllTasks", data);
@@ -87,10 +109,8 @@ const sprints = {
       }
     },
     saveTask: async ({ commit }: any, opts: TaskModel) => {
-      const { status } = await Axios.put(
-        `http://localhost:8080/api/Tasks/update`,
-        opts
-      );
+      console.log(opts);
+      const { status } = await sprintService.saveTask(opts);
 
       if (status >= 200 && status <= 299) {
         console.log("saved!");
@@ -100,26 +120,20 @@ const sprints = {
       { commit }: any,
       opts: { taskId: number; targetContainer: string }
     ) => {
-      const config = { headers: { "Content-Type": "application/json" } };
-      const { status } = await Axios.put(
-        `http://localhost:8080/api/Tasks/${opts.taskId}`,
-        opts.targetContainer,
-        config
-      );
+      const { status } = await sprintService.updateTaskStatus(opts);
       if (status >= 200 && status <= 299) {
         commit("updateTasks", opts);
       } else {
         console.log("Something went wrong");
       }
     },
-    getCurrentSprint: async ({ commit }: any) => {
-      const currentProjectId = localStorage["currentProjectId"];
-      const { data, status } = await Axios.get(
-        `http://localhost:8080/api/Sprints/currentSprint/${currentProjectId}`
-      );
+    getCurrentSprint: async (context: any) => {
+      context.state.loading = true;
+      const { data, status } = await sprintService.getCurrentSprint();
 
       if (status >= 200 && status <= 299) {
-        commit("setInitalSprint", data);
+        context.state.loading = false;
+        context.commit("setInitalSprint", data);
       } else {
         console.log("Something went wrong");
       }

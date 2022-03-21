@@ -117,7 +117,7 @@ namespace BusinessAccessLayer.services.tasks
         {
             try
             {
-                if(task == null)
+                if (task == null)
                     return false;
 
                 bool updated = await _repository.UpdateTask(task);

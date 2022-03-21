@@ -83,8 +83,8 @@ export default {
         taskId: 0,
         taskName: "",
         taskDescription: "",
-        taskStart: new Date(),
-        taskEnd: new Date(),
+        taskStartTime: new Date(),
+        taskEndTime: new Date(),
         taskTag: "",
       })
     );
@@ -101,20 +101,17 @@ export default {
     });
 
     const tasks = computed((): TaskModel[] => {
-      const ApplyingTasks: TaskModel[] = [];
-      const storeRes: TaskModel[] = store.getters["sprints/getTasks"];
-
-      storeRes.forEach((task) => {
-        task.taskTag == props.containerName ? ApplyingTasks.push(task) : "";
-      });
-
-      return ApplyingTasks;
+      return store.getters["sprints/getApplyingTasks"](props.containerName);
     });
 
     const update = (val: any): void => {
       const from = val.clone.attributes.attr.value;
       const to = val.to.getAttribute("attr");
 
+      store.commit("sprints/updateTasks", {
+        taskId: from,
+        targetContainer: to,
+      });
       store.dispatch("sprints/updateTasks", {
         taskId: from,
         targetContainer: to,

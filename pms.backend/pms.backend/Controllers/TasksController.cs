@@ -48,6 +48,9 @@ namespace pms.backend.Controllers
         [HttpPut("update")]
         public async Task<ActionResult<bool>> UpdateTask([FromBody] Tasks task)
         {
+            task.TaskStartTime = task.TaskStartTime.ToLocalTime();
+            task.TaskEndTime = task.TaskEndTime.ToLocalTime();
+
             bool res = await _tasksService.UpdateTask(task);
 
             return res ? Ok() : BadRequest();
