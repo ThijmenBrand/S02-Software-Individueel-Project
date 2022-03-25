@@ -14,8 +14,5 @@ namespace DataAccessLayer.Models
         public virtual ICollection<Sprint>? Sprints { get; set; }
         public virtual ICollection<Link>? Links { get; set; }
         public virtual ICollection<Asset>? Assets { get; set; }
-
-
-
     }
 }

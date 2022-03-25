@@ -55,5 +55,12 @@ namespace pms.backend.Controllers
 
             return res ? Ok() : BadRequest();
         }
+
+        [HttpDelete("{taskId}/{sprintId}/{projectId}")]
+        public async Task<ActionResult<Tasks>> DeleteTask(int taskId, int sprintId, int projectId)
+        {
+            var res = await _tasksService.DeleteTask(taskId);
+            return res ? Ok(_tasksService.GetTasksByProjectBySprint(projectId, sprintId)) : BadRequest();
+        }
     }
 }

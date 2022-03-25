@@ -45,6 +45,9 @@ namespace BusinessAccessLayer.services
                 {
                     var obj = _repository.GetAll().Where(x => x.ProjectId == id).FirstOrDefault();
                     _repository.Delete(obj);
+                } else
+                {
+                    throw new ArgumentNullException();
                 }
             } catch(Exception)
             {
@@ -59,6 +62,9 @@ namespace BusinessAccessLayer.services
                 {
                     var obj = _repository.GetAll().Where(x => x.ProjectId == id).FirstOrDefault();
                     if (obj != null) _repository.Update(obj);
+                } else
+                {
+                    throw new ArgumentNullException();
                 }
             } catch (Exception)
             {

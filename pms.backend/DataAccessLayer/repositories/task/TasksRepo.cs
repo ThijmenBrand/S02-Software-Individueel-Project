@@ -90,6 +90,22 @@ namespace DataLayer.repos.task
                 throw;
             }
         }
+
+        public async Task<bool> DeleteTask(int taskId)
+        {
+            try
+            {
+                var task = await _DataContext.task.FindAsync(taskId);
+
+                _DataContext.Remove(task);
+                await _DataContext.SaveChangesAsync();
+
+                return true;
+            } catch (Exception)
+            {
+                throw;   
+            }
+        }
     }
 
 }

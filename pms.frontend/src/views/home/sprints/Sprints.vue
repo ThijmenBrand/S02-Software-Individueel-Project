@@ -1,5 +1,6 @@
 <template>
   <div class="top-header">
+    <SprintModal v-if="sprintModal" @close="addSprint" />
     <div class="view-selector">
       <p>Board</p>
     </div>
@@ -13,6 +14,7 @@
           :selectedSprint="item.sprintId"
         >
         </el-option>
+        <p @click="addSprint()" class="new-sprint">Add sprint +</p>
       </el-select>
     </div>
   </div>
@@ -34,6 +36,7 @@ import { useStore } from "vuex";
 import TaskContainerModel from "@/models/tasks/TaskContainerModel";
 import TaskContainer from "./components/TaskContainer.vue";
 import SprintModel from "@/models/sprint/SprintModel";
+import SprintModal from "@/components/modal/SprintModal.vue";
 
 export default {
   name: "sprints",
@@ -41,6 +44,7 @@ export default {
     ElOption,
     ElSelect,
     TaskContainer,
+    SprintModal,
   },
   setup() {
     const store = useStore();
@@ -56,6 +60,13 @@ export default {
     });
 
     const selectedSprint = ref(sprint);
+    const sprintModal = ref(false);
+
+    const addSprint = () => {
+      !sprintModal.value
+        ? (sprintModal.value = true)
+        : (sprintModal.value = false);
+    };
 
     onMounted(() => {
       store.dispatch("sprints/getCurrentSprint");
@@ -74,12 +85,21 @@ export default {
       selectedSprint,
       containers,
       sprints,
+      addSprint,
+      sprintModal,
     };
   },
 };
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+.new-sprint {
+  cursor: pointer;
+  color: gray;
+  font-size: 15px;
+  padding-left: 20px;
+  font-weight: 200;
+}
 .view-selector p {
   display: inline-block;
   color: gray;

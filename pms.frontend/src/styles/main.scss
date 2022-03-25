@@ -39,3 +39,7 @@ body {
 .el-icon {
   position: inherit;
 }
+
+.el-popper.is-pure.is-light.el-select__popper {
+  z-index: 0 !important;
+}

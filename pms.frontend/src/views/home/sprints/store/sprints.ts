@@ -1,4 +1,3 @@
-import Axios from "axios";
 import SprintModel from "@/models/sprint/SprintModel";
 import TaskContainerModel from "@/models/tasks/TaskContainerModel";
 import TaskModel, { IBaseTaskShape } from "@/models/tasks/Taskmodel";
@@ -86,6 +85,17 @@ const sprints = {
       const { data } = await sprintService.getAllSprints();
       commit("getAllSprints", data);
     },
+    addSprint: async ({ commit }: any, Data: any) => {
+      const { data } = await sprintService.addSprint(
+        Data.sprintStart,
+        Data.sprintEnd
+      );
+      commit("getAllSprints", data);
+    },
+    deleteTask: async (context: any, taskId: number) => {
+      const { data } = await sprintService.deleteTask(taskId);
+      context.commit("getAllTasks", data);
+    },
     getTasks: async ({ commit }: any): Promise<void> => {
       const { data } = await sprintService.getTasks();
       commit("getAllTasks", data);
@@ -109,7 +119,6 @@ const sprints = {
       }
     },
     saveTask: async ({ commit }: any, opts: TaskModel) => {
-      console.log(opts);
       const { status } = await sprintService.saveTask(opts);
 
       if (status >= 200 && status <= 299) {

@@ -128,5 +128,17 @@ namespace BusinessAccessLayer.services.tasks
                 throw;
             }
         }
+
+        public async Task<bool> DeleteTask(int taskId)
+        {
+            try
+            {
+                bool deleted = await _repository.DeleteTask(taskId);
+                return deleted;
+            } catch (Exception)
+            {
+                throw;
+            }
+        }
     }
 }

@@ -1,0 +1,76 @@
+@import "@/styles/variables/colors.scss";
+.icon {
+  width: 20px;
+  height: 20px;
+}
+.close-btn {
+  cursor: pointer;
+  padding: 10px;
+}
+.modal-header {
+  display: flex;
+  justify-content: right;
+  align-content: flex-end;
+}
+.modal-body {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin-left: 40px;
+  h3 {
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 150px;
+  }
+}
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background-color: rgba(0, 0, 0, 0.3);
+  display: flex;
+  justify-content: right;
+  align-items: center;
+}
+
+.modal {
+  background: #ffffff;
+  height: 100%;
+  width: 40%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  float: right;
+  border-radius: 10px 0px 0px 10px;
+}
+
+.modal-footer {
+  display: flex;
+  position: absolute;
+  bottom: 40px;
+  left: 40px;
+  width: 30%;
+  justify-content: space-between;
+
+  .btn {
+    padding: 10px;
+    border-radius: 5px;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+
+  .create-btn {
+    background-color: $pms-blue;
+  }
+  .cancel-btn {
+    background-color: $pms-gray;
+  }
+}

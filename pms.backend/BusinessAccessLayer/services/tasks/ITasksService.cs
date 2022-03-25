@@ -11,6 +11,7 @@ namespace BusinessAccessLayer.services.tasks
         IEnumerable<Tasks> GetAllTasksByProject(int id);
         IEnumerable<SprintView> GetTasksByProjectModeledToSprintData(int id);
         IEnumerable<Tasks> GetTasksByProjectBySprint(int id, int sprintid);
+        Task<bool> DeleteTask(int id);
 
     }
 }

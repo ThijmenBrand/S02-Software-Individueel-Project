@@ -213,21 +213,9 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
-            "AutoFixture": {
+            "MSTest.TestFramework": {
               "target": "Package",
-              "version": "[4.17.0, )"
-            },
-            "AutoFixture.Xunit2": {
-              "target": "Package",
-              "version": "[4.17.0, )"
-            },
-            "Autofac.Extras.Moq": {
-              "target": "Package",
-              "version": "[6.1.0, )"
-            },
-            "FluentAssertions": {
-              "target": "Package",
-              "version": "[6.5.1, )"
+              "version": "[2.2.8, )"
             },
             "Microsoft.NET.Test.Sdk": {
               "target": "Package",
@@ -237,21 +225,19 @@
               "target": "Package",
               "version": "[4.16.1, )"
             },
+            "NUnit": {
+              "target": "Package",
+              "version": "[3.13.3, )"
+            },
+            "NUnit3TestAdapter": {
+              "target": "Package",
+              "version": "[4.2.1, )"
+            },
             "coverlet.collector": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
               "version": "[3.1.0, )"
-            },
-            "xunit": {
-              "target": "Package",
-              "version": "[2.4.1, )"
-            },
-            "xunit.runner.visualstudio": {
-              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
-              "suppressParent": "All",
-              "target": "Package",
-              "version": "[2.4.3, )"
             }
           },
           "imports": [

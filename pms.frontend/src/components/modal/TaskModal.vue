@@ -100,7 +100,8 @@ export default {
     };
 
     const deleteTask = (taskId: number) => {
-      console.log("delete task" + taskId);
+      store.dispatch("sprints/deleteTask", props.taskId);
+      close();
     };
 
     const task = computed((): TaskModel => {
