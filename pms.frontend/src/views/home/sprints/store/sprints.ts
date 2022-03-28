@@ -5,7 +5,8 @@ import { sprintService } from "@/services/sprints/sprintFunctions";
 
 interface sprintState {
   loading: boolean;
-  currentSprint: number;
+  currentSprintNumber: number;
+  currentSprint: SprintModel;
   allSprints: SprintModel[];
   sprintView: string;
   taskContainersList: TaskContainerModel[];
@@ -17,7 +18,12 @@ const sprints = {
   state(): sprintState {
     return {
       loading: false,
-      currentSprint: 0,
+      currentSprintNumber: 0,
+      currentSprint: {
+        sprintDuration: 14,
+        sprintId: 1,
+        sprintStart: new Date(),
+      },
       allSprints: [],
       sprintView: "board",
       taskContainersList: [
@@ -77,7 +83,7 @@ const sprints = {
       return state.allSprints;
     },
     getCurrentSprint: (state: sprintState): number => {
-      return state.currentSprint;
+      return state.currentSprintNumber;
     },
   },
   actions: {
@@ -150,11 +156,11 @@ const sprints = {
   },
   mutations: {
     setInitalSprint: async (state: sprintState, sprint: SprintModel) => {
-      state.currentSprint = sprint.sprintId;
+      state.currentSprintNumber = sprint.sprintId;
       localStorage.setItem("currentSprintId", JSON.stringify(sprint.sprintId));
     },
     setCurrentSprint: (state: sprintState, sprint: number) => {
-      state.currentSprint = sprint;
+      state.currentSprintNumber = sprint;
       localStorage["currentSprintId"] = JSON.stringify(sprint);
     },
     getAllSprints: (state: sprintState, sprints: SprintModel[]) => {

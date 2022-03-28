@@ -17,7 +17,7 @@ namespace BusinessAccessLayer.services
             try
             {
                 if(sprint == null)
-                    throw new ArgumentNullException(nameof(sprint));
+                    throw new Exception("Sprint cant be null!");
 
                 var res = await _repository.Create(sprint);
 
@@ -37,7 +37,7 @@ namespace BusinessAccessLayer.services
             try
             {
                 if(ProjectId == 0)
-                    throw new ArgumentNullException(nameof(ProjectId));
+                    throw new Exception("ProjectId cant be null");
 
                 return _repository.GetAllByProject(ProjectId);
             } catch (Exception)

@@ -1,10 +1,15 @@
 <template>
   <div class="top-header">
     <SprintModal v-if="sprintModal" @close="addSprint" />
+    <UpdateSprintModal
+      @close="openUpdateSprintModal"
+      v-if="updateSprintModal"
+    />
     <div class="view-selector">
       <p>Board</p>
     </div>
     <div class="sprint-selector">
+      <Setting class="icon" @click="openUpdateSprintModal()" />
       <el-select v-model="selectedSprint" class="m-2">
         <el-option
           v-for="item in sprints"
@@ -29,6 +34,7 @@
 
 <script lang="ts">
 import { ElSelect, ElOption } from "element-plus";
+import { Setting } from "@element-plus/icons-vue";
 
 import { computed, onMounted, ref, watch } from "vue";
 import { useStore } from "vuex";
@@ -37,6 +43,7 @@ import TaskContainerModel from "@/models/tasks/TaskContainerModel";
 import TaskContainer from "./components/TaskContainer.vue";
 import SprintModel from "@/models/sprint/SprintModel";
 import SprintModal from "@/components/modal/SprintModal.vue";
+import UpdateSprintModal from "@/components/modal/UpdateSprintModal.vue";
 
 export default {
   name: "sprints",
@@ -45,24 +52,33 @@ export default {
     ElSelect,
     TaskContainer,
     SprintModal,
+    UpdateSprintModal,
+    Setting,
   },
   setup() {
     const store = useStore();
 
     const sprint = computed({
-      get() {
+      get(): SprintModel {
         return store.getters["sprints/getCurrentSprint"];
       },
-      set(newVal) {
+      set(newVal): void {
         store.commit("sprints/setCurrentSprint", newVal);
         store.dispatch("sprints/getTasks");
       },
     });
 
     const selectedSprint = ref(sprint);
-    const sprintModal = ref(false);
+    const sprintModal = ref<boolean>(false);
+    const updateSprintModal = ref<boolean>(false);
 
-    const addSprint = () => {
+    const openUpdateSprintModal = (): void => {
+      !updateSprintModal.value
+        ? (updateSprintModal.value = true)
+        : (updateSprintModal.value = false);
+    };
+
+    const addSprint = (): void => {
       !sprintModal.value
         ? (sprintModal.value = true)
         : (sprintModal.value = false);
@@ -87,12 +103,19 @@ export default {
       sprints,
       addSprint,
       sprintModal,
+      updateSprintModal,
+      openUpdateSprintModal,
     };
   },
 };
 </script>
 
 <style scoped lang="scss">
+.icon {
+  height: 20px;
+  width: 20px;
+  cursor: pointer;
+}
 .new-sprint {
   cursor: pointer;
   color: gray;

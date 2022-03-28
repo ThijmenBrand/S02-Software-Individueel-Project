@@ -18,9 +18,7 @@ namespace BusinessAccessLayer.services.tasks
             try
             {
                 if (task == null)
-                {
                     throw new Exception("task cant be null");
-                }
 
                 else
                 {
@@ -50,7 +48,7 @@ namespace BusinessAccessLayer.services.tasks
             {
                 if(projectId == 0 || sprintId == 0)
                 {
-                    throw new ArgumentNullException();
+                    throw new Exception("Values cant be null");
                 }
 
                 var allTasks = _repository.GetTasksByProject(projectId);
