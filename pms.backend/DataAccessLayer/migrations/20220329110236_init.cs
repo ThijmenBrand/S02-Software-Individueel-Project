@@ -3,18 +3,76 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace DataAccessLayer.Migrations
+namespace DataLayer.Migrations
 {
-    public partial class newtables : Migration
+    public partial class init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AddColumn<int>(
-                name: "SprintId",
-                table: "task",
-                type: "int",
-                nullable: false,
-                defaultValue: 0);
+            migrationBuilder.CreateTable(
+                name: "project",
+                columns: table => new
+                {
+                    ProjectId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ProjectName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    ProjectDescription = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
+                    ProjectOwnerId = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ProjectDate = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_project", x => x.ProjectId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "sprint",
+                columns: table => new
+                {
+                    SprintId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    SprintName = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    SprintStart = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    SprintEnd = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ProjectId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_sprint", x => x.SprintId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "task",
+                columns: table => new
+                {
+                    TaskId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    TaskName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    TaskDescription = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    TaskTag = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    TaskStartTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    TaskEndTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    SprintId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_task", x => x.TaskId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "user",
+                columns: table => new
+                {
+                    UserId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    UserEmail = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    UserPassword = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_user", x => x.UserId);
+                });
 
             migrationBuilder.CreateTable(
                 name: "asset",
@@ -60,20 +118,6 @@ namespace DataAccessLayer.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "sprint",
-                columns: table => new
-                {
-                    SprintId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    SprintDuration = table.Column<int>(type: "int", nullable: false),
-                    SprintStart = table.Column<DateTime>(type: "datetime2", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_sprint", x => x.SprintId);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "time",
                 columns: table => new
                 {
@@ -94,26 +138,6 @@ namespace DataAccessLayer.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "user",
-                columns: table => new
-                {
-                    UserId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    UserName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    UserEmail = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    UserPassword = table.Column<string>(type: "nvarchar(max)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_user", x => x.UserId);
-                });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_task_SprintId",
-                table: "task",
-                column: "SprintId");
-
             migrationBuilder.CreateIndex(
                 name: "IX_asset_ProjectId",
                 table: "asset",
@@ -129,22 +153,10 @@ namespace DataAccessLayer.Migrations
                 table: "time",
                 column: "TaskId",
                 unique: true);
-
-            migrationBuilder.AddForeignKey(
-                name: "FK_task_sprint_SprintId",
-                table: "task",
-                column: "SprintId",
-                principalTable: "sprint",
-                principalColumn: "SprintId",
-                onDelete: ReferentialAction.Cascade);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropForeignKey(
-                name: "FK_task_sprint_SprintId",
-                table: "task");
-
             migrationBuilder.DropTable(
                 name: "asset");
 
@@ -160,13 +172,11 @@ namespace DataAccessLayer.Migrations
             migrationBuilder.DropTable(
                 name: "user");
 
-            migrationBuilder.DropIndex(
-                name: "IX_task_SprintId",
-                table: "task");
+            migrationBuilder.DropTable(
+                name: "project");
 
-            migrationBuilder.DropColumn(
-                name: "SprintId",
-                table: "task");
+            migrationBuilder.DropTable(
+                name: "task");
         }
     }
 }

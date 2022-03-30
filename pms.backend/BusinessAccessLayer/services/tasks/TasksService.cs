@@ -31,36 +31,15 @@ namespace BusinessAccessLayer.services.tasks
             }
         }
 
-        public IEnumerable<Tasks> GetAllTasksByProject(int projectId)
+        public IEnumerable<Tasks> GetTasksByProjectBySprint(int SprintId)
         {
             try
             {
-                return _repository.GetTasksByProject(projectId).ToList();
-            } catch (Exception)
-            {
-                throw;
-            }
-        }
+                if (SprintId == 0)
+                    throw new Exception("sprintId cant be null");
 
-        public IEnumerable<Tasks> GetTasksByProjectBySprint(int projectId, int sprintId)
-        {
-            try
-            {
-                if(projectId == 0 || sprintId == 0)
-                {
-                    throw new Exception("Values cant be null");
-                }
+                return _repository.GetTasksBySprint(SprintId);
 
-                var allTasks = _repository.GetTasksByProject(projectId);
-                List<Tasks> applyingTasks = new List<Tasks>();
-
-                foreach(var task in allTasks)
-                {
-                    if(task.SprintId == sprintId)
-                        applyingTasks.Add(task);
-                }
-
-                return applyingTasks;
             } catch (Exception)
             {
                 throw;
@@ -74,7 +53,7 @@ namespace BusinessAccessLayer.services.tasks
                 if (id == 0)
                     throw new Exception();
 
-                var tasks = _repository.GetTasksByProject(id).ToList();
+                var tasks = _repository.GetTasksBySprint(id).ToList();
                 List<SprintView> sprintViewList = new List<SprintView>();
 
                 foreach(var task in tasks)

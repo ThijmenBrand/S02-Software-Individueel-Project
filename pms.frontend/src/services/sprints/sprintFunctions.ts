@@ -1,3 +1,4 @@
+import SprintModel, { IBaseSprintShape } from "@/models/sprint/SprintModel";
 import TaskModel from "@/models/tasks/Taskmodel";
 import API from "@/services/api";
 import { AxiosResponse } from "axios";
@@ -33,17 +34,19 @@ export const sprintService = {
     const CurrentSprintId: number = localStorage["currentSprintId"];
     return API.delete(`Tasks/${taskId}/${CurrentSprintId}/${CurrentProjectId}`);
   },
-  addSprint(
-    sprintStart: Date,
-    sprintEnd: Date
-  ): Promise<AxiosResponse<any, any>> {
+  addSprint(opts: IBaseSprintShape): Promise<AxiosResponse<any, any>> {
     const CurrentProjectId: number = localStorage["currentProjectId"];
-    const sprintDuration = sprintStart.getDate() - sprintEnd.getDate();
-    const sprintstart = sprintStart;
     return API.post("Sprints", {
-      sprintDuration: sprintDuration,
-      sprintStart: sprintstart,
+      sprintName: opts.sprintName,
+      sprintEnd: opts.sprintEnd,
+      sprintStart: opts.sprintStart,
       projectId: CurrentProjectId,
     });
+  },
+  getCurrentSprintDetails(sprintId: number): Promise<AxiosResponse<any, any>> {
+    return API.get(`Sprints/currentSprint/Details/${sprintId}`);
+  },
+  updateSprint(sprint: SprintModel): Promise<AxiosResponse<any, any>> {
+    return API.put(`Sprints/update`, sprint);
   },
 };

@@ -30,7 +30,6 @@ namespace pms.unittests.TaskServiceTest
         public async Task TaskService_TaskIsValid_ReturnTrue()
         {
             Tasks task = new Tasks();
-            task.ProjectId = 1;
             task.TaskTag = "doing";
             task.SprintId = 1;
             task.TaskDescription = "";

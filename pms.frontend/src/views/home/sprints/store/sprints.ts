@@ -1,10 +1,9 @@
-import SprintModel from "@/models/sprint/SprintModel";
+import SprintModel, { IBaseSprintShape } from "@/models/sprint/SprintModel";
 import TaskContainerModel from "@/models/tasks/TaskContainerModel";
 import TaskModel, { IBaseTaskShape } from "@/models/tasks/Taskmodel";
 import { sprintService } from "@/services/sprints/sprintFunctions";
 
 interface sprintState {
-  loading: boolean;
   currentSprintNumber: number;
   currentSprint: SprintModel;
   allSprints: SprintModel[];
@@ -17,12 +16,12 @@ const sprints = {
   namespaced: true,
   state(): sprintState {
     return {
-      loading: false,
       currentSprintNumber: 0,
       currentSprint: {
-        sprintDuration: 14,
         sprintId: 1,
+        sprintName: "",
         sprintStart: new Date(),
+        sprintEnd: new Date(),
       },
       allSprints: [],
       sprintView: "board",
@@ -44,9 +43,6 @@ const sprints = {
     };
   },
   getters: {
-    isLoading: (state: sprintState): boolean => {
-      return state.loading;
-    },
     getContainers: (state: sprintState): TaskContainerModel[] => {
       return state.taskContainersList;
     },
@@ -85,17 +81,21 @@ const sprints = {
     getCurrentSprint: (state: sprintState): number => {
       return state.currentSprintNumber;
     },
+    getSprintDetails: (state: sprintState): SprintModel => {
+      return state.currentSprint;
+    },
   },
   actions: {
     getSprints: async ({ commit }: any) => {
       const { data } = await sprintService.getAllSprints();
       commit("getAllSprints", data);
     },
-    addSprint: async ({ commit }: any, Data: any) => {
-      const { data } = await sprintService.addSprint(
-        Data.sprintStart,
-        Data.sprintEnd
-      );
+    addSprint: async ({ commit }: any, Data: IBaseSprintShape) => {
+      const { data } = await sprintService.addSprint({
+        sprintName: Data.sprintName,
+        sprintEnd: Data.sprintEnd,
+        sprintStart: Data.sprintStart,
+      });
       commit("getAllSprints", data);
     },
     deleteTask: async (context: any, taskId: number) => {
@@ -143,25 +143,45 @@ const sprints = {
       }
     },
     getCurrentSprint: async (context: any) => {
-      context.state.loading = true;
+      context.rootState.loading = true;
       const { data, status } = await sprintService.getCurrentSprint();
 
       if (status >= 200 && status <= 299) {
-        context.state.loading = false;
+        context.rootState.loading = false;
         context.commit("setInitalSprint", data);
       } else {
         console.log("Something went wrong");
       }
     },
+    getCurrentSprintDetails: async (context: any, sprintId: number) => {
+      context.rootState.loading = true;
+      const { data, status } = await sprintService.getCurrentSprintDetails(
+        sprintId
+      );
+      if (status >= 200 && status <= 299) {
+        context.rootState.loading = false;
+        context.commit("setCurrentSprint", data[0]);
+      } else {
+        console.log("Something went wrong");
+      }
+    },
+    updateSprint: async (context: any, sprint: SprintModel) => {
+      const { status } = await sprintService.updateSprint(sprint);
+    },
   },
   mutations: {
     setInitalSprint: async (state: sprintState, sprint: SprintModel) => {
+      state.currentSprint = sprint;
       state.currentSprintNumber = sprint.sprintId;
       localStorage.setItem("currentSprintId", JSON.stringify(sprint.sprintId));
     },
-    setCurrentSprint: (state: sprintState, sprint: number) => {
-      state.currentSprintNumber = sprint;
-      localStorage["currentSprintId"] = JSON.stringify(sprint);
+    setCurrentSprint: (state: sprintState, sprint: SprintModel) => {
+      state.currentSprint = sprint;
+      localStorage["currentSprintId"] = JSON.stringify(sprint.sprintId);
+    },
+    setCurrentSprintNumber: (state: sprintState, sprintId: number) => {
+      state.currentSprintNumber = sprintId;
+      localStorage["currentSprintId"] = JSON.stringify(sprintId);
     },
     getAllSprints: (state: sprintState, sprints: SprintModel[]) => {
       state.allSprints = sprints;

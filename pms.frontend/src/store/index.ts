@@ -7,6 +7,7 @@ import TaskModel from "@/models/tasks/Taskmodel";
 
 export default createStore({
   state: {
+    loadig: false,
     taskList: Array<TaskModel>(),
     currentProject: <ProjectModel>{},
     loggedUser: "1",

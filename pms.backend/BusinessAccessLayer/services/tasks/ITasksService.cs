@@ -8,9 +8,8 @@ namespace BusinessAccessLayer.services.tasks
         Task<bool> CreateTask(Tasks task);
         Task<bool> UpdateTaskTag(int id, string taskTag);
         Task<bool> UpdateTask(Tasks tasks);
-        IEnumerable<Tasks> GetAllTasksByProject(int id);
         IEnumerable<SprintView> GetTasksByProjectModeledToSprintData(int id);
-        IEnumerable<Tasks> GetTasksByProjectBySprint(int id, int sprintid);
+        IEnumerable<Tasks> GetTasksByProjectBySprint(int sprintid);
         Task<bool> DeleteTask(int id);
 
     }

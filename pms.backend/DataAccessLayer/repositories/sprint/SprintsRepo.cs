@@ -51,7 +51,31 @@ namespace DataLayer.repos.sprint
             }
         }
 
+        public async Task<bool> UpdateSprintDetails(Sprint updateSprint)
+        {
+            if (updateSprint == null)
+                throw new Exception("sprint cant be null");
 
+            var sprint = await _DataContext.sprint.FindAsync(updateSprint.SprintId);
+
+            if (sprint == null)
+                throw new Exception("No sprint found");
+
+            sprint.SprintStart = updateSprint.SprintStart;
+            sprint.SprintEnd = updateSprint.SprintEnd;
+            sprint.SprintName = updateSprint.SprintName;
+
+            await _DataContext.SaveChangesAsync();
+
+            return true;
+        }
+
+        public IEnumerable<Sprint> GetSprintDetails(int sprintId)
+        {
+            return _DataContext.sprint
+                  .Where(s => s.SprintId == sprintId)
+                  .ToList();
+        }
 
 
     }

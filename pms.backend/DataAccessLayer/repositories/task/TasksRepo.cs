@@ -34,18 +34,12 @@ namespace DataLayer.repos.task
             }
         }
 
-        public IEnumerable<Tasks> GetTasksByProject(int id)
+        public IEnumerable<Tasks> GetTasksBySprint(int sprintId)
         {
-            try
-            {
-                return _DataContext.task
-                    .Where(t => t.ProjectId == id)
-                    .ToList();
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+            if (sprintId == 0)
+                throw new Exception("sprintId cant be null");
+
+            return _DataContext.task.Where(t => t.SprintId == sprintId).ToList();
         }
 
         public async Task<bool> UpdateTaskTag(int taskId, string taskTag)

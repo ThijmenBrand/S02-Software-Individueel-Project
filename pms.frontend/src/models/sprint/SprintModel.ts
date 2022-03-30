@@ -1,6 +1,7 @@
-interface IBaseSprintShape {
-  sprintDuration: number;
+export interface IBaseSprintShape {
+  sprintEnd: Date;
   sprintStart: Date;
+  sprintName: String;
 }
 
 interface ISprintShape extends IBaseSprintShape {
@@ -9,11 +10,13 @@ interface ISprintShape extends IBaseSprintShape {
 
 export default class SprintModel {
   sprintId;
-  sprintDuration;
+  sprintName;
+  sprintEnd;
   sprintStart;
   constructor(opts: ISprintShape) {
+    this.sprintName = opts.sprintName;
     this.sprintId = opts.sprintId;
-    this.sprintDuration = opts.sprintDuration;
+    this.sprintEnd = opts.sprintEnd;
     this.sprintStart = opts.sprintStart;
   }
 }

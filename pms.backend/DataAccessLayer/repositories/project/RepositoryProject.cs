@@ -19,7 +19,6 @@ namespace DataLayer.repos.project
             {
                 if (project != null)
                 {
-                    project.Tasks = null;
                     _DataContext.Add(project);
                     await _DataContext.SaveChangesAsync();
 

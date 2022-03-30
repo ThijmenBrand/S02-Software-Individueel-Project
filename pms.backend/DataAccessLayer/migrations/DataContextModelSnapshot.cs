@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace DataAccessLayer.Migrations
+namespace DataLayer.Migrations
 {
     [DbContext(typeof(DataContext))]
     partial class DataContextModelSnapshot : ModelSnapshot
@@ -17,7 +17,7 @@ namespace DataAccessLayer.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.2")
+                .HasAnnotation("ProductVersion", "6.0.3")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
@@ -91,11 +91,13 @@ namespace DataAccessLayer.Migrations
 
                     b.Property<string>("ProjectDescription")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
 
                     b.Property<string>("ProjectName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("ProjectOwnerId")
                         .IsRequired()
@@ -114,18 +116,21 @@ namespace DataAccessLayer.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SprintId"), 1L, 1);
 
-                    b.Property<int?>("ProjectId")
+                    b.Property<int>("ProjectId")
                         .HasColumnType("int");
 
-                    b.Property<int>("SprintDuration")
-                        .HasColumnType("int");
+                    b.Property<DateTime>("SprintEnd")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("SprintName")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
 
                     b.Property<DateTime>("SprintStart")
                         .HasColumnType("datetime2");
 
                     b.HasKey("SprintId");
-
-                    b.HasIndex("ProjectId");
 
                     b.ToTable("sprint");
                 });
@@ -137,9 +142,6 @@ namespace DataAccessLayer.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TaskId"), 1L, 1);
-
-                    b.Property<int>("ProjectId")
-                        .HasColumnType("int");
 
                     b.Property<int>("SprintId")
                         .HasColumnType("int");
@@ -153,7 +155,8 @@ namespace DataAccessLayer.Migrations
 
                     b.Property<string>("TaskName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<DateTime>("TaskStartTime")
                         .HasColumnType("datetime2");
@@ -163,10 +166,6 @@ namespace DataAccessLayer.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("TaskId");
-
-                    b.HasIndex("ProjectId");
-
-                    b.HasIndex("SprintId");
 
                     b.ToTable("task");
                 });
@@ -225,7 +224,7 @@ namespace DataAccessLayer.Migrations
             modelBuilder.Entity("DataAccessLayer.Models.Asset", b =>
                 {
                     b.HasOne("DataAccessLayer.Models.Project", "Project")
-                        .WithMany("Assets")
+                        .WithMany()
                         .HasForeignKey("ProjectId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -236,38 +235,12 @@ namespace DataAccessLayer.Migrations
             modelBuilder.Entity("DataAccessLayer.Models.Link", b =>
                 {
                     b.HasOne("DataAccessLayer.Models.Project", "Project")
-                        .WithMany("Links")
+                        .WithMany()
                         .HasForeignKey("ProjectId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Project");
-                });
-
-            modelBuilder.Entity("DataAccessLayer.Models.Sprint", b =>
-                {
-                    b.HasOne("DataAccessLayer.Models.Project", null)
-                        .WithMany("Sprints")
-                        .HasForeignKey("ProjectId");
-                });
-
-            modelBuilder.Entity("DataAccessLayer.Models.Tasks", b =>
-                {
-                    b.HasOne("DataAccessLayer.Models.Project", "Project")
-                        .WithMany("Tasks")
-                        .HasForeignKey("ProjectId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("DataAccessLayer.Models.Sprint", "Sprint")
-                        .WithMany("Tasks")
-                        .HasForeignKey("SprintId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Project");
-
-                    b.Navigation("Sprint");
                 });
 
             modelBuilder.Entity("DataAccessLayer.Models.Time", b =>
@@ -279,22 +252,6 @@ namespace DataAccessLayer.Migrations
                         .IsRequired();
 
                     b.Navigation("Task");
-                });
-
-            modelBuilder.Entity("DataAccessLayer.Models.Project", b =>
-                {
-                    b.Navigation("Assets");
-
-                    b.Navigation("Links");
-
-                    b.Navigation("Sprints");
-
-                    b.Navigation("Tasks");
-                });
-
-            modelBuilder.Entity("DataAccessLayer.Models.Sprint", b =>
-                {
-                    b.Navigation("Tasks");
                 });
 
             modelBuilder.Entity("DataAccessLayer.Models.Tasks", b =>

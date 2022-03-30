@@ -32,7 +32,7 @@ namespace pms.backend.Controllers
 
         
         [HttpGet("currentSprint/{projectId}")]
-        public ActionResult<int> GetCurrentSprint(int projectId)
+        public ActionResult<Sprint> GetCurrentSprint(int projectId)
         {
             DateTime today = DateTime.Today;
 
@@ -40,7 +40,7 @@ namespace pms.backend.Controllers
             foreach(Sprint sprint in allSprints)
             {
                 DateTime sprintStart = sprint.SprintStart;
-                DateTime sprintEnd = sprint.SprintStart.AddDays(sprint.SprintDuration);
+                DateTime sprintEnd = sprint.SprintEnd;
 
                 if(today >= sprintStart && today <= sprintEnd)
                 {
@@ -48,7 +48,29 @@ namespace pms.backend.Controllers
                 }
             }
 
-            return BadRequest();
+
+            Sprint noSprint = new Sprint();
+            noSprint.SprintId = 666666666;
+            return Ok(noSprint);
+        }
+
+        [HttpGet("currentSprint/Details/{sprintId}")]
+        public ActionResult<Sprint> GetSprintDetails(int sprintId)
+        {
+            var res = _sprintService.GetSprintDetails(sprintId);
+            return Ok(res);
+        }
+
+
+        [HttpPut("update")]
+        public async Task<ActionResult<bool>> UpdateTask([FromBody] Sprint sprint)
+        {
+            sprint.SprintStart = sprint.SprintStart.AddHours(-2);
+            sprint.SprintEnd = sprint.SprintEnd.AddHours(-2);
+
+            bool res = await _sprintService.UpdateSprint(sprint);
+
+            return res ? Ok() : BadRequest();
         }
 
     }

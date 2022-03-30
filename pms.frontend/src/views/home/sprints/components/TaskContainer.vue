@@ -94,10 +94,7 @@ export default {
     });
 
     onMounted((): void => {
-      store.dispatch(
-        "sprints/getTasks",
-        store.getters["sprints/getCurrentSprint"]
-      );
+      store.dispatch("sprints/getTasks");
     });
 
     const tasks = computed((): TaskModel[] => {

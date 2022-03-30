@@ -19,22 +19,13 @@ namespace pms.backend.Controllers
         public async Task<ActionResult<List<Tasks>>> AddTask(Tasks task)
         {
             await _tasksService.CreateTask(task);
-            return Ok(_tasksService.GetTasksByProjectBySprint(task.ProjectId, task.SprintId));
-        }
-
-        [HttpGet("{projectId}")]
-        public ActionResult<List<Tasks>> GetTasksByProject(int projectId)
-        {
-            var res = _tasksService.GetAllTasksByProject(projectId).ToList();
-            return Ok(res);
-            //var res = _tasksService.GetTasksByProjectModeledToSprintData(projectId).ToList();
-            //return Ok(res);
+            return Ok(_tasksService.GetTasksByProjectBySprint(task.SprintId));
         }
 
         [HttpGet("Sprint/{sprintId}/{projectId}/")]
-        public ActionResult<List<Tasks>> GetTasksBySprint(int sprintId, int projectId)
+        public ActionResult<List<Tasks>> GetTasksBySprint(int sprintId)
         {
-            var res = _tasksService.GetTasksByProjectBySprint(projectId, sprintId).ToList();
+            var res = _tasksService.GetTasksByProjectBySprint(sprintId).ToList();
             return Ok(res);
         }
 
@@ -57,10 +48,10 @@ namespace pms.backend.Controllers
         }
 
         [HttpDelete("{taskId}/{sprintId}/{projectId}")]
-        public async Task<ActionResult<Tasks>> DeleteTask(int taskId, int sprintId, int projectId)
+        public async Task<ActionResult<Tasks>> DeleteTask(int taskId, int sprintId)
         {
             var res = await _tasksService.DeleteTask(taskId);
-            return res ? Ok(_tasksService.GetTasksByProjectBySprint(projectId, sprintId)) : BadRequest();
+            return res ? Ok(_tasksService.GetTasksByProjectBySprint(sprintId)) : BadRequest();
         }
     }
 }

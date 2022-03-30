@@ -1,8 +1,10 @@
 <template>
   <div class="task-card" :attr="taskId" @click="openTask">
     <div class="task-content">
-      <p class="task-number">{{ task.taskId }}</p>
-      <h3 class="task-title">{{ task.taskName }}</h3>
+      <div class="header">
+        <p class="task-number">{{ task.taskId }}</p>
+        <h3 class="task-title">{{ task.taskName }}</h3>
+      </div>
       <div class="task-state-field">
         State:
         <div :class="task.taskTag + '-task'" class="state-elipse"></div>
@@ -46,6 +48,11 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.header {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
 .task-content {
   padding: 2px 5px 2px 5px;
 

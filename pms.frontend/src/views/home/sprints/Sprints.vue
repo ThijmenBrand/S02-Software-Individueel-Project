@@ -1,34 +1,41 @@
 <template>
-  <div class="top-header">
-    <SprintModal v-if="sprintModal" @close="addSprint" />
-    <UpdateSprintModal
-      @close="openUpdateSprintModal"
-      v-if="updateSprintModal"
-    />
-    <div class="view-selector">
-      <p>Board</p>
+  <SprintModal v-if="sprintModal" @close="addSprint" />
+  <UpdateSprintModal @close="openUpdateSprintModal" v-if="updateSprintModal" />
+  <p
+    v-else-if="sprints.length == 0"
+    class="no-sprint add-first-sprint"
+    @click="addSprint()"
+  >
+    There is no sprint yet. Add your first one!
+  </p>
+  <div v-else>
+    <div class="top-header">
+      <div class="view-selector">
+        <p>Board</p>
+      </div>
+      <div class="sprint-selector">
+        <Setting class="icon" @click="openUpdateSprintModal()" />
+        <el-select v-model="selectedSprint" class="m-2">
+          <el-option
+            v-for="item in sprints"
+            :value="item.sprintId"
+            :key="item.sprintId"
+            :label="item.sprintName"
+            :selectedSprint="item.sprintId"
+          >
+          </el-option>
+          <p @click="addSprint()" class="new-sprint">Add sprint +</p>
+        </el-select>
+      </div>
     </div>
-    <div class="sprint-selector">
-      <Setting class="icon" @click="openUpdateSprintModal()" />
-      <el-select v-model="selectedSprint" class="m-2">
-        <el-option
-          v-for="item in sprints"
-          :value="item.sprintId"
-          :key="item.sprintId"
-          :label="'sprint ' + item.sprintId"
-          :selectedSprint="item.sprintId"
-        >
-        </el-option>
-        <p @click="addSprint()" class="new-sprint">Add sprint +</p>
-      </el-select>
+    <p v-if="sprint == 666666666">Today is a rest day! wohoo</p>
+    <div v-else class="board-view">
+      <TaskContainer
+        v-for="(container, index) in containers"
+        :key="index"
+        :containerName="container.containerName"
+      />
     </div>
-  </div>
-  <div class="board-view">
-    <TaskContainer
-      v-for="(container, index) in containers"
-      :key="index"
-      :containerName="container.containerName"
-    />
   </div>
 </template>
 
@@ -63,7 +70,8 @@ export default {
         return store.getters["sprints/getCurrentSprint"];
       },
       set(newVal): void {
-        store.commit("sprints/setCurrentSprint", newVal);
+        store.commit("sprints/setCurrentSprintNumber", newVal);
+        store.dispatch("sprints/getCurrentSprintDetails", newVal);
         store.dispatch("sprints/getTasks");
       },
     });
@@ -105,12 +113,26 @@ export default {
       sprintModal,
       updateSprintModal,
       openUpdateSprintModal,
+      sprint,
     };
   },
 };
 </script>
 
 <style scoped lang="scss">
+@import "@/styles/variables/colors.scss";
+.add-first-sprint {
+  display: block;
+  cursor: pointer;
+  &:hover {
+    text-decoration: underline;
+    color: $pms-blue;
+  }
+}
+.no-sprint {
+  display: flex;
+  justify-content: center;
+}
 .icon {
   height: 20px;
   width: 20px;

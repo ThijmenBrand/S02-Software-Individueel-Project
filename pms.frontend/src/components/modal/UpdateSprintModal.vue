@@ -5,10 +5,10 @@
         <Close class="icon close-btn" @click="close" />
       </header>
       <section class="modal-body">
-        <h3><Eleme />{{ SprintName }}</h3>
+        <h3><Eleme /><ElInput v-model="sprint.sprintName" /></h3>
         <p>sprint time range</p>
         <ElDatePicker
-          v-model="sprintRange"
+          v-model="date"
           type="daterange"
           range-separator="To"
           start-placeholder="Start date"
@@ -16,9 +16,8 @@
         />
       </section>
       <footer class="modal-footer">
-        <button class="btn create-btn" @click="create">Save</button>
+        <button class="btn create-btn" @click="update">Save</button>
         <button class="btn cancel-btn" @click="close">Cancel</button>
-        <button class="btn delete-btn" @click="remove">Delete</button>
       </footer>
     </div>
   </div>
@@ -27,12 +26,13 @@
 
 <script lang="ts">
 import { Close, Eleme } from "@element-plus/icons-vue";
-import { ElDatePicker } from "element-plus";
+import { ElDatePicker, ElInput } from "element-plus";
 import { computed, ref } from "vue";
 import { useStore } from "vuex";
+import SprintModel from "@/models/sprint/SprintModel";
 export default {
   name: "UpdateSprintModal",
-  components: { Close, ElDatePicker, Eleme },
+  components: { Close, ElDatePicker, Eleme, ElInput },
   emits: ["close"],
   setup(props: any, { emit }: any) {
     const store = useStore();
@@ -41,29 +41,26 @@ export default {
       emit("close");
     };
 
-    const sprintDateRange = ref([new Date(), new Date()]);
-
-    const sprintRange = computed({
+    const sprint = computed((): SprintModel => {
+      const details: SprintModel = store.getters["sprints/getSprintDetails"];
+      return store.getters["sprints/getSprintDetails"];
+    });
+    const date = computed({
       get() {
-        return sprintDateRange.value;
+        return [sprint.value.sprintStart, sprint.value.sprintEnd];
       },
-      set(val: any) {
-        sprintDateRange.value = val;
+      set(val: Array<Date>) {
+        sprint.value.sprintStart = val[0];
+        sprint.value.sprintEnd = val[1];
       },
     });
 
     const update = () => {
-      store.dispatch("sprints/updateSprint", {
-        sprintStart: sprintDateRange.value[0],
-        sprintEnd: sprintDateRange.value[1],
-      });
+      store.dispatch("sprints/updateSprint", sprint.value);
+      emit("close");
     };
 
-    const remove = () => {
-      console.log("updated");
-    };
-
-    return { close, remove, sprintRange, update };
+    return { close, update, sprint, date };
   },
 };
 </script>

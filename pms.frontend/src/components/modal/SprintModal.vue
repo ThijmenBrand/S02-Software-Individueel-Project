@@ -6,7 +6,9 @@
       </header>
       <section class="modal-body">
         <h3><Eleme />New sprint</h3>
-        <p>sprint time range</p>
+        <p>Sprint name</p>
+        <ElInput v-model="sprintName" class="sprint-name-input" />
+        <p>Sprint time range</p>
         <ElDatePicker
           v-model="sprintRange"
           type="daterange"
@@ -26,12 +28,12 @@
 
 <script lang="ts">
 import { Close, Eleme } from "@element-plus/icons-vue";
-import { ElDatePicker } from "element-plus";
+import { ElDatePicker, ElInput } from "element-plus";
 import { computed, ref } from "vue";
 import { useStore } from "vuex";
 export default {
   name: "SprintModal",
-  components: { Close, ElDatePicker, Eleme },
+  components: { Close, ElDatePicker, Eleme, ElInput },
   emits: ["close"],
   setup(props: any, { emit }: any) {
     const store = useStore();
@@ -39,6 +41,8 @@ export default {
     const close = () => {
       emit("close");
     };
+
+    const sprintName = ref<string>("");
 
     const sprintDateRange = ref([new Date(), new Date()]);
 
@@ -55,10 +59,12 @@ export default {
       store.dispatch("sprints/addSprint", {
         sprintStart: sprintDateRange.value[0],
         sprintEnd: sprintDateRange.value[1],
+        sprintName: sprintName.value,
       });
+      emit("close");
     };
 
-    return { close, sprintRange, create };
+    return { close, sprintRange, create, sprintName };
   },
 };
 </script>
