@@ -1,12 +1,11 @@
-﻿using BusinessAccessLayer.services;
-using DataAccessLayer.Models;
+﻿using DataAccessLayer.Models;
 using NUnit.Framework;
 using Moq;
 using System;
 using System.Threading.Tasks;
 using DataLayer.repos.sprint;
 using DataLayer.repos.task;
-using BusinessAccessLayer.services.tasks;
+using BusinessLayer.services.tasks;
 
 namespace pms.unittests.TaskServiceTest
 {
@@ -16,47 +15,16 @@ namespace pms.unittests.TaskServiceTest
         [Test]
         public void TaskService_TaskIdIsNull_ThrowArgumentNullException()
         {
-            int taskId = 0;
-            int projectId = 1;
+            int sprintId = 0;
 
             var RepoMock = new Mock<ITasksRepo<Tasks>>();
-            RepoMock.Setup(x => x.GetTasksByProject(projectId));
+            RepoMock.Setup(x => x.GetTasksBySprint(sprintId));
 
             var sut = new TasksService(RepoMock.Object);
 
             //assert
-            var ex = Assert.Throws<Exception>(() => sut.GetTasksByProjectBySprint(projectId, taskId));
-            Assert.That(ex.Message, Is.EqualTo("Values cant be null"));
-        }
-        [Test]
-        public void TaskService_ProjectIdIsNull_ThrowArgumentNullException()
-        {
-            int taskId = 1;
-            int projectId = 0;
-
-            var RepoMock = new Mock<ITasksRepo<Tasks>>();
-            RepoMock.Setup(x => x.GetTasksByProject(projectId));
-
-            var sut = new TasksService(RepoMock.Object);
-
-            //assert
-            var ex = Assert.Throws<Exception>(() => sut.GetTasksByProjectBySprint(projectId, taskId));
-            Assert.That(ex.Message, Is.EqualTo("Values cant be null"));
-        }
-        [Test]
-        public void TaskService_TaskIdAndProjectIdIsNull_ThrowArgumentNullException()
-        {
-            int taskId = 0;
-            int projectId = 0;
-
-            var RepoMock = new Mock<ITasksRepo<Tasks>>();
-            RepoMock.Setup(x => x.GetTasksByProject(projectId));
-
-            var sut = new TasksService(RepoMock.Object);
-
-            //assert
-            var ex = Assert.Throws<Exception>(() => sut.GetTasksByProjectBySprint(projectId, taskId));
-            Assert.That(ex.Message, Is.EqualTo("Values cant be null"));
+            var ex = Assert.Throws<Exception>(() => sut.GetTasksByProjectBySprint(sprintId));
+            Assert.That(ex.Message, Is.EqualTo("sprintId cant be null"));
         }
     }
 }

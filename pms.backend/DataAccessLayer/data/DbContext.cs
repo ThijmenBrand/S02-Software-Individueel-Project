@@ -14,7 +14,5 @@ namespace DataAccessLayer.data
         public DbSet<Sprint> sprint { get; set; }
         public DbSet<Time> time { get; set; }
         public DbSet<User> user { get; set; }
-
-
     }
 }

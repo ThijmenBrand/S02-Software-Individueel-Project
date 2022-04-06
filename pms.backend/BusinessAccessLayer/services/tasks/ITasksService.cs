@@ -1,7 +1,7 @@
 ﻿using DataAccessLayer.Models;
-using BusinessAccessLayer.services.tasks.DataModels;
+using BusinessLayer.services.tasks.DataModels;
 
-namespace BusinessAccessLayer.services.tasks
+namespace BusinessLayer.services.tasks
 {
     public interface ITasksService
     {

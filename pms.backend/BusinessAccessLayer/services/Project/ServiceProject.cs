@@ -3,7 +3,7 @@ using DataLayer.repos.project;
 using BusinessAccessLayer.extensions;
 using Microsoft.AspNetCore.Mvc;
 
-namespace BusinessAccessLayer.services
+namespace BusinessLayer.services.project
 {
     public class ServiceProject : IServiceProject
     {

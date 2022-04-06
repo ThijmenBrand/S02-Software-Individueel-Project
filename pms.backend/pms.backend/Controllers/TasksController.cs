@@ -1,8 +1,8 @@
-﻿using BusinessAccessLayer.services.tasks;
-using BusinessAccessLayer.services.tasks.DataModels;
+﻿using BusinessLayer.services.tasks;
+using BusinessLayer.services.tasks.DataModels;
 using Microsoft.AspNetCore.Mvc;
 
-namespace pms.backend.Controllers
+namespace ApiLayer.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

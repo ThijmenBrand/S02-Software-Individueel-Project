@@ -4,56 +4,96 @@ using DataAccessLayer.data;
 using DataLayer.repos.task;
 using DataLayer.repos.sprint;
 using DataLayer.repos.project;
-using BusinessAccessLayer.services;
-using BusinessAccessLayer.services.tasks;
+using DataLayer.repos.users;
+using BusinessLayer.services.project;
+using BusinessLayer.services.sprint;
+using BusinessLayer.services.tasks;
+using BusinessLayer.services.Users;
+using Authorization;
+using Helpers;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 var AllowFrontend = "_AllowFrontend";
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-builder.Services.AddCors(options =>
+// add services to DI container
 {
-    options.AddPolicy(name: AllowFrontend,
-                      builder =>
-                      {
-                          builder.WithOrigins("http://localhost:8080/");
-                      });
-});
+    var services = builder.Services;
 
-builder.Services.AddControllers();
-builder.Services.AddDbContext<DataContext>(options =>
-{
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
-});
-builder.Services.AddScoped<IServiceProject, ServiceProject>();
-builder.Services.AddScoped<IProjectRepo<Project>, RepositoryProject>();
-builder.Services.AddScoped<ITasksRepo<Tasks>, TasksRepo>();
-builder.Services.AddScoped<ITasksService, TasksService>();
-builder.Services.AddScoped<ISprintRepo<Sprint>, SprintsRepo>();
-builder.Services.AddScoped<ISprintService, SprintService>();
+    services.AddCors();
+    services.AddControllers();
 
+    services.AddDbContext<DataContext>(options =>
+    {
+        options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+    });
 
+    // configure automapper with all automapper profiles from this assembly
+    services.AddAutoMapper(typeof(Program));
 
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+    services.Configure<AppSettings>(builder.Configuration.GetSection("AppSettings"));
+
+    // configure DI for application services
+    services.AddScoped<IJwtUtils, JwtUtils>();
+    services.AddScoped<IServiceProject, ServiceProject>();
+    services.AddScoped<IProjectRepo<Project>, RepositoryProject>();
+    services.AddScoped<ITasksRepo<Tasks>, TasksRepo>();
+    services.AddScoped<ITasksService, TasksService>();
+    services.AddScoped<ISprintRepo<Sprint>, SprintsRepo>();
+    services.AddScoped<ISprintService, SprintService>();
+    services.AddScoped<IUsersRepo<User>, UsersRepo>();
+    services.AddScoped<IUsersService, UserService>();
+    services.AddScoped<IJwtUtils, JwtUtils>();
+    services.AddHttpContextAccessor();
+
+    services.AddSwaggerGen();
+    services.AddEndpointsApiExplorer();
+
+    services.AddCors(options =>
+    {
+        options.AddPolicy(name: AllowFrontend,
+                          builder =>
+                          {
+                              builder.WithOrigins("http://localhost:8080/");
+                          });
+    });
+
+    services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
+    {
+        options.RequireHttpsMetadata = false;
+        options.SaveToken = true;
+        options.TokenValidationParameters = new TokenValidationParameters()
+        {
+            ValidateIssuer = true,
+            ValidateAudience = true,
+            ValidAudience = builder.Configuration["AppSettings:Audience"],
+            ValidIssuer = builder.Configuration["AppSettings:Issuer"],
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(builder.Configuration["AppSettings:Secret"]))
+        };
+    });
+
+}
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    if (app.Environment.IsDevelopment())
+    {
+        app.UseSwagger();
+        app.UseSwaggerUI();
+    }
+
+    app.UseHttpsRedirection();
+
+    app.UseAuthentication();
+    app.UseAuthorization();
+
+    app.MapControllers();
+
+    app.UseCors(AllowFrontend);
+
+    app.Run();
 }
-
-app.UseHttpsRedirection();
-
-app.UseAuthorization();
-
-app.MapControllers();
-
-app.UseCors(AllowFrontend);
-
-app.Run();

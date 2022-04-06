@@ -1,4 +1,4 @@
-﻿namespace BusinessAccessLayer.services.tasks.DataModels
+﻿namespace BusinessLayer.services.tasks.DataModels
 {
     public class Item
     {

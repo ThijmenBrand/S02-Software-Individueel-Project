@@ -1,8 +1,8 @@
-﻿using BusinessAccessLayer.services.tasks.DataModels;
+﻿using BusinessLayer.services.tasks.DataModels;
 using DataAccessLayer.Models;
 using DataLayer.repos.task;
 
-namespace BusinessAccessLayer.services.tasks
+namespace BusinessLayer.services.tasks
 {
     public class TasksService : ITasksService
     {

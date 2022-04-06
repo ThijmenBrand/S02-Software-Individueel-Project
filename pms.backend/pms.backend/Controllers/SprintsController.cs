@@ -1,9 +1,9 @@
-﻿using BusinessAccessLayer.services;
+﻿using BusinessLayer.services.sprint;
 using Microsoft.AspNetCore.Mvc;
 using DataAccessLayer.Models;
 using System;
 
-namespace pms.backend.Controllers
+namespace ApiLayer.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

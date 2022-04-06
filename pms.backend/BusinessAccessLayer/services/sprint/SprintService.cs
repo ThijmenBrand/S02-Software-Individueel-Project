@@ -1,8 +1,7 @@
 ﻿using DataAccessLayer.Models;
 using DataLayer.repos.sprint;
-using BusinessLayer.helperClasses;
 
-namespace BusinessAccessLayer.services
+namespace BusinessLayer.services.sprint
 {
     public class SprintService : ISprintService
     {
@@ -35,16 +34,15 @@ namespace BusinessAccessLayer.services
 
         public IEnumerable<Sprint> GetAllSprintsByProject(int ProjectId)
         {
-            try
-            {
                 if(ProjectId == 0)
                     throw new Exception("ProjectId cant be null");
 
-                return _repository.GetAllByProject(ProjectId);
-            } catch (Exception)
-            {
-                return Enumerable.Empty<Sprint>();
-            }
+                var sprints = _repository.GetAllByProject(ProjectId);
+                
+                if(sprints == null)
+                   return Enumerable.Empty<Sprint>();
+
+            return sprints;
         }
 
         public IEnumerable<Sprint> GetSprintDetails(int sprintId)

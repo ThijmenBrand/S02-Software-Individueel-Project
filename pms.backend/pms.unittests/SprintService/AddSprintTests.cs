@@ -1,4 +1,4 @@
-﻿using BusinessAccessLayer.services;
+﻿using BusinessLayer.services.sprint;
 using DataAccessLayer.Models;
 using NUnit.Framework;
 using Moq;
@@ -33,7 +33,7 @@ namespace pms.unittests.SprintServiceTest
         {
             Sprint sprint = new Sprint();
             sprint.SprintStart = DateTime.Now;
-            sprint.SprintDuration = 10;
+            sprint.SprintEnd = DateTime.Now;
             sprint.ProjectId = 1;
 
             bool expected = true;

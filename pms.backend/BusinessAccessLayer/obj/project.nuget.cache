@@ -1,9 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "bPU4nLvDDfXg0CG3bBU/9yTIkezfB9Ut4JSAsPC9gnqDj6vzw1RxiVFi7V/3Zp9IVS9ddbSgcIHdSGqNq7AeJA==",
+  "dgSpecHash": "GyWlbx6CDx0hHYC0WP1ozhdcl1swY6dY2Y383CXW0/3mot7nN3pxqfmLGf2W8XUn3Kzx7IN+lC25Cpm+EkGX7w==",
   "success": true,
   "projectFilePath": "C:\\Users\\Thijmen\\OneDrive\\Fontys\\S02\\S02-Software-Individueel-Project-\\pms.backend\\BusinessAccessLayer\\BusinessLayer.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Thijmen\\.nuget\\packages\\automapper\\11.0.1\\automapper.11.0.1.nupkg.sha512",
+    "C:\\Users\\Thijmen\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\11.0.0\\automapper.extensions.microsoft.dependencyinjection.11.0.0.nupkg.sha512",
+    "C:\\Users\\Thijmen\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
     "C:\\Users\\Thijmen\\.nuget\\packages\\entityframework\\6.4.4\\entityframework.6.4.4.nupkg.sha512",
     "C:\\Users\\Thijmen\\.nuget\\packages\\microsoft.aspnet.cors\\5.2.7\\microsoft.aspnet.cors.5.2.7.nupkg.sha512",
     "C:\\Users\\Thijmen\\.nuget\\packages\\microsoft.aspnet.webapi.client\\5.2.7\\microsoft.aspnet.webapi.client.5.2.7.nupkg.sha512",

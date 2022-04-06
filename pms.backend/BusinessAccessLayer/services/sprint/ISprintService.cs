@@ -1,6 +1,6 @@
 ﻿using DataAccessLayer.Models;
 
-namespace BusinessAccessLayer.services
+namespace BusinessLayer.services.sprint
 {
     public interface ISprintService
     {

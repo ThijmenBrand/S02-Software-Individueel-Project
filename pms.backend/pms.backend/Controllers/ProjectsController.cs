@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using BusinessAccessLayer.services;
+using BusinessLayer.services.project;
 
-namespace pms.backend.Controllers
+namespace ApiLayer.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

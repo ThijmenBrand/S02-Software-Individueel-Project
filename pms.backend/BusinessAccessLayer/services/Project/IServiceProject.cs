@@ -1,6 +1,6 @@
 ﻿using DataAccessLayer.Models;
 
-namespace BusinessAccessLayer.services
+namespace BusinessLayer.services.project
 {
     public interface IServiceProject
     {
