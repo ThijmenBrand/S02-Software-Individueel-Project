@@ -13,7 +13,7 @@ namespace DataAccessLayer.Models
         public string ProjectName { get; set; } = string.Empty;
         [MaxLength(150)]
         public string ProjectDescription { get; set; } = string.Empty;
-        public string ProjectOwnerId { get; set; } = string.Empty;
+        public int ProjectOwnerId { get; set; }
         public DateTime ProjectDate { get; set; }
         [NotMapped]
         public virtual ICollection<Sprint>? Sprints { get; set; }

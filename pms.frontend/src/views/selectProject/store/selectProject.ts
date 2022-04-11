@@ -1,5 +1,6 @@
 import Axios from "axios";
 import ProjectModel from "@/models/project/ProjectsModel";
+import API from "@/services/api";
 
 interface selectProjectState {
   projectList: ProjectModel[];
@@ -20,14 +21,13 @@ const selectProject = {
   actions: {
     //Project actions
     fetchProjects: async ({ commit }: any) => {
-      const { data } = await Axios.get("http://localhost:8080/api/Projects");
+      const { data } = await API.get("Projects");
       commit("fetchProjects", data);
     },
     addNewProject: async ({ commit }: any, projectDetails: any) => {
-      const { data } = await Axios.post("http://localhost:8080/api/Projects", {
+      const { data } = await API.post("Projects", {
         projectName: projectDetails.projectName,
         projectDescription: "",
-        projectOwnerId: "1",
       });
       commit("fetchProjects", data);
     },

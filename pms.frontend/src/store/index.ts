@@ -4,6 +4,7 @@ import ProjectModel from "@/models/project/ProjectsModel";
 import SelectProject from "@/views/selectProject/store/selectProject";
 import Sprints from "@/views/home/sprints/store/sprints";
 import TaskModel from "@/models/tasks/Taskmodel";
+import Login from "@/views/login/store/login";
 
 export default createStore({
   state: {
@@ -43,5 +44,6 @@ export default createStore({
   modules: {
     selectProject: SelectProject,
     sprints: Sprints,
+    login: Login,
   },
 });

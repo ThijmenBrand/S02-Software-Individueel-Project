@@ -1,9 +1,11 @@
 ﻿using BusinessLayer.services.tasks;
 using BusinessLayer.services.tasks.DataModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ApiLayer.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class TasksController : ControllerBase

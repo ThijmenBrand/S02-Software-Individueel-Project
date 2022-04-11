@@ -1,6 +1,8 @@
 <template>
   <div class="side-nav-menu">
-    <router-link to="/">
+    <router-link
+      :to="{ name: 'Dashboard', params: { id: this.$route.params.id } }"
+    >
       <div class="logo-header-container">
         <img class="logo" src="@/assets/Logo.svg" />
         <h2 class="title">PMS</h2>

@@ -41,7 +41,7 @@ public class JwtUtils : IJwtUtils
             _appSettings.Issuer,
             _appSettings.Audience,
             claims,
-            expires: DateTime.UtcNow.AddHours(1.0),
+            expires: DateTime.UtcNow.AddHours(168),
             signingCredentials: signIn
         );
 

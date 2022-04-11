@@ -13,12 +13,13 @@ namespace DataLayer.repos.project
             _DataContext = dataContext;
         }
 
-        public async Task<bool> Create(Project project)
+        public async Task<bool> Create(Project project, int UserId)
         {
             try
             {
                 if (project != null)
                 {
+                    project.ProjectOwnerId = UserId;
                     _DataContext.Add(project);
                     await _DataContext.SaveChangesAsync();
 
@@ -32,12 +33,13 @@ namespace DataLayer.repos.project
                 throw;
             }
         }
-        public void Delete(Project project)
+        public void Delete(int projectId)
         {
             try
             {
-                if (project != null)
+                if (projectId != 0)
                 {
+                    var project = _DataContext.project.Where(x => x.ProjectId == projectId).FirstOrDefault();
                     var obj = _DataContext.Remove(project);
                     if (obj != null)
                     {
@@ -49,11 +51,11 @@ namespace DataLayer.repos.project
                 throw;
             }
         }
-        public IEnumerable<Project> GetAll()
+        public IEnumerable<Project> GetAll(int UserId)
         {
             try
             {
-                var obj = _DataContext.project.ToList();
+                var obj = _DataContext.project.Where(p => p.ProjectOwnerId == UserId).ToList();
                 if (obj != null) return obj;
                 else return null;
             } catch (Exception)

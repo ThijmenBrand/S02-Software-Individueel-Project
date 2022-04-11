@@ -15,7 +15,7 @@ namespace BusinessLayer.services.project
             this._repository = _repository;
         }
 
-        public async Task<bool> AddProject(Project project)
+        public async Task<bool> AddProject(Project project, int UserId)
         {
             try
             {
@@ -30,7 +30,7 @@ namespace BusinessLayer.services.project
                 } else
                 {
                     project.ProjectDate = DateTime.Now;
-                    return await _repository.Create(project);
+                    return await _repository.Create(project, UserId);
                 }
             } catch (Exception)
             {
@@ -43,8 +43,7 @@ namespace BusinessLayer.services.project
             {
                 if(id != 0)
                 {
-                    var obj = _repository.GetAll().Where(x => x.ProjectId == id).FirstOrDefault();
-                    _repository.Delete(obj);
+                    _repository.Delete(id);
                 } else
                 {
                     throw new ArgumentNullException();
@@ -54,28 +53,11 @@ namespace BusinessLayer.services.project
                 throw;
             }
         }
-        public void UpdateProject(int id)
+        public IEnumerable<Project> GetAllProjects(int UserId)
         {
             try
             {
-                if (id != 0)
-                {
-                    var obj = _repository.GetAll().Where(x => x.ProjectId == id).FirstOrDefault();
-                    if (obj != null) _repository.Update(obj);
-                } else
-                {
-                    throw new ArgumentNullException();
-                }
-            } catch (Exception)
-            {
-                throw;
-            }
-        }
-        public IEnumerable<Project> GetAllProjects()
-        {
-            try
-            {
-                return _repository.GetAll().ToList();
+                return _repository.GetAll(UserId).ToList();
             } catch (Exception)
             {
                 throw;

@@ -20,12 +20,12 @@ namespace pms.unittests.ServiceProjectTest
 
 
             var RepoMock = new Mock<IProjectRepo<Project>>();
-            RepoMock.Setup(x => x.Create(project)).ReturnsAsync(expected);
+            RepoMock.Setup(x => x.Create(project, 1)).ReturnsAsync(expected);
 
             var sut = new ServiceProject(RepoMock.Object);
 
             //Assert
-            var ex = Assert.ThrowsAsync<Exception>(async () => await sut.AddProject(project));
+            var ex = Assert.ThrowsAsync<Exception>(async () => await sut.AddProject(project, 1));
             Assert.That(ex.Message, Is.EqualTo("Project cant be null"));
         }
 
@@ -39,12 +39,12 @@ namespace pms.unittests.ServiceProjectTest
             bool expected = false;
 
             var RepoMock = new Mock<IProjectRepo<Project>>();
-            RepoMock.Setup(x => x.Create(project)).ReturnsAsync(expected);
+            RepoMock.Setup(x => x.Create(project, 1)).ReturnsAsync(expected);
 
             var sut = new ServiceProject(RepoMock.Object);
 
             //Assert
-            var ex = Assert.ThrowsAsync<Exception>(async () => await sut.AddProject(project));
+            var ex = Assert.ThrowsAsync<Exception>(async () => await sut.AddProject(project, 1));
             Assert.That(ex.Message, Is.EqualTo("One or more project parameters are invalid"));
         }
 
@@ -55,17 +55,16 @@ namespace pms.unittests.ServiceProjectTest
             Project project = new Project();
             project.ProjectName = "test123";
             project.ProjectDescription = "test123";
-            project.ProjectOwnerId = "1";
 
             bool expected = true;
 
             var RepoMock = new Mock<IProjectRepo<Project>>();
-            RepoMock.Setup(x => x.Create(project)).ReturnsAsync(expected);
+            RepoMock.Setup(x => x.Create(project, project.ProjectOwnerId)).ReturnsAsync(expected);
 
             var sut = new ServiceProject(RepoMock.Object);
 
             //Act
-            var result = await sut.AddProject(project);
+            var result = await sut.AddProject(project, 1);
 
             //Assert
             Assert.AreEqual(expected, result);

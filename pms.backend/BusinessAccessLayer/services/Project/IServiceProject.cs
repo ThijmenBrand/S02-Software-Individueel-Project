@@ -4,9 +4,8 @@ namespace BusinessLayer.services.project
 {
     public interface IServiceProject
     {
-        Task<bool> AddProject(Project project);
+        Task<bool> AddProject(Project project, int UserId);
         void DeleteProject(int id);
-        void UpdateProject(int id);
-        IEnumerable<Project> GetAllProjects();
+        IEnumerable<Project> GetAllProjects(int UserId);
     }
 }

@@ -1,8 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using BusinessLayer.services.project;
+using Microsoft.AspNetCore.Authorization;
+using ApiLayer.Helpers;
 
 namespace ApiLayer.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class ProjectsController : ControllerBase
@@ -18,14 +21,14 @@ namespace ApiLayer.Controllers
         [HttpGet]
         public ActionResult<List<Project>> GetAllProjects()
         {
-            return Ok(serviceProject.GetAllProjects());
+            return Ok(serviceProject.GetAllProjects(GetUserId.getUserId()));
         }
 
         [HttpPost]
         public async Task<ActionResult<List<Project>>> AddProject(Project project)
         {
-            await serviceProject.AddProject(project);
-            return Ok(serviceProject.GetAllProjects());
+            await serviceProject.AddProject(project, GetUserId.getUserId());
+            return Ok(serviceProject.GetAllProjects(GetUserId.getUserId()));
         }
     }
 }

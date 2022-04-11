@@ -1,10 +1,11 @@
 ﻿using BusinessLayer.services.sprint;
 using Microsoft.AspNetCore.Mvc;
-using DataAccessLayer.Models;
-using System;
+using ApiLayer.Helpers;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ApiLayer.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class SprintsController : ControllerBase
@@ -34,24 +35,7 @@ namespace ApiLayer.Controllers
         [HttpGet("currentSprint/{projectId}")]
         public ActionResult<Sprint> GetCurrentSprint(int projectId)
         {
-            DateTime today = DateTime.Today;
-
-            var allSprints = _sprintService.GetAllSprintsByProject(projectId);
-            foreach(Sprint sprint in allSprints)
-            {
-                DateTime sprintStart = sprint.SprintStart;
-                DateTime sprintEnd = sprint.SprintEnd;
-
-                if(today >= sprintStart && today <= sprintEnd)
-                {
-                    return Ok(sprint);
-                }
-            }
-
-
-            Sprint noSprint = new Sprint();
-            noSprint.SprintId = 666666666;
-            return Ok(noSprint);
+            return Ok(_sprintService.GetCurrentSprint(projectId));
         }
 
         [HttpGet("currentSprint/Details/{sprintId}")]

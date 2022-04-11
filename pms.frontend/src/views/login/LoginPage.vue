@@ -35,17 +35,23 @@
 <script>
 import { ElForm, ElFormItem, ElInput, ElButton } from "element-plus";
 import { reactive } from "vue";
+import { useStore } from "vuex";
+import { useRouter } from "vue-router";
 export default {
   name: "LoginPage",
   components: { ElForm, ElFormItem, ElInput, ElButton },
   setup() {
+    const store = useStore();
+    const router = useRouter();
+
     const loginInput = reactive({
       email: "",
       password: "",
     });
 
     const submitLogin = () => {
-      console.log(loginInput);
+      let login = store.dispatch("login/logUserIn", loginInput);
+      login ? router.push("/home") : console.log("creds incorrect");
     };
 
     return { loginInput, submitLogin };

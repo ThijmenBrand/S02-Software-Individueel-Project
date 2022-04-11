@@ -45,6 +45,40 @@ namespace BusinessLayer.services.sprint
             return sprints;
         }
 
+        public Sprint GetCurrentSprint(int ProjectId)
+        {
+            if(ProjectId == 0)
+            {
+                throw new Exception("ProjectId  cant be null");
+            }
+
+            var allSprints = _repository.GetAllByProject(ProjectId);
+            DateTime today = DateTime.Today;
+
+            foreach (Sprint sprint in allSprints)
+            {
+                DateTime sprintStart = sprint.SprintStart;
+                DateTime sprintEnd = sprint.SprintEnd;
+
+                if (today >= sprintStart && today <= sprintEnd)
+                {
+                    return sprint;
+                }
+            }
+
+            Sprint closestSprint = new Sprint();
+            closestSprint = allSprints.LastOrDefault();
+            foreach (Sprint sprint in allSprints)
+            {
+                if (sprint.SprintStart > today && sprint.SprintStart < closestSprint.SprintStart)
+                {
+                    closestSprint = sprint;
+                }
+            }
+
+            return closestSprint;
+        }
+
         public IEnumerable<Sprint> GetSprintDetails(int sprintId)
         {
             if (sprintId == 0)
