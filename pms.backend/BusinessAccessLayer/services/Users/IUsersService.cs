@@ -17,6 +17,6 @@ namespace BusinessLayer.services.Users
         public void UpdateUser(int UserId, updateRequest request);
         public void DeleteUser(int UserId);
         public User GetMe(int UserId);
-        public bool ValidatePassword(string userPassword, string inputPassword);
+        public bool ValidatePassword(string requestPassword, string userPassword);
     }
 }

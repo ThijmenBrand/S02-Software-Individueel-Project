@@ -31,7 +31,7 @@ namespace ApiLayer.Controllers
             var user = _usersService.FindUser(request.UserEmail);
 
             if (user == null || !_usersService.ValidatePassword(request.Password, user.UserPassword))
-                return Unauthorized("Username or password incorrect");
+                return BadRequest();
 
             var response = _mapper.Map<AuthenticateResponse>(user);
             response.Token = _jwtUtils.GenerateToken(user);

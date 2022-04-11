@@ -22,9 +22,9 @@ namespace BusinessLayer.services.Users
             return _repository.FindUser(UserEmail);
         }
 
-        public bool ValidatePassword(string userPassword, string inputPassword)
+        public bool ValidatePassword(string requestPassword, string userPassword)
         {
-            return BCrypt.Net.BCrypt.Verify(userPassword, inputPassword);
+            return BCrypt.Net.BCrypt.Verify(requestPassword, userPassword);
         }
 
         public void Register(RegisterRequest request)

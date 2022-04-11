@@ -10,10 +10,16 @@ import TimeTracking from "@/views/home/timeTracking/TimeTracking.vue";
 import Settings from "@/views/home/settings/Settings.vue";
 import Dashboard from "@/views/home/home/Home.vue";
 import Account from "@/views/home/account/Account.vue";
+import Login from "@/views/login/LoginPage.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: "/",
+    name: "Login",
+    component: Login,
+  },
+  {
+    path: "/home",
     name: "SelectProject",
     component: SelectProject,
   },
