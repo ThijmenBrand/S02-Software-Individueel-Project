@@ -4,6 +4,7 @@ import API from "@/services/api";
 
 interface selectProjectState {
   projectList: ProjectModel[];
+  currentProject: ProjectModel;
 }
 
 const selectProject = {
@@ -11,11 +12,21 @@ const selectProject = {
   state(): selectProjectState {
     return {
       projectList: [],
+      currentProject: new ProjectModel({
+        projectId: 0,
+        projectName: "",
+        projectDescription: "",
+        projectOwnerId: 0,
+        projectDate: new Date(),
+      }),
     };
   },
   getters: {
     projectList: (state: selectProjectState): ProjectModel[] => {
       return state.projectList;
+    },
+    getCurrentProject: (state: selectProjectState): ProjectModel => {
+      return state.currentProject;
     },
   },
   actions: {

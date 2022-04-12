@@ -1,32 +1,29 @@
 <template>
   <SprintModal v-if="sprintModal" @close="addSprint" />
   <UpdateSprintModal @close="openUpdateSprintModal" v-if="updateSprintModal" />
-  <p
-    v-else-if="sprints.length == 0"
-    class="no-sprint add-first-sprint"
-    @click="addSprint()"
+  <ElEmpty
+    v-if="sprints.length == 0"
+    description="You do not have any sprints yet!"
   >
-    There is no sprint yet. Add your first one!
-  </p>
+    <ElButton @click="addSprint()">Add Sprint</ElButton>
+  </ElEmpty>
   <div v-else>
-    <div class="top-header">
-      <div class="view-selector">
-        <p>Board</p>
-      </div>
-      <div class="sprint-selector">
-        <Setting class="icon" @click="openUpdateSprintModal()" />
-        <el-select v-model="selectedSprint" class="m-2">
-          <el-option
-            v-for="item in sprints"
-            :value="item.sprintId"
-            :key="item.sprintId"
-            :label="item.sprintName"
-            :selectedSprint="item.sprintId"
-          >
-          </el-option>
-          <p @click="addSprint()" class="new-sprint">Add sprint +</p>
-        </el-select>
-      </div>
+    <div class="sprint-selector">
+      <Setting
+        class="icon sprint-settings-icon"
+        @click="openUpdateSprintModal()"
+      />
+      <el-select v-model="selectedSprint" class="m-2">
+        <el-option
+          v-for="item in sprints"
+          :value="item.sprintId"
+          :key="item.sprintId"
+          :label="item.sprintName"
+          :selectedSprint="item.sprintId"
+        >
+        </el-option>
+        <p @click="addSprint()" class="new-sprint">Add sprint +</p>
+      </el-select>
     </div>
     <p v-if="sprint == 666666666">Today is a rest day! wohoo</p>
     <div v-else class="board-view">
@@ -40,7 +37,7 @@
 </template>
 
 <script lang="ts">
-import { ElSelect, ElOption } from "element-plus";
+import { ElSelect, ElOption, ElEmpty, ElButton } from "element-plus";
 import { Setting } from "@element-plus/icons-vue";
 
 import { computed, onMounted, ref, watch } from "vue";
@@ -61,6 +58,8 @@ export default {
     SprintModal,
     UpdateSprintModal,
     Setting,
+    ElEmpty,
+    ElButton,
   },
   setup() {
     const store = useStore();
@@ -121,6 +120,9 @@ export default {
 
 <style scoped lang="scss">
 @import "@/styles/variables/colors.scss";
+.sprint-settings-icon {
+  margin-right: 10px;
+}
 .add-first-sprint {
   display: block;
   cursor: pointer;
@@ -150,9 +152,12 @@ export default {
   color: gray;
 }
 
-.sprint-selector,
-.view-selector {
+.sprint-selector {
   display: inline-block;
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  margin: 20px;
 }
 
 .top-header {

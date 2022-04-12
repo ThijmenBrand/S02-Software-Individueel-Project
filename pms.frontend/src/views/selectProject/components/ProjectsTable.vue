@@ -49,7 +49,7 @@ export default {
 
     const HandleRoute = (val: ProjectModel): void => {
       store.dispatch("selectProject/selectCurrentProject", val).then(() => {
-        router.push(`/home/${val.projectName}`);
+        router.push(`/home/${val.projectName}/dashboard`);
       });
     };
 

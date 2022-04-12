@@ -1,5 +1,6 @@
 <template>
   <side-nav />
+  <TopHeader />
   <div class="main">
     <router-view />
   </div>
@@ -7,8 +8,9 @@
 
 <script>
 import SideNav from "@/components/SideNav.vue";
+import TopHeader from "@/components/TopHeader.vue";
 export default {
-  components: { SideNav },
+  components: { SideNav, TopHeader },
 };
 </script>
 

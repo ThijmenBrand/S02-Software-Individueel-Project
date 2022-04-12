@@ -60,18 +60,25 @@
           </div>
         </router-link>
       </div>
-      <div class="user-container">
-        <router-link
-          :to="{ name: 'Account', params: { id: this.$route.params.id } }"
+      <hr />
+      <div class="project-container">
+        <h4>Projects</h4>
+        <p
+          v-for="(project, index) in projects"
+          :key="index"
+          @click="HandleRoute(project)"
         >
-          <img class="profile-picture" src="@/assets/pf.jpg" />
+          {{ project.projectName }}
+        </p>
+        <router-link to="/home">
+          <p style="color: blue">all projects</p>
         </router-link>
       </div>
     </div>
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import {
   House,
   Collection,
@@ -81,6 +88,10 @@ import {
   Setting,
 } from "@element-plus/icons-vue";
 import ElIcon from "element-plus/lib/components/icon";
+import { useStore } from "vuex";
+import { useRouter } from "vue-router";
+import { computed, onMounted } from "vue";
+import ProjectModel from "@/models/project/ProjectsModel";
 
 export default {
   components: {
@@ -92,10 +103,51 @@ export default {
     House,
     ElIcon,
   },
+  setup() {
+    const store = useStore();
+    const router = useRouter();
+
+    const projects = computed(() => {
+      const list: ProjectModel[] = store.getters["selectProject/projectList"];
+
+      list.forEach((project) => {
+        project.projectName.length > 20
+          ? (project.projectName = project.projectName.substr(0, 20) + "...")
+          : "";
+      });
+
+      return list.length > 4 ? list.splice(0, 4) : list;
+    });
+
+    const HandleRoute = (val: ProjectModel): void => {
+      store.dispatch("selectProject/selectCurrentProject", val).then(() => {
+        router.push(`/home/${val.projectName}/dashboard`);
+      });
+    };
+
+    onMounted(() => {
+      store.dispatch("selectProject/fetchProjects");
+    });
+
+    return { projects, HandleRoute };
+  },
 };
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+.project-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-left: 20px;
+  p {
+    font-size: 14px;
+    cursor: pointer;
+    &:hover {
+      color: blue;
+    }
+  }
+}
 .v-sidebar-menu {
   border-right: 0.5px solid #d4d4d4;
 }
@@ -124,7 +176,7 @@ el-icon {
 }
 
 .side-nav-menu {
-  width: 150px;
+  width: 160px;
   height: 100%;
   float: left;
   position: fixed;
@@ -132,6 +184,12 @@ el-icon {
   top: 0;
   bottom: 0;
   background-color: #f0f0f0;
+  overflow: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 .router-link-exact-active {
@@ -148,14 +206,6 @@ a {
   align-items: center;
   justify-content: left;
   margin-left: 20px;
-}
-
-.user-container {
-  position: absolute;
-  bottom: 10px;
-  width: 150px;
-  display: flex;
-  justify-content: center;
 }
 
 .profile-picture {

@@ -6,7 +6,7 @@
 <script lang="ts">
 import ProjectsTable from "./components/ProjectsTable.vue";
 import { useStore } from "vuex";
-import { computed, onMounted } from "vue";
+import { computed, onBeforeMount, onMounted } from "vue";
 
 export default {
   name: "SelectProject",
@@ -15,7 +15,7 @@ export default {
     const store = useStore();
 
     const projects = computed(() => store.getters["selectProject/projectList"]);
-    
+
     onMounted(() => {
       store.dispatch("selectProject/fetchProjects");
     });

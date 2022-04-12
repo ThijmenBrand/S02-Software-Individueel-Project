@@ -7,40 +7,12 @@ import TaskModel from "@/models/tasks/Taskmodel";
 import Login from "@/views/login/store/login";
 
 export default createStore({
-  state: {
-    loadig: false,
-    taskList: Array<TaskModel>(),
-    currentProject: <ProjectModel>{},
-    loggedUser: "1",
-    error: 0,
-  },
-  getters: {
-    tasks: (state) => {
-      return state.taskList;
-    },
-  },
+  state: {},
+  getters: {},
 
-  actions: {
-    //Project actions
+  actions: {},
 
-    //tasks actions
-    fetchTasks: async ({ commit }) => {
-      const CurrentProjectId: number = localStorage["currentProjectId"];
-      const { data } = await Axios.get(
-        `http://localhost:8080/api/Tasks/${CurrentProjectId}`
-      );
-
-      commit("getTasksByProject", data);
-      return true;
-    },
-  },
-
-  mutations: {
-    //Task mutations
-    getTasksByProject: (state, tasks: TaskModel[]) => {
-      state.taskList = tasks;
-    },
-  },
+  mutations: {},
   modules: {
     selectProject: SelectProject,
     sprints: Sprints,

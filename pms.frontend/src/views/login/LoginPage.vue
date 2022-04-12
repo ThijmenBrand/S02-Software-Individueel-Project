@@ -1,12 +1,10 @@
 <template>
   <div class="row">
-    <div class="column">
-      <div class="login-header">
+    <div class="column left">
+      <div class="login-form">
         <img src="@/assets/Logo.svg" />
         <h1>Login</h1>
         <p>Enter your credentials to gain access to your account</p>
-      </div>
-      <div class="login-form">
         <ElForm :model="loginInput">
           <ElFormItem>
             <p>Email</p>
@@ -80,5 +78,9 @@ export default {
   h1 {
     text-align: left;
   }
+}
+
+.login-form {
+  padding: 20%;
 }
 </style>

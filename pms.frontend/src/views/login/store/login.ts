@@ -1,17 +1,25 @@
-import { creds } from "@/models/user/user";
+import UserShape, { creds, User } from "@/models/user/user";
 import router from "@/router";
 import { userService } from "@/services/login/userService";
 
+interface loginState {
+  user: UserShape;
+}
+
 const selectProject = {
   namespaced: true,
-  state() {
+  state(): loginState {
     return {
-      user: "",
+      user: new User({ token: "", userEmail: "", userId: 0, userName: "" }),
     };
   },
-  getters: {},
+  getters: {
+    getUser: (state: loginState) => {
+      return state.user;
+    },
+  },
   actions: {
-    logUserIn: async (context: any, creds: creds): Promise<boolean> => {
+    logUserIn: async ({ commit }: any, creds: creds): Promise<boolean> => {
       const { data, status } = await userService.login(
         creds.email,
         creds.password
@@ -25,7 +33,7 @@ const selectProject = {
       }
 
       if (data.token) {
-        localStorage.setItem("user", JSON.stringify(data));
+        commit("SET_USER", data);
         router.push("/home");
         return true;
       }
@@ -34,9 +42,15 @@ const selectProject = {
     },
     logOut: async (context: any) => {
       userService.logout();
+      location.reload();
     },
   },
-  mutations: {},
+  mutations: {
+    SET_USER(state: loginState, user: UserShape) {
+      localStorage.setItem("user", JSON.stringify(user));
+      state.user = user;
+    },
+  },
 };
 
 export default selectProject;
