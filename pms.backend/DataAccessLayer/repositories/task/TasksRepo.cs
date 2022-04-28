@@ -100,6 +100,38 @@ namespace DataLayer.repos.task
                 throw;   
             }
         }
+
+        public IEnumerable<Tasks> GetAllTasks(int projectId)
+        {
+            var sprints = _DataContext.sprint.Where(t => t.ProjectId == projectId).ToList();
+            List<Tasks> tasks = new List<Tasks>();
+
+            foreach(Sprint sprint in sprints)
+            {
+                var tasksInSprint = _DataContext.task.Where(t => t.SprintId == sprint.SprintId);
+                if(tasksInSprint.Count() > 1)
+                {
+                    foreach(Tasks task in tasksInSprint)
+                    {
+                        tasks.Add(task);
+                    }
+                } else if (tasksInSprint.Count() == 1)
+                {
+                    tasks.Add(tasksInSprint.FirstOrDefault());
+                }
+            }
+
+            return tasks;
+        }
+
+        public Tasks GetTaskById(int id)
+        {
+            var task = _DataContext.task.Where(t => t.TaskId == id).FirstOrDefault();
+            if (task == null)
+                throw new Exception("no task found");
+
+            return task;
+        }
     }
 
 }

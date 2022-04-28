@@ -1,6 +1,7 @@
 ﻿using DataLayer.repos.project;
 using DataAccessLayer.Models;
 using DataAccessLayer.data;
+using Microsoft.EntityFrameworkCore;
 
 namespace DataLayer.repos.project
 {
@@ -39,12 +40,10 @@ namespace DataLayer.repos.project
             {
                 if (projectId != 0)
                 {
-                    var project = _DataContext.project.Where(x => x.ProjectId == projectId).FirstOrDefault();
-                    var obj = _DataContext.Remove(project);
-                    if (obj != null)
-                    {
-                        _DataContext.SaveChangesAsync();
-                    }
+                    //var project = _DataContext.project.Where(x => x.ProjectId == projectId).FirstOrDefault();
+                    //var obj = _DataContext.Remove(project);
+                    _DataContext.project.FromSqlRaw($"delete from project where ProjectId = {projectId}");
+                    _DataContext.SaveChangesAsync();
                 }
             } catch(Exception)
             {
@@ -55,7 +54,7 @@ namespace DataLayer.repos.project
         {
             try
             {
-                var obj = _DataContext.project.Where(p => p.ProjectOwnerId == UserId).ToList();
+                var obj = _DataContext.project.FromSqlRaw($"select * from project where ProjectOwnerId = {UserId}").ToList(); //Where(p => p.ProjectOwnerId == UserId).ToList();
                 if (obj != null) return obj;
                 else return null;
             } catch (Exception)
@@ -70,7 +69,7 @@ namespace DataLayer.repos.project
                 if (id != 0)
                 {
                     var obj = _DataContext.project.FirstOrDefault(x => x.ProjectId == id);
-                    if (obj != null) return obj;
+                    if (obj != null) return (Project?)obj;
                     else return null;
                 } else
                 {

@@ -1,34 +1,28 @@
 <template>
   <div class="side-nav-menu">
-    <router-link
-      :to="{ name: 'Dashboard', params: { id: this.$route.params.id } }"
-    >
-      <div class="logo-header-container">
-        <img class="logo" src="@/assets/Logo.svg" />
-        <h2 class="title">PMS</h2>
-      </div>
-    </router-link>
+    <div class="logo-header-container">
+      <img class="logo" src="@/assets/Logo.svg" />
+      <h2 class="title">PMS</h2>
+    </div>
     <div class="menu-items-container">
       <hr />
       <div class="menu-links-container">
         <router-link
-          :to="{ name: 'Dashboard', params: { id: this.$route.params.id } }"
+          :to="{ name: 'Dashboard', params: { id: $route.params.id } }"
         >
           <div class="menu-nav-item">
             <el-icon><house /></el-icon>
             <p class="item-title">Home</p>
           </div>
         </router-link>
-        <router-link
-          :to="{ name: 'Files', params: { id: this.$route.params.id } }"
-        >
+        <router-link :to="{ name: 'Files', params: { id: $route.params.id } }">
           <div class="menu-nav-item">
             <el-icon><collection /></el-icon>
             <p class="item-title">Assets</p>
           </div>
         </router-link>
         <router-link
-          :to="{ name: 'Sprints', params: { id: this.$route.params.id } }"
+          :to="{ name: 'Sprints', params: { id: $route.params.id } }"
         >
           <div class="menu-nav-item">
             <el-icon><eleme /></el-icon>
@@ -36,7 +30,7 @@
           </div>
         </router-link>
         <router-link
-          :to="{ name: 'Calender', params: { id: this.$route.params.id } }"
+          :to="{ name: 'Calender', params: { id: $route.params.id } }"
         >
           <div class="menu-nav-item">
             <el-icon><calendar /></el-icon>
@@ -44,7 +38,7 @@
           </div>
         </router-link>
         <router-link
-          :to="{ name: 'TimeTracking', params: { id: this.$route.params.id } }"
+          :to="{ name: 'TimeTracking', params: { id: $route.params.id } }"
         >
           <div class="menu-nav-item">
             <el-icon><clock /></el-icon>
@@ -52,7 +46,7 @@
           </div>
         </router-link>
         <router-link
-          :to="{ name: 'Settings', params: { id: this.$route.params.id } }"
+          :to="{ name: 'Settings', params: { id: $route.params.id } }"
         >
           <div class="menu-nav-item">
             <el-icon><setting /></el-icon>
@@ -120,9 +114,11 @@ export default {
     });
 
     const HandleRoute = (val: ProjectModel): void => {
-      store.dispatch("selectProject/selectCurrentProject", val).then(() => {
-        router.push(`/home/${val.projectName}/dashboard`);
-      });
+      store
+        .dispatch("selectProject/selectCurrentProject", val.projectId)
+        .then(() => {
+          router.push(`/home/${val.projectName}/dashboard`);
+        });
     };
 
     onMounted(() => {

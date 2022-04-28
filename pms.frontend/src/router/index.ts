@@ -11,6 +11,7 @@ import Settings from "@/views/home/settings/Settings.vue";
 import Dashboard from "@/views/home/home/Home.vue";
 import Account from "@/views/home/account/Account.vue";
 import Login from "@/views/login/LoginPage.vue";
+import LocalStorageHandler from "@/services/localStorageHelper/LocalStorageHelper";
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -87,7 +88,7 @@ const router = createRouter({
 router.beforeEach((to, from, next) => {
   const publicPages = ["/"];
   const authRequired = !publicPages.includes(to.path);
-  const loggedIn = localStorage.getItem("user");
+  const loggedIn = LocalStorageHandler.getItem("user");
 
   if (authRequired && !loggedIn) {
     return next("/");

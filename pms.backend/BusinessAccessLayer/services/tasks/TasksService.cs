@@ -117,5 +117,34 @@ namespace BusinessLayer.services.tasks
                 throw;
             }
         }
+
+        public IEnumerable<Tasks> GetAllTasksByProject(int projectId)
+        {
+            if (projectId == 0)
+                throw new Exception("project id cant be 0");
+
+            var tasks = _repository.GetAllTasks(projectId).ToList();
+            var plannedTasks = new List<Tasks>();
+
+            foreach (var task in tasks)
+            {
+                if (!(task.TaskStartTime < Convert.ToDateTime("2000-01-01 00:00:00.0000000")))
+                {
+                    plannedTasks.Add(task);
+                }
+            }
+
+            return plannedTasks;
+        }
+
+        public Tasks GetTaskById(int id)
+        {
+            if(id == 0)
+                throw new Exception("task id cant be 0");
+
+            var task = _repository.GetTaskById(id);
+            
+            return task;
+        }
     }
 }

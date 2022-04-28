@@ -1,6 +1,8 @@
+import ProjectModel from "@/models/project/ProjectsModel";
 import SprintModel, { IBaseSprintShape } from "@/models/sprint/SprintModel";
 import TaskContainerModel from "@/models/tasks/TaskContainerModel";
 import TaskModel, { IBaseTaskShape } from "@/models/tasks/Taskmodel";
+import LocalStorageHandler from "@/services/localStorageHelper/LocalStorageHelper";
 import { sprintService } from "@/services/sprints/sprintFunctions";
 
 interface sprintState {
@@ -10,6 +12,7 @@ interface sprintState {
   sprintView: string;
   taskContainersList: TaskContainerModel[];
   taskItemsList: TaskModel[];
+  taskDetails: TaskModel;
 }
 
 const sprints = {
@@ -40,9 +43,20 @@ const sprints = {
         },
       ],
       taskItemsList: [],
+      taskDetails: new TaskModel({
+        taskId: 0,
+        taskDescription: "",
+        taskName: "",
+        taskEndTime: new Date(),
+        taskStartTime: new Date(),
+        taskTag: "",
+      }),
     };
   },
   getters: {
+    getTaskDetails: (state: sprintState): TaskModel => {
+      return state.taskDetails;
+    },
     getContainers: (state: sprintState): TaskContainerModel[] => {
       return state.taskContainersList;
     },
@@ -107,14 +121,16 @@ const sprints = {
       commit("getAllTasks", data);
     },
     addTask: async ({ commit }: any, task: IBaseTaskShape): Promise<void> => {
-      const CurrentProjectId: number = localStorage["currentProjectId"];
-      const CurrentSprintId: number = localStorage["currentSprintId"];
+      const CurrentProject: ProjectModel =
+        LocalStorageHandler.getItem("currentProject");
+      const CurrentSprintId: number =
+        LocalStorageHandler.getItem("currentSprintId");
 
       const { data, status } = await sprintService.addTask({
         taskName: task.taskName,
         taskDescription: "",
         taskTag: task.taskTag,
-        projectId: CurrentProjectId,
+        projectId: CurrentProject.projectId,
         sprintId: CurrentSprintId,
       });
 
@@ -168,20 +184,29 @@ const sprints = {
     updateSprint: async (context: any, sprint: SprintModel) => {
       const { status } = await sprintService.updateSprint(sprint);
     },
+    getTaskDetails: async (context: any, taskId: number) => {
+      if (taskId != 0) {
+        const { data } = await sprintService.getTaskDetails(taskId);
+        context.commit("setTaskDetails", data);
+      }
+    },
   },
   mutations: {
+    setTaskDetails: async (state: sprintState, task: TaskModel) => {
+      state.taskDetails = task;
+    },
     setInitalSprint: async (state: sprintState, sprint: SprintModel) => {
       state.currentSprint = sprint;
       state.currentSprintNumber = sprint.sprintId;
-      localStorage.setItem("currentSprintId", JSON.stringify(sprint.sprintId));
+      LocalStorageHandler.setItem("currentSprintId", sprint.sprintId);
     },
     setCurrentSprint: (state: sprintState, sprint: SprintModel) => {
       state.currentSprint = sprint;
-      localStorage["currentSprintId"] = JSON.stringify(sprint.sprintId);
+      LocalStorageHandler.setItem("currentSprintId", sprint.sprintId);
     },
     setCurrentSprintNumber: (state: sprintState, sprintId: number) => {
       state.currentSprintNumber = sprintId;
-      localStorage["currentSprintId"] = JSON.stringify(sprintId);
+      LocalStorageHandler.setItem("currentSprintId", sprintId);
     },
     getAllSprints: (state: sprintState, sprints: SprintModel[]) => {
       state.allSprints = sprints;
@@ -195,6 +220,42 @@ const sprints = {
     },
     getAllTasks: (state: sprintState, tasks: TaskModel[]) => {
       state.taskItemsList = tasks;
+    },
+    emptySprints: (state: sprintState) => {
+      (state.currentSprintNumber = 0),
+        (state.currentSprint = {
+          sprintId: 1,
+          sprintName: "",
+          sprintStart: new Date(),
+          sprintEnd: new Date(),
+        }),
+        (state.allSprints = []),
+        (state.sprintView = "board"),
+        (state.taskContainersList = [
+          {
+            containerId: 1,
+            containerName: "todo",
+          },
+          {
+            containerId: 2,
+            containerName: "doing",
+          },
+          {
+            containerId: 3,
+            containerName: "done",
+          },
+        ]),
+        (state.taskItemsList = []);
+    },
+    emptyTaskDetails: (state: sprintState) => {
+      state.taskDetails = new TaskModel({
+        taskId: 0,
+        taskName: "",
+        taskDescription: "",
+        taskStartTime: new Date(),
+        taskEndTime: new Date(),
+        taskTag: "",
+      });
     },
   },
 };

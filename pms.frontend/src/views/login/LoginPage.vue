@@ -5,6 +5,9 @@
         <img src="@/assets/Logo.svg" />
         <h1>Login</h1>
         <p>Enter your credentials to gain access to your account</p>
+        <p v-if="loginFailed" style="color: red">
+          Email or password incorrect!
+        </p>
         <ElForm :model="loginInput">
           <ElFormItem>
             <p>Email</p>
@@ -30,9 +33,9 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { ElForm, ElFormItem, ElInput, ElButton } from "element-plus";
-import { reactive } from "vue";
+import { reactive, ref } from "vue";
 import { useStore } from "vuex";
 import { useRouter } from "vue-router";
 export default {
@@ -42,17 +45,20 @@ export default {
     const store = useStore();
     const router = useRouter();
 
+    const loginFailed = ref<boolean>(false);
+
     const loginInput = reactive({
       email: "",
       password: "",
     });
 
     const submitLogin = () => {
-      let login = store.dispatch("login/logUserIn", loginInput);
-      login ? router.push("/home") : console.log("creds incorrect");
+      store.dispatch("login/logUserIn", loginInput).then((succeeded) => {
+        loginFailed.value = !succeeded;
+      });
     };
 
-    return { loginInput, submitLogin };
+    return { loginInput, submitLogin, loginFailed };
   },
 };
 </script>

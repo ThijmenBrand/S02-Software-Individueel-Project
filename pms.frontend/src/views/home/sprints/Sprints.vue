@@ -25,8 +25,7 @@
         <p @click="addSprint()" class="new-sprint">Add sprint +</p>
       </el-select>
     </div>
-    <p v-if="sprint == 666666666">Today is a rest day! wohoo</p>
-    <div v-else class="board-view">
+    <div class="board-view">
       <TaskContainer
         v-for="(container, index) in containers"
         :key="index"
@@ -92,8 +91,11 @@ export default {
     };
 
     onMounted(() => {
+      store.commit("sprints/emptySprints");
       store.dispatch("sprints/getCurrentSprint");
-      store.dispatch("sprints/getSprints");
+      store.dispatch("sprints/getSprints").then(() => {
+        store.dispatch("sprints/getTasks");
+      });
     });
 
     const sprints = computed((): SprintModel[] => {

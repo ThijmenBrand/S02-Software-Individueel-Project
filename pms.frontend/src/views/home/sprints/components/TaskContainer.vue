@@ -1,8 +1,8 @@
 <template>
   <Modal
-    v-show="modalIsOpen"
+    v-if="modalIsOpen"
     @close="openTaskModal"
-    :taskId="openTask.taskId"
+    :taskId="openTask"
     @save="saveTask"
   />
   <div
@@ -52,7 +52,7 @@ import Modal from "@/components/modal/TaskModal.vue";
 import { Plus } from "@element-plus/icons-vue";
 
 import { useStore } from "vuex";
-import { computed, onMounted, ref } from "vue";
+import { computed, ref } from "vue";
 
 export default {
   name: "TaskContainer",
@@ -78,23 +78,10 @@ export default {
 
     const modalIsOpen = ref<boolean>(false);
 
-    const openTask = ref<TaskModel>(
-      new TaskModel({
-        taskId: 0,
-        taskName: "",
-        taskDescription: "",
-        taskStartTime: new Date(),
-        taskEndTime: new Date(),
-        taskTag: "",
-      })
-    );
+    const openTask = ref<number>(0);
 
     const containerClassName = computed((): string => {
       return props.containerName;
-    });
-
-    onMounted((): void => {
-      store.dispatch("sprints/getTasks");
     });
 
     const tasks = computed((): TaskModel[] => {
@@ -121,12 +108,12 @@ export default {
       }
     };
 
-    const openTaskModal = (task: TaskModel): void => {
+    const openTaskModal = (taskId: number): void => {
       modalIsOpen.value
         ? (modalIsOpen.value = false)
         : (modalIsOpen.value = true);
 
-      openTask.value = task;
+      openTask.value = taskId;
     };
 
     const saveTask = (task: TaskModel): void => {

@@ -55,5 +55,17 @@ namespace ApiLayer.Controllers
             var res = await _tasksService.DeleteTask(taskId);
             return res ? Ok(_tasksService.GetTasksByProjectBySprint(sprintId)) : BadRequest();
         }
+
+        [HttpGet("{projectId}")]
+        public ActionResult<List<Tasks>> GetAllTasksByProject(int projectId)
+        {
+            return Ok(_tasksService.GetAllTasksByProject(projectId));
+        }
+
+        [HttpGet("details/{id}")]
+        public ActionResult<Tasks> GetTaskById(int id)
+        {
+            return Ok(_tasksService.GetTaskById(id));
+        }
     }
 }

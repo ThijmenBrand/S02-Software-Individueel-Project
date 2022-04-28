@@ -15,6 +15,18 @@ namespace BusinessLayer.services.project
             this._repository = _repository;
         }
 
+        public Project GetProjectById(int projectId)
+        {
+            if (projectId == 0)
+                throw new Exception("ProjectId cant be 0");
+
+            var project = _repository.GetById(projectId);
+            if (project == null)
+                throw new Exception("Project could not be found");
+
+            return project;
+        }
+
         public async Task<bool> AddProject(Project project, int UserId)
         {
             try

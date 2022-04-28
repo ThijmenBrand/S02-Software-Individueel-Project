@@ -30,5 +30,11 @@ namespace ApiLayer.Controllers
             await serviceProject.AddProject(project, GetUserId.getUserId());
             return Ok(serviceProject.GetAllProjects(GetUserId.getUserId()));
         }
+
+        [HttpGet("{projectId}")]
+        public ActionResult<Project> GetProjectById(int projectId)
+        {
+            return Ok(serviceProject.GetProjectById(projectId));
+        }
     }
 }

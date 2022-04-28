@@ -48,9 +48,11 @@ export default {
     const router = useRouter();
 
     const HandleRoute = (val: ProjectModel): void => {
-      store.dispatch("selectProject/selectCurrentProject", val).then(() => {
-        router.push(`/home/${val.projectName}/dashboard`);
-      });
+      store
+        .dispatch("selectProject/selectCurrentProject", val.projectId)
+        .then(() => {
+          router.push(`/home/${val.projectName}/dashboard`);
+        });
     };
 
     const formatDate = (date: string): string => {

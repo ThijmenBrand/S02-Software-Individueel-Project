@@ -6,7 +6,7 @@
 <script lang="ts">
 import ProjectsTable from "./components/ProjectsTable.vue";
 import { useStore } from "vuex";
-import { computed, onBeforeMount, onMounted } from "vue";
+import { computed, onMounted } from "vue";
 
 export default {
   name: "SelectProject",

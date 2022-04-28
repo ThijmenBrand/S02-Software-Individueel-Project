@@ -1,6 +1,7 @@
 import Axios from "axios";
 import ProjectModel from "@/models/project/ProjectsModel";
 import API from "@/services/api";
+import LocalStorageHandler from "@/services/localStorageHelper/LocalStorageHelper";
 
 interface selectProjectState {
   projectList: ProjectModel[];
@@ -26,7 +27,9 @@ const selectProject = {
       return state.projectList;
     },
     getCurrentProject: (state: selectProjectState): ProjectModel => {
-      return state.currentProject;
+      return state.currentProject.projectId != 0
+        ? state.currentProject
+        : LocalStorageHandler.getItem("currentProject");
     },
   },
   actions: {
@@ -42,19 +45,17 @@ const selectProject = {
       });
       commit("fetchProjects", data);
     },
-    selectCurrentProject: async ({ commit }: any, project: any) => {
-      commit("currentProject", project.projectId);
+    selectCurrentProject: async ({ commit }: any, projectId: number) => {
+      const { data } = await API.get(`Projects/${projectId}`);
+      commit("currentProject", data);
     },
   },
   mutations: {
     fetchProjects: (state: any, projects: ProjectModel[]) =>
       (state.projectList = projects),
-    currentProject: (state: any, projectId: number) => {
-      const project: ProjectModel = state.projectList.find(
-        (element: ProjectModel) => element.projectId == projectId
-      )!;
+    currentProject: (state: any, project: ProjectModel) => {
       state.currentProject = project;
-      localStorage["currentProjectId"] = project.projectId.toString();
+      LocalStorageHandler.setItem("currentProject", project);
     },
   },
 };

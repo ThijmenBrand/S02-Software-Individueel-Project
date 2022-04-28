@@ -42,6 +42,7 @@ import {
   ElDropdownItem,
   ElDropdownMenu,
 } from "element-plus";
+import LocalStorageHandler from "@/services/localStorageHelper/LocalStorageHelper";
 export default {
   components: {
     ArrowDown,
@@ -61,7 +62,7 @@ export default {
     );
 
     const userInfo = computed(
-      (): UserShape => JSON.parse(localStorage.getItem("user") || "{}")
+      (): UserShape => LocalStorageHandler.getItem("user")
     );
 
     const logout = () => store.dispatch("login/logOut");

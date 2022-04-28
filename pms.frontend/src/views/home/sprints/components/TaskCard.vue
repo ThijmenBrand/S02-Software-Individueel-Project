@@ -32,7 +32,7 @@ export default {
     });
 
     const openTask = (): void => {
-      emit("open-modal", props.task);
+      emit("open-modal", props.task.taskId);
     };
 
     const cutDescription = (taskDescription: string): string => {
