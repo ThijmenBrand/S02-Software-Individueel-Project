@@ -43,14 +43,56 @@
             />
           </div>
           <div class="schedule">
-            <h4>Schedule</h4>
-            <el-date-picker
-              v-model="date"
-              type="datetimerange"
-              range-separator="To"
-              start-placeholder="Start date"
-              end-placeholder="End date"
-            />
+            <h4>Task options</h4>
+            <div>
+              <p>Schedule</p>
+              <el-date-picker
+                v-model="date"
+                type="datetimerange"
+                range-separator="To"
+                start-placeholder="Start date"
+                end-placeholder="End date"
+              />
+            </div>
+            <hr />
+            <div>
+              <p>Process state</p>
+              <select v-model="task.taskTag" class="select-state">
+                <option
+                  v-for="container in containers"
+                  :key="container.containerId"
+                  :value="container.containerName"
+                >
+                  {{ container.containerName }}
+                </option>
+              </select>
+            </div>
+            <hr />
+            <div>
+              <p>Importance</p>
+              <select v-model="task.taskImportance" class="select-state">
+                <option
+                  v-for="option in importanceOptions"
+                  :key="option"
+                  :value="option"
+                >
+                  {{ option }}
+                </option>
+              </select>
+            </div>
+            <hr />
+            <div>
+              <p>Workload</p>
+              <select v-model="task.taskWorkLoad" class="select-state">
+                <option
+                  v-for="option in effortOptions"
+                  :key="option"
+                  :value="option"
+                >
+                  {{ option }}
+                </option>
+              </select>
+            </div>
           </div>
         </section>
       </div>
@@ -96,6 +138,10 @@ export default {
     const store = useStore();
 
     const optionsOpen = ref(false);
+    const importanceOptions = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+    const effortOptions = [1, 2, 3, 5, 8, 13, 21, 34, 55];
+
+    const containers = computed(() => store.getters["sprints/getContainers"]);
 
     const openOptions = () => {
       optionsOpen.value
@@ -107,7 +153,6 @@ export default {
       store.dispatch("sprints/deleteTask", props.taskId);
       close();
     };
-
     const task = computed((): TaskModel => {
       return store.getters["sprints/getTaskDetails"];
     });
@@ -143,6 +188,9 @@ export default {
       deleteTask,
       optionsOpen,
       openOptions,
+      containers,
+      importanceOptions,
+      effortOptions,
     };
   },
 };

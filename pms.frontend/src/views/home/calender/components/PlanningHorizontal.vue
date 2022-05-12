@@ -79,6 +79,7 @@ export default {
           start: task.taskStartTime,
           end: task.taskEndTime,
           selectable: true,
+          className: task.taskTag + "-task",
         });
       });
 

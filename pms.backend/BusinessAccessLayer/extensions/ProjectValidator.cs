@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BusinessAccessLayer.extensions
+namespace BusinessLayer.extensions
 {
     public class ProjectValidator
     {

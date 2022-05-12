@@ -75,6 +75,9 @@ namespace DataLayer.repos.task
                 task.TaskStartTime = updatedTask.TaskStartTime;
                 task.TaskEndTime = updatedTask.TaskEndTime;
                 task.TaskDescription = updatedTask.TaskDescription;
+                task.TaskTag = updatedTask.TaskTag;
+                task.TaskImportance = updatedTask.TaskImportance;
+                task.TaskWorkLoad = updatedTask.TaskWorkLoad;
 
                 await _DataContext.SaveChangesAsync();
 

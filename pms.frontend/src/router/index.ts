@@ -12,6 +12,7 @@ import Dashboard from "@/views/home/home/Home.vue";
 import Account from "@/views/home/account/Account.vue";
 import Login from "@/views/login/LoginPage.vue";
 import LocalStorageHandler from "@/services/localStorageHelper/LocalStorageHelper";
+import * as cookies from "tiny-cookie";
 
 const routes: Array<RouteRecordRaw> = [
   {

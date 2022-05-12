@@ -14,6 +14,8 @@ namespace DataAccessLayer.Models
         public string TaskTag { get; set; }
         public DateTime TaskStartTime { get; set; }
         public DateTime TaskEndTime { get; set; }
+        public int TaskImportance { get; set; }
+        public int TaskWorkLoad { get; set; }
         public Time? TaskTime { get; set; } = null!;
         public int SprintId { get; set; }
         [NotMapped]

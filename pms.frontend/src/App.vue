@@ -4,9 +4,7 @@
   </div>
 </template>
 
-<script>
-export default {};
-</script>
+<script lang="ts"></script>
 
 <style lang="scss" scoped>
 @import url("./styles/main.scss");

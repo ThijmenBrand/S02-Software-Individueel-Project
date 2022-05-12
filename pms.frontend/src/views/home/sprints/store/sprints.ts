@@ -50,6 +50,8 @@ const sprints = {
         taskEndTime: new Date(),
         taskStartTime: new Date(),
         taskTag: "",
+        taskImportance: 0,
+        taskWorkLoad: 0,
       }),
     };
   },
@@ -87,6 +89,8 @@ const sprints = {
               taskStartTime: new Date(),
               taskEndTime: new Date(),
               taskTag: "",
+              taskImportance: 0,
+              taskWorkLoad: 0,
             });
       },
     getSprints: (state: sprintState): SprintModel[] => {
@@ -142,8 +146,13 @@ const sprints = {
     },
     saveTask: async ({ commit }: any, opts: TaskModel) => {
       const { status } = await sprintService.saveTask(opts);
+      console.log(opts);
 
       if (status >= 200 && status <= 299) {
+        commit("updateTasks", {
+          taskId: opts.taskId,
+          targetContainer: opts.taskTag,
+        });
         console.log("saved!");
       }
     },
@@ -255,6 +264,8 @@ const sprints = {
         taskStartTime: new Date(),
         taskEndTime: new Date(),
         taskTag: "",
+        taskImportance: 0,
+        taskWorkLoad: 0,
       });
     },
   },

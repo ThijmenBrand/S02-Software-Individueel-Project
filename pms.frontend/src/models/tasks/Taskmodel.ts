@@ -8,6 +8,8 @@ interface ITaskShape extends IBaseTaskShape {
   taskDescription: string;
   taskStartTime: Date | any;
   taskEndTime: Date | any;
+  taskImportance: number;
+  taskWorkLoad: number;
 }
 
 export default class TaskModel implements ITaskShape {
@@ -15,8 +17,10 @@ export default class TaskModel implements ITaskShape {
   taskName;
   taskDescription;
   taskTag;
+  taskImportance;
   taskStartTime;
   taskEndTime;
+  taskWorkLoad;
   constructor(opts: ITaskShape) {
     this.taskId = opts.taskId;
     this.taskName = opts.taskName;
@@ -24,5 +28,7 @@ export default class TaskModel implements ITaskShape {
     this.taskTag = opts.taskTag;
     this.taskStartTime = opts.taskStartTime;
     this.taskEndTime = opts.taskEndTime;
+    this.taskImportance = opts.taskImportance;
+    this.taskWorkLoad = opts.taskWorkLoad;
   }
 }

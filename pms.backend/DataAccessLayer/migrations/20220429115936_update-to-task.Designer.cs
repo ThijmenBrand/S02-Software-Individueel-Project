@@ -4,6 +4,7 @@ using DataAccessLayer.data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataLayer.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20220429115936_update-to-task")]
+    partial class updatetotask
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -152,7 +154,7 @@ namespace DataLayer.Migrations
                     b.Property<DateTime>("TaskEndTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("TaskImportance")
+                    b.Property<int>("TaskImportance")
                         .HasColumnType("int");
 
                     b.Property<string>("TaskName")
@@ -166,9 +168,6 @@ namespace DataLayer.Migrations
                     b.Property<string>("TaskTag")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("TaskWorkLoad")
-                        .HasColumnType("int");
 
                     b.HasKey("TaskId");
 

@@ -1,4 +1,5 @@
-﻿using BusinessLayer.services.tasks.DataModels;
+﻿using BusinessLayer.extensions;
+using BusinessLayer.services.tasks.DataModels;
 using DataAccessLayer.Models;
 using DataLayer.repos.task;
 
@@ -7,10 +8,12 @@ namespace BusinessLayer.services.tasks
     public class TasksService : ITasksService
     {
         private readonly ITasksRepo<Tasks> _repository;
+        private readonly TaskPlanAlgorigm _algo;
 
         public TasksService(ITasksRepo<Tasks> _repository)
         {
             this._repository = _repository;
+            _algo = new TaskPlanAlgorigm();
         }
 
         public async Task<bool> CreateTask(Tasks task)
@@ -38,7 +41,9 @@ namespace BusinessLayer.services.tasks
                 if (SprintId == 0)
                     throw new Exception("sprintId cant be null");
 
-                return _repository.GetTasksBySprint(SprintId);
+                List<Tasks> tasks = _repository.GetTasksBySprint(SprintId).ToList();
+
+                return tasks;
 
             } catch (Exception)
             {

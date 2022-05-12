@@ -10,6 +10,23 @@ body {
   font-family: "Segoe UI";
 }
 
+.vis-item.vis-range.todo-task.vis-readonly {
+  background-color: #fc5e03;
+  border: #fc5e03;
+  color: white;
+}
+.vis-item.vis-range.doing-task.vis-readonly {
+  background-color: #03fc7b;
+  border: #03fc7b;
+  color: white;
+
+}
+.vis-item.vis-range.done-task.vis-readonly {
+  background-color: #036bfc;
+  border: #036bfc;
+  color: white;
+}
+
 .todo-task {
   background-color: #fc5e03;
 }
