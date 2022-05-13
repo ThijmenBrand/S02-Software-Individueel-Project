@@ -68,7 +68,7 @@ namespace DataLayer.repos.project
             {
                 if (id != 0)
                 {
-                    var obj = _DataContext.project.FromSqlRaw($"select * from project where ProjectId = {id}");  //FirstOrDefault(x => x.ProjectId == id);
+                    var obj = _DataContext.project.FirstOrDefault(x => x.ProjectId == id);
                     if (obj != null) return (Project?)obj;
                     else return null;
                 } else

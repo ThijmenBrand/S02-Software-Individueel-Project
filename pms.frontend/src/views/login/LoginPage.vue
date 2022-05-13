@@ -11,14 +11,20 @@
         <ElForm :model="loginInput">
           <ElFormItem>
             <p>Email</p>
-            <ElInput v-model="loginInput.email" />
+            <ElInput v-model="loginInput.email" name="email" />
           </ElFormItem>
           <ElFormItem>
             <p>Password</p>
-            <ElInput type="password" v-model="loginInput.password" />
+            <ElInput
+              type="password"
+              v-model="loginInput.password"
+              name="password"
+            />
           </ElFormItem>
           <ElFormItem>
-            <ElButton type="primary" @click="submitLogin()">Login</ElButton>
+            <ElButton type="primary" @click="submitLogin()" id="login"
+              >Login</ElButton
+            >
           </ElFormItem>
         </ElForm>
       </div>

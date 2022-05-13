@@ -23,7 +23,7 @@
         </el-table-column>
       </ElTable>
     </div>
-    <base-button class="btn" @click="addProject">
+    <base-button class="btn" @click="addProject" id="add-new-project">
       <p>Add new project</p>
     </base-button>
   </div>
