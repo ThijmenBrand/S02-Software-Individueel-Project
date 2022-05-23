@@ -27,6 +27,7 @@ const selectProject = {
       return state.projectList;
     },
     getCurrentProject: (state: selectProjectState): ProjectModel => {
+      console.log(state.currentProject);
       return state.currentProject.projectId != 0
         ? state.currentProject
         : LocalStorageHandler.getItem("currentProject");
@@ -47,7 +48,7 @@ const selectProject = {
     },
     selectCurrentProject: async ({ commit }: any, projectId: number) => {
       const { data } = await API.get(`Projects/${projectId}`);
-      commit("currentProject", data);
+      commit("currentProject", data.result);
     },
   },
   mutations: {
