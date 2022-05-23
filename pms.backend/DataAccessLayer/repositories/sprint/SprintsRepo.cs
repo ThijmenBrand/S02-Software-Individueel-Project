@@ -1,5 +1,6 @@
 ﻿using DataAccessLayer.Models;
 using DataAccessLayer.data;
+using Microsoft.EntityFrameworkCore;
 
 namespace DataLayer.repos.sprint
 {
@@ -12,7 +13,7 @@ namespace DataLayer.repos.sprint
             _DataContext = dataContext;
         }
 
-        public async Task<bool> Create(Sprint sprint)
+        public async Task<bool> Create(Sprint sprint, int? userId = 0)
         {
             try
             {
@@ -51,7 +52,7 @@ namespace DataLayer.repos.sprint
             }
         }
 
-        public async Task<bool> UpdateSprintDetails(Sprint updateSprint)
+        public async Task Update(Sprint updateSprint)
         {
             if (updateSprint == null)
                 throw new Exception("sprint cant be null");
@@ -66,17 +67,20 @@ namespace DataLayer.repos.sprint
             sprint.SprintName = updateSprint.SprintName;
 
             await _DataContext.SaveChangesAsync();
-
-            return true;
         }
 
-        public IEnumerable<Sprint> GetSprintDetails(int sprintId)
+        public async Task<Sprint> GetById(int sprintId)
         {
-            return _DataContext.sprint
-                  .Where(s => s.SprintId == sprintId)
-                  .ToList();
+            var sprint = await _DataContext.sprint.FromSqlInterpolated($"SELECT * FROM dbo.sprint WHERE SprintId = {sprintId}").FirstOrDefaultAsync();
+            if (sprint == null)
+                throw new Exception("Sprint not found!");
+            return sprint;
         }
 
-
+        public async Task Delete(int sprintId)
+        {
+            _DataContext.sprint.FromSqlRaw($"delete from dbo.sprint where SprintId = {sprintId}");
+            await _DataContext.SaveChangesAsync();
+        }
     }
 }

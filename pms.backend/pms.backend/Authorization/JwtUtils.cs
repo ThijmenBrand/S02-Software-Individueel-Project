@@ -1,8 +1,6 @@
 ﻿namespace Authorization;
 
-using Newtonsoft.Json.Linq;
 using DataAccessLayer.Models;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;

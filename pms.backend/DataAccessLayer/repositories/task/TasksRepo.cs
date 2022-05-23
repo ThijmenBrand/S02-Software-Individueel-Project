@@ -1,5 +1,6 @@
 ﻿using DataAccessLayer.data;
 using DataAccessLayer.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace DataLayer.repos.task
 {
@@ -12,7 +13,7 @@ namespace DataLayer.repos.task
             _DataContext = dataContext;
         }
 
-        public async Task<bool> Create(Tasks task)
+        public async Task<bool> Create(Tasks task, int? userId)
         {
             try { 
 
@@ -34,26 +35,19 @@ namespace DataLayer.repos.task
             }
         }
 
-        public IEnumerable<Tasks> GetTasksBySprint(int sprintId)
+        public async Task<List<Tasks>> GetTasksBySprint(int sprintId)
         {
             if (sprintId == 0)
                 throw new Exception("sprintId cant be null");
 
-            return _DataContext.task.Where(t => t.SprintId == sprintId).ToList();
+            return await _DataContext.task.FromSqlInterpolated($"SELECT * FROM dbo.task WHERE SprintId = {sprintId}").ToListAsync();
         }
 
         public async Task<bool> UpdateTaskTag(int taskId, string taskTag)
         {
             try
             {
-                var task = await _DataContext.task.FindAsync(taskId);
-                if(task == null)
-                {
-                    return false;
-                }
-
-                task.TaskTag = taskTag;
-
+                _DataContext.task.FromSqlInterpolated($"UPDATE dbo.task SET TaskTag = {taskTag} WHERE TaskId = {taskId}");
                 await _DataContext.SaveChangesAsync();
 
                 return true;
@@ -63,45 +57,26 @@ namespace DataLayer.repos.task
             }
         }
 
-        public async Task<bool> UpdateTask(Tasks updatedTask)
+        public async Task Update(Tasks updatedTask)
         {
             try
             {
                 if (updatedTask == null)
-                    return false;
+                    throw new Exception("updated task cant be null");
 
-                var task = await _DataContext.task.FindAsync(updatedTask.TaskId);
-                task.TaskName = updatedTask.TaskName;
-                task.TaskStartTime = updatedTask.TaskStartTime;
-                task.TaskEndTime = updatedTask.TaskEndTime;
-                task.TaskDescription = updatedTask.TaskDescription;
-                task.TaskTag = updatedTask.TaskTag;
-                task.TaskImportance = updatedTask.TaskImportance;
-                task.TaskWorkLoad = updatedTask.TaskWorkLoad;
-
+                _DataContext.task.FromSqlInterpolated($"UPDATE dbo.task SET TaskName = {updatedTask.TaskName}, TaskDescription = {updatedTask.TaskDescription}, TaskTag = {updatedTask.TaskTag}, TaskStartTime = {updatedTask.TaskStartTime}, TaskEndTime = {updatedTask.TaskEndTime}, SprintId = {updatedTask.SprintId}, TaskImportance = {updatedTask.TaskImportance}, TaskWorkLoad = {updatedTask.TaskWorkLoad} WHERE TaskId = {updatedTask.TaskId}");
                 await _DataContext.SaveChangesAsync();
 
-                return true;
             } catch (Exception)
             {
                 throw;
             }
         }
 
-        public async Task<bool> DeleteTask(int taskId)
+        public async Task Delete(int id)
         {
-            try
-            {
-                var task = await _DataContext.task.FindAsync(taskId);
-
-                _DataContext.Remove(task);
-                await _DataContext.SaveChangesAsync();
-
-                return true;
-            } catch (Exception)
-            {
-                throw;   
-            }
+            _DataContext.task.FromSqlInterpolated($"DELETE FROM dbo.task WHERE TaskId = {id}");
+            await _DataContext.SaveChangesAsync();
         }
 
         public IEnumerable<Tasks> GetAllTasks(int projectId)
@@ -127,13 +102,11 @@ namespace DataLayer.repos.task
             return tasks;
         }
 
-        public Tasks GetTaskById(int id)
+        public async Task<Tasks> GetById(int taskId)
         {
-            var task = _DataContext.task.Where(t => t.TaskId == id).FirstOrDefault();
-            if (task == null)
-                throw new Exception("no task found");
-
-            return task;
+            var user = await _DataContext.task.FromSqlInterpolated($"SELECT * FROM dbo.task WHERE TaskId = {taskId}").FirstOrDefaultAsync();
+            if (user == null) throw new KeyNotFoundException("Task not found");
+            return user;
         }
     }
 

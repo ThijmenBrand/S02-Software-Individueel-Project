@@ -7,6 +7,6 @@ namespace BusinessLayer.services.project
         Task<bool> AddProject(Project project, int UserId);
         void DeleteProject(int id);
         IEnumerable<Project> GetAllProjects(int UserId);
-        Project GetProjectById(int id);
+        Task<Project> GetProjectById(int id);
     }
 }

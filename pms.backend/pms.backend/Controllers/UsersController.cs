@@ -26,7 +26,7 @@ namespace ApiLayer.Controllers
 
         [AllowAnonymous]
         [HttpPost("authenticate")]
-        public IActionResult Authenticate(AuthenticateRequest request)
+        public IActionResult Authenticate(BaseAuthRequest request)
         {
             var user = _usersService.FindUser(request.UserEmail);
 
@@ -41,7 +41,7 @@ namespace ApiLayer.Controllers
 
         [AllowAnonymous]
         [HttpPost("register")]
-        public IActionResult Authenticate(RegisterRequest request)
+        public IActionResult Authenticate(AccountRequest request)
         {
             _usersService.Register(request);
             return Ok(new {message = "Registration successfull"});
@@ -56,7 +56,7 @@ namespace ApiLayer.Controllers
         }
 
         [HttpPut("{UserId}")]
-        public IActionResult UpdateUser(int UserId, updateRequest request)
+        public IActionResult UpdateUser(int UserId, AccountRequest request)
         {
             _usersService.UpdateUser(UserId, request);
             return Ok(new { message = "User updated successfully" });

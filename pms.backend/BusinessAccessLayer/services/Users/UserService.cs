@@ -27,27 +27,27 @@ namespace BusinessLayer.services.Users
             return BCrypt.Net.BCrypt.Verify(requestPassword, userPassword);
         }
 
-        public void Register(RegisterRequest request)
+        public void Register(AccountRequest request)
         {
             var user = _mapper.Map<User>(request);
             user.UserPassword = BCrypt.Net.BCrypt.HashPassword(request.Password);
 
-            _repository.Register(user);
+            _repository.Create(user, null);
         }
 
-        public User GetById(int UserId)
+        public async Task<User> GetById(int UserId)
         {
-            return _repository.GetUserById(UserId);
+            return await _repository.GetById(UserId);
         }
 
-        public User GetMe(int UserId)
+        public async Task<User> GetMe(int UserId)
         {
-            return _repository.GetUserById(UserId);
+            return await _repository.GetById(UserId);
         }
 
-        public void UpdateUser(int UserId, updateRequest request)
+        public async Task UpdateUser(int UserId, AccountRequest request)
         {
-            var user = _repository.GetUserById(UserId);
+            var user = await _repository.GetById(UserId);
 
             if (!string.IsNullOrEmpty(request.Password))
                 user.UserPassword = BCrypt.Net.BCrypt.HashPassword(request.Password);
@@ -59,9 +59,7 @@ namespace BusinessLayer.services.Users
 
         public void DeleteUser(int UserId)
         {
-            var user = _repository.GetUserById(UserId);
-
-            _repository.Delete(user);
+            _repository.Delete(UserId);
         }
     }
 }

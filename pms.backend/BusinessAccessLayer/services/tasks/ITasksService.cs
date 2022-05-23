@@ -8,10 +8,10 @@ namespace BusinessLayer.services.tasks
         Task<bool> CreateTask(Tasks task);
         Task<bool> UpdateTaskTag(int id, string taskTag);
         Task<bool> UpdateTask(Tasks tasks);
-        IEnumerable<SprintView> GetTasksByProjectModeledToSprintData(int id);
-        IEnumerable<Tasks> GetTasksByProjectBySprint(int sprintid);
-        Task<bool> DeleteTask(int id);
+        Task<IEnumerable<SprintView>> GetTasksByProjectModeledToSprintData(int id);
+        Task<IEnumerable<Tasks>> GetTasksByProjectBySprint(int sprintid);
+        bool DeleteTask(int id);
         IEnumerable<Tasks> GetAllTasksByProject(int projectId);
-        Tasks GetTaskById(int id);
+        Task<Tasks> GetTaskById(int id);
     }
 }

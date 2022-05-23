@@ -37,7 +37,6 @@ var builder = WebApplication.CreateBuilder(args);
     services.Configure<AppSettings>(builder.Configuration.GetSection("AppSettings"));
 
     // configure DI for application services
-    services.AddScoped<IJwtUtils, JwtUtils>();
     services.AddScoped<IServiceProject, ServiceProject>();
     services.AddScoped<IProjectRepo<Project>, RepositoryProject>();
     services.AddScoped<ITasksRepo<Tasks>, TasksRepo>();

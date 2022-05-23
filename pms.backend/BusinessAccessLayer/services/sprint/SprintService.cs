@@ -19,7 +19,7 @@ namespace BusinessLayer.services.sprint
                 if(sprint == null)
                     throw new Exception("Sprint cant be null!");
 
-                var res = await _repository.Create(sprint);
+                var res = await _repository.Create(sprint, null);
 
                 if (!res)
                     throw new Exception("Something went wrong while adding this sprint");
@@ -79,20 +79,21 @@ namespace BusinessLayer.services.sprint
             return closestSprint;
         }
 
-        public IEnumerable<Sprint> GetSprintDetails(int sprintId)
+        public async Task<Sprint> GetSprintDetails(int sprintId)
         {
             if (sprintId == 0)
                 throw new Exception("SprintId cant be null");
 
-            return _repository.GetSprintDetails(sprintId);
+            return await _repository.GetById(sprintId);
         }
 
-        public Task<bool> UpdateSprint(Sprint sprint)
+        public async Task<bool> UpdateSprint(Sprint sprint)
         {
             if (sprint == null)
                 throw new Exception("sprint cant be null");
 
-            return _repository.UpdateSprintDetails(sprint);
+            await _repository.Update(sprint);
+            return true;
         }
     }
 }

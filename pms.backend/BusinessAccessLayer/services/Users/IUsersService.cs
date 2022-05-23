@@ -12,11 +12,11 @@ namespace BusinessLayer.services.Users
 {
     public interface IUsersService
     {
-        public User? FindUser(string UserId);
-        public void Register(RegisterRequest request);
-        public void UpdateUser(int UserId, updateRequest request);
+        public User? FindUser(string UserEmail);
+        public void Register(AccountRequest request);
+        public Task UpdateUser(int UserId, AccountRequest request);
         public void DeleteUser(int UserId);
-        public User GetMe(int UserId);
+        public Task<User> GetMe(int UserId);
         public bool ValidatePassword(string requestPassword, string userPassword);
     }
 }

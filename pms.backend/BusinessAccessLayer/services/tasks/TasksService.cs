@@ -25,7 +25,7 @@ namespace BusinessLayer.services.tasks
 
                 else
                 {
-                    return await _repository.Create(task);
+                    return await _repository.Create(task, null);
                 }
             }
             catch (Exception)
@@ -34,14 +34,14 @@ namespace BusinessLayer.services.tasks
             }
         }
 
-        public IEnumerable<Tasks> GetTasksByProjectBySprint(int SprintId)
+        public async Task<IEnumerable<Tasks>> GetTasksByProjectBySprint(int SprintId)
         {
             try
             {
                 if (SprintId == 0)
                     throw new Exception("sprintId cant be null");
 
-                List<Tasks> tasks = _repository.GetTasksBySprint(SprintId).ToList();
+                List<Tasks> tasks = await _repository.GetTasksBySprint(SprintId);
 
                 return tasks;
 
@@ -51,14 +51,14 @@ namespace BusinessLayer.services.tasks
             }
         }
 
-        public IEnumerable<SprintView> GetTasksByProjectModeledToSprintData(int id)
+        public async Task<IEnumerable<SprintView>> GetTasksByProjectModeledToSprintData(int id)
         {
             try
             {
                 if (id == 0)
                     throw new Exception();
 
-                var tasks = _repository.GetTasksBySprint(id).ToList();
+                var tasks = await _repository.GetTasksBySprint(id);
                 List<SprintView> sprintViewList = new List<SprintView>();
 
                 foreach(var task in tasks)
@@ -102,21 +102,21 @@ namespace BusinessLayer.services.tasks
                 if (task == null)
                     return false;
 
-                bool updated = await _repository.UpdateTask(task);
+                await _repository.Update(task);
 
-                return updated;
+                return true;
             } catch(Exception)
             {
                 throw;
             }
         }
 
-        public async Task<bool> DeleteTask(int taskId)
+        public bool DeleteTask(int taskId)
         {
             try
             {
-                bool deleted = await _repository.DeleteTask(taskId);
-                return deleted;
+                _repository.Delete(taskId);
+                return true;
             } catch (Exception)
             {
                 throw;
@@ -142,12 +142,12 @@ namespace BusinessLayer.services.tasks
             return plannedTasks;
         }
 
-        public Tasks GetTaskById(int id)
+        public async Task<Tasks> GetTaskById(int id)
         {
             if(id == 0)
                 throw new Exception("task id cant be 0");
 
-            var task = _repository.GetTaskById(id);
+            var task = await _repository.GetById(id);
             
             return task;
         }

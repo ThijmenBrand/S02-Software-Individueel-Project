@@ -1,6 +1,7 @@
 ﻿using DataAccessLayer.data;
 using DataAccessLayer.Models;
 using DataLayer.models.users;
+using Microsoft.EntityFrameworkCore;
 
 namespace DataLayer.repos.users
 {
@@ -18,30 +19,32 @@ namespace DataLayer.repos.users
             return _DataContext.user.SingleOrDefault(x => x.UserEmail == UserEmail);
         }
 
-        public void Register(User User)
+        public async Task<bool> Create(User User, int? userId)
         {
             if (_DataContext.user.Any(x => x.UserEmail == User.UserEmail))
                 throw new ApplicationException($"UserEmail {User.UserEmail} is already taken");
 
             _DataContext.user.Add(User);
-            _DataContext.SaveChanges();
+            await _DataContext.SaveChangesAsync();
+
+            return true;
         }
 
-        public void Update(User User)
+        public async Task Update(User User)
         {
-            _DataContext.user.Update(User);
-            _DataContext.SaveChanges();
+            _DataContext.user.FromSqlInterpolated($"UPDATE dbo.user SET UserName = {User.UserName}, UserEmail = {User.UserEmail}, UserPassword = {User.UserPassword} WHERE UserId = {User.UserId}");
+            await _DataContext.SaveChangesAsync();
         }
 
-        public void Delete(User user)
+        public async Task Delete(int id)
         {
-            _DataContext.user.Remove(user);
-            _DataContext.SaveChanges();
+            _DataContext.user.FromSqlInterpolated($"DELETE FROM dbo.user WHERE UserId = {id}");
+            await _DataContext.SaveChangesAsync();
         }
 
-        public User GetUserById(int Userid)
+        public async Task<User> GetById(int Userid)
         {
-            var user = _DataContext.user.Find(Userid);
+            var user = await _DataContext.user.FromSqlInterpolated($"SELECT * FROM dbo.user WHERE UserId = {Userid}").FirstOrDefaultAsync();
             if (user == null) throw new KeyNotFoundException("User not found");
             return user;
         }

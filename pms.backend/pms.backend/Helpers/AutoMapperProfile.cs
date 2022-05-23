@@ -9,8 +9,8 @@ namespace Helpers
         public AutoMapperProfile()
         {
             CreateMap<User, AuthenticateResponse>();
-            CreateMap<RegisterRequest, User>();
-            CreateMap<updateRequest, User>()
+            CreateMap<AccountRequest, User>();
+            CreateMap<AccountRequest, User>()
                 .ForAllMembers(x => x.Condition(
                     (src, dest, prop) =>
                     {

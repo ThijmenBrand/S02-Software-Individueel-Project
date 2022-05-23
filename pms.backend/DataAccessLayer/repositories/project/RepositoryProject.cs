@@ -14,13 +14,13 @@ namespace DataLayer.repos.project
             _DataContext = dataContext;
         }
 
-        public async Task<bool> Create(Project project, int UserId)
+        public async Task<bool> Create(Project project, int? UserId)
         {
             try
             {
                 if (project != null)
                 {
-                    project.ProjectOwnerId = UserId;
+                    project.ProjectOwnerId = UserId ?? default;
                     _DataContext.Add(project);
                     await _DataContext.SaveChangesAsync();
 
@@ -34,7 +34,7 @@ namespace DataLayer.repos.project
                 throw;
             }
         }
-        public void Delete(int projectId)
+        public async Task Delete(int projectId)
         {
             try
             {
@@ -42,8 +42,9 @@ namespace DataLayer.repos.project
                 {
                     //var project = _DataContext.project.Where(x => x.ProjectId == projectId).FirstOrDefault();
                     //var obj = _DataContext.Remove(project);
-                    _DataContext.project.FromSqlRaw($"delete from project where ProjectId = {projectId}");
-                    _DataContext.SaveChangesAsync();
+                    _DataContext.project.FromSqlInterpolated($"delete from dbo.project where ProjectId = {projectId}");
+                    await _DataContext.SaveChangesAsync();
+
                 }
             } catch(Exception)
             {
@@ -62,14 +63,14 @@ namespace DataLayer.repos.project
                 throw;
             }
         }
-        public Project? GetById(int id)
+        public async Task<Project?> GetById(int id)
         {
             try
             {
                 if (id != 0)
                 {
                     var obj = _DataContext.project.FirstOrDefault(x => x.ProjectId == id);
-                    if (obj != null) return (Project?)obj;
+                    if (obj != null) return obj;
                     else return null;
                 } else
                 {
@@ -80,14 +81,14 @@ namespace DataLayer.repos.project
                 throw;
             }
         }
-        public void Update(Project project)
+        public async Task Update(Project project)
         {
             try
             {
                 if (project != null)
                 {
                     var obj = _DataContext.Update(project);
-                    if (obj != null) _DataContext.SaveChangesAsync();
+                    if (obj != null) await _DataContext.SaveChangesAsync();
                 }
             } catch (Exception)
             {

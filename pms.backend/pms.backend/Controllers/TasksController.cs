@@ -27,7 +27,7 @@ namespace ApiLayer.Controllers
         [HttpGet("Sprint/{sprintId}/{projectId}/")]
         public ActionResult<List<Tasks>> GetTasksBySprint(int sprintId)
         {
-            var res = _tasksService.GetTasksByProjectBySprint(sprintId).ToList();
+            var res = _tasksService.GetTasksByProjectBySprint(sprintId);
             return Ok(res);
         }
 
@@ -52,7 +52,7 @@ namespace ApiLayer.Controllers
         [HttpDelete("{taskId}/{sprintId}/{projectId}")]
         public async Task<ActionResult<Tasks>> DeleteTask(int taskId, int sprintId)
         {
-            var res = await _tasksService.DeleteTask(taskId);
+            var res = _tasksService.DeleteTask(taskId);
             return res ? Ok(_tasksService.GetTasksByProjectBySprint(sprintId)) : BadRequest();
         }
 

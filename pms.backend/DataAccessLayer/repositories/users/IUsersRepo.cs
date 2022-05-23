@@ -1,14 +1,11 @@
 ﻿using DataAccessLayer.Models;
 using DataLayer.models.users;
+using DataLayer.repositories;
 
 namespace DataLayer.repos.users
 {
-    public interface IUsersRepo<T>
+    public interface IUsersRepo<T> : IGenericRepo<T>
     {
         public User? FindUser(string UserEmail);
-        public void Register(User User);
-        public void Update(User User);
-        public void Delete(User user);
-        public User GetUserById(int UserId);
     }
 }
