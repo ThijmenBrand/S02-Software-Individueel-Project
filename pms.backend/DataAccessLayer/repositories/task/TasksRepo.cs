@@ -40,6 +40,8 @@ namespace DataLayer.repos.task
             if (sprintId == 0)
                 throw new Exception("sprintId cant be null");
 
+            //return await _DataContext.task.Where(x => x.SprintId == sprintId).ToListAsync();
+
             return await _DataContext.task.FromSqlInterpolated($"SELECT * FROM dbo.task WHERE SprintId = {sprintId}").ToListAsync();
         }
 
@@ -64,7 +66,15 @@ namespace DataLayer.repos.task
                 if (updatedTask == null)
                     throw new Exception("updated task cant be null");
 
-                _DataContext.task.FromSqlInterpolated($"UPDATE dbo.task SET TaskName = {updatedTask.TaskName}, TaskDescription = {updatedTask.TaskDescription}, TaskTag = {updatedTask.TaskTag}, TaskStartTime = {updatedTask.TaskStartTime}, TaskEndTime = {updatedTask.TaskEndTime}, SprintId = {updatedTask.SprintId}, TaskImportance = {updatedTask.TaskImportance}, TaskWorkLoad = {updatedTask.TaskWorkLoad} WHERE TaskId = {updatedTask.TaskId}");
+                var task = await _DataContext.task.FindAsync(updatedTask.TaskId);
+                task.TaskName = updatedTask.TaskName;
+                task.TaskStartTime = updatedTask.TaskStartTime;
+                task.TaskEndTime = updatedTask.TaskEndTime;
+                task.TaskDescription = updatedTask.TaskDescription;
+                task.TaskTag = updatedTask.TaskTag;
+                task.TaskImportance = updatedTask.TaskImportance;
+                task.TaskWorkLoad = updatedTask.TaskWorkLoad;
+
                 await _DataContext.SaveChangesAsync();
 
             } catch (Exception)

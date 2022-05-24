@@ -48,7 +48,7 @@ const selectProject = {
     },
     selectCurrentProject: async ({ commit }: any, projectId: number) => {
       const { data } = await API.get(`Projects/${projectId}`);
-      commit("currentProject", data.result);
+      commit("currentProject", data);
     },
   },
   mutations: {

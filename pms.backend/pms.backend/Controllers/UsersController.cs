@@ -48,17 +48,17 @@ namespace ApiLayer.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetMe()
+        public async Task<IActionResult> GetMe()
         {
             int UserId = int.Parse(User.FindFirstValue("UserId"));
-            var user = _usersService.GetMe(UserId);
+            var user = await _usersService.GetMe(UserId);
             return Ok(user);
         }
 
         [HttpPut("{UserId}")]
-        public IActionResult UpdateUser(int UserId, AccountRequest request)
+        public async Task<IActionResult> UpdateUser(int UserId, AccountRequest request)
         {
-            _usersService.UpdateUser(UserId, request);
+            await _usersService.UpdateUser(UserId, request);
             return Ok(new { message = "User updated successfully" });
         }
 

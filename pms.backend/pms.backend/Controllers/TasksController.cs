@@ -21,13 +21,13 @@ namespace ApiLayer.Controllers
         public async Task<ActionResult<List<Tasks>>> AddTask(Tasks task)
         {
             await _tasksService.CreateTask(task);
-            return Ok(_tasksService.GetTasksByProjectBySprint(task.SprintId));
+            return Ok(await _tasksService.GetTasksByProjectBySprint(task.SprintId));
         }
 
         [HttpGet("Sprint/{sprintId}/{projectId}/")]
-        public ActionResult<List<Tasks>> GetTasksBySprint(int sprintId)
+        public async Task<ActionResult<List<Tasks>>> GetTasksBySprint(int sprintId)
         {
-            var res = _tasksService.GetTasksByProjectBySprint(sprintId);
+            var res = await _tasksService.GetTasksByProjectBySprint(sprintId);
             return Ok(res);
         }
 
@@ -53,7 +53,7 @@ namespace ApiLayer.Controllers
         public async Task<ActionResult<Tasks>> DeleteTask(int taskId, int sprintId)
         {
             var res = _tasksService.DeleteTask(taskId);
-            return res ? Ok(_tasksService.GetTasksByProjectBySprint(sprintId)) : BadRequest();
+            return res ? Ok(await _tasksService.GetTasksByProjectBySprint(sprintId)) : BadRequest();
         }
 
         [HttpGet("{projectId}")]
@@ -63,9 +63,9 @@ namespace ApiLayer.Controllers
         }
 
         [HttpGet("details/{id}")]
-        public ActionResult<Tasks> GetTaskById(int id)
+        public async Task<ActionResult<Tasks>> GetTaskById(int id)
         {
-            return Ok(_tasksService.GetTaskById(id));
+            return Ok(await _tasksService.GetTaskById(id));
         }
     }
 }

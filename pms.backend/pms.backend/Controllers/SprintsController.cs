@@ -39,9 +39,9 @@ namespace ApiLayer.Controllers
         }
 
         [HttpGet("currentSprint/Details/{sprintId}")]
-        public ActionResult<Sprint> GetSprintDetails(int sprintId)
+        public async Task<ActionResult<Sprint>> GetSprintDetails(int sprintId)
         {
-            var res = _sprintService.GetSprintDetails(sprintId);
+            var res = await _sprintService.GetSprintDetails(sprintId);
             return Ok(res);
         }
 

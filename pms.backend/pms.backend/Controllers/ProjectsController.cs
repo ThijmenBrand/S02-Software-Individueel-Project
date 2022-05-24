@@ -32,9 +32,9 @@ namespace ApiLayer.Controllers
         }
 
         [HttpGet("{projectId}")]
-        public ActionResult<Project> GetProjectById(int projectId)
+        public async Task<ActionResult<Project>> GetProjectById(int projectId)
         {
-            return Ok(serviceProject.GetProjectById(projectId));
+            return Ok(await serviceProject.GetProjectById(projectId));
         }
     }
 }
