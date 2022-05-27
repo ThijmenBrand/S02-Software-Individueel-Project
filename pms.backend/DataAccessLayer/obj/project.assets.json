@@ -2191,6 +2191,16 @@
         "runtime": {
           "lib/netstandard1.3/System.Xml.XmlDocument.dll": {}
         }
+      },
+      "ExceptionMiddleware/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "compile": {
+          "bin/placeholder/ExceptionMiddleware.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/ExceptionMiddleware.dll": {}
+        }
       }
     }
   },
@@ -7603,6 +7613,11 @@
         "system.xml.xmldocument.4.3.0.nupkg.sha512",
         "system.xml.xmldocument.nuspec"
       ]
+    },
+    "ExceptionMiddleware/1.0.0": {
+      "type": "project",
+      "path": "../ExceptionMiddleware/ExceptionMiddleware.csproj",
+      "msbuildProject": "../ExceptionMiddleware/ExceptionMiddleware.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -7611,6 +7626,7 @@
       "AutoMapper.Extensions.Microsoft.DependencyInjection >= 11.0.0",
       "BCrypt.Net-Next >= 4.0.3",
       "EntityFramework >= 6.4.4",
+      "ExceptionMiddleware >= 1.0.0",
       "Microsoft.AspNet.WebApi.Cors >= 5.2.7",
       "Microsoft.EntityFrameworkCore >= 6.0.3",
       "Microsoft.EntityFrameworkCore.SqlServer >= 6.0.3",
@@ -7648,7 +7664,11 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\Thijmen\\OneDrive\\Fontys\\S02\\S02-Software-Individueel-Project-\\pms.backend\\ExceptionMiddleware\\ExceptionMiddleware.csproj": {
+              "projectPath": "C:\\Users\\Thijmen\\OneDrive\\Fontys\\S02\\S02-Software-Individueel-Project-\\pms.backend\\ExceptionMiddleware\\ExceptionMiddleware.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

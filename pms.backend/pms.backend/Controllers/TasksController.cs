@@ -52,8 +52,8 @@ namespace ApiLayer.Controllers
         [HttpDelete("{taskId}/{sprintId}/{projectId}")]
         public async Task<ActionResult<Tasks>> DeleteTask(int taskId, int sprintId)
         {
-            var res = _tasksService.DeleteTask(taskId);
-            return res ? Ok(await _tasksService.GetTasksByProjectBySprint(sprintId)) : BadRequest();
+            _tasksService.DeleteTask(taskId);
+            return Ok(await _tasksService.GetTasksByProjectBySprint(sprintId));
         }
 
         [HttpGet("{projectId}")]

@@ -1,4 +1,4 @@
-﻿using DataLayer.repos.project;
+﻿using ExceptionMiddleware;
 using DataAccessLayer.Models;
 using DataAccessLayer.data;
 using Microsoft.EntityFrameworkCore;
@@ -16,84 +16,35 @@ namespace DataLayer.repos.project
 
         public async Task<bool> Create(Project project, int? userId)
         {
-            try
-            {
-                if (project != null)
-                {
-                    project.ProjectOwnerId = userId ?? default;
-                    _DataContext.Add(project);
-                    await _DataContext.SaveChangesAsync();
+            project.ProjectOwnerId = userId ?? default;
+            _DataContext.Add(project);
+            await _DataContext.SaveChangesAsync();
 
-                    return true;
-                } else
-                {
-                    throw new ArgumentNullException("The input is not a valid project");
-                }
-            } catch (Exception)
-            {
-                throw;
-            }
+            return true;
         }
         public async Task Delete(int projectId)
         {
-            try
-            {
-                if (projectId != 0)
-                {
-                    //var project = _DataContext.project.Where(x => x.ProjectId == projectId).FirstOrDefault();
-                    //var obj = _DataContext.Remove(project);
-                    _DataContext.project.FromSqlInterpolated($"delete from dbo.project where ProjectId = {projectId}");
-                    await _DataContext.SaveChangesAsync();
-
-                }
-            } catch(Exception)
-            {
-                throw;
-            }
+            //var project = _DataContext.project.Where(x => x.ProjectId == projectId).FirstOrDefault();
+            //var obj = _DataContext.Remove(project);
+            _DataContext.project.FromSqlInterpolated($"delete from dbo.project where ProjectId = {projectId}");
+            await _DataContext.SaveChangesAsync();
         }
         public IEnumerable<Project> GetAll(int UserId)
         {
-            try
-            {
-                var obj = _DataContext.project.FromSqlRaw($"select * from project where ProjectOwnerId = {UserId}").ToList(); //Where(p => p.ProjectOwnerId == UserId).ToList();
-                if (obj != null) return obj;
-                else return null;
-            } catch (Exception)
-            {
-                throw;
-            }
+            var obj = _DataContext.project.FromSqlRaw($"select * from project where ProjectOwnerId = {UserId}").ToList(); //Where(p => p.ProjectOwnerId == UserId).ToList();
+            if (obj != null) return obj;
+            else return Enumerable.Empty<Project>();
         }
         public async Task<Project?> GetById(int id)
         {
-            try
-            {
-                if (id != 0)
-                {
-                    var obj = _DataContext.project.FirstOrDefault(x => x.ProjectId == id);
-                    if (obj != null) return obj;
-                    else return null;
-                } else
-                {
-                    return null;
-                }
-            } catch (Exception)
-            {
-                throw;
-            }
+            var obj = _DataContext.project.FirstOrDefault(x => x.ProjectId == id);
+            if (obj != null) return obj;
+            else return null;
         }
         public async Task Update(Project project)
         {
-            try
-            {
-                if (project != null)
-                {
-                    var obj = _DataContext.Update(project);
-                    if (obj != null) await _DataContext.SaveChangesAsync();
-                }
-            } catch (Exception)
-            {
-                throw;
-            }
+            var obj = _DataContext.Update(project);
+            if (obj != null) await _DataContext.SaveChangesAsync();
         }
     }
 }

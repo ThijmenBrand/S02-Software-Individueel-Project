@@ -1,6 +1,7 @@
 ﻿using DataAccessLayer.Models;
 using DataAccessLayer.data;
 using Microsoft.EntityFrameworkCore;
+using ExceptionMiddleware;
 
 namespace DataLayer.repos.sprint
 {
@@ -13,54 +14,26 @@ namespace DataLayer.repos.sprint
             _DataContext = dataContext;
         }
 
-        public async Task<bool> Create(Sprint sprint, int? userId = 0)
+        public async Task<bool> Create(Sprint sprint, int? userId)
         {
-            try
-            {
-                if(sprint != null)
-                {
-                    _DataContext.Add(sprint);
-                    await _DataContext.SaveChangesAsync();
-
-                    return true;
-                } else
-                {
-                    throw new ArgumentNullException();
-                }
-            } catch (Exception)
-            {
-                throw;
-            }
+            _DataContext.Add(sprint);
+            await _DataContext.SaveChangesAsync();
+            return true;
         }
 
         public IEnumerable<Sprint> GetAllByProject(int projectId)
         {
-            try
-            {
-                if (projectId != 0)
-                {
-                    return _DataContext.sprint
-                        .Where(s => s.ProjectId == projectId)
-                        .ToList();
-                } else
-                {
-                    throw new ArgumentNullException();
-                }
-            } catch(Exception)
-            {
-                throw;
-            }
+            return _DataContext.sprint
+                .Where(s => s.ProjectId == projectId)
+                .ToList();
         }
 
         public async Task Update(Sprint updateSprint)
         {
-            if (updateSprint == null)
-                throw new Exception("sprint cant be null");
-
             var sprint = await _DataContext.sprint.FindAsync(updateSprint.SprintId);
 
             if (sprint == null)
-                throw new Exception("No sprint found");
+                throw new ResourceNotFoundException("No sprint found");
 
             sprint.SprintStart = updateSprint.SprintStart;
             sprint.SprintEnd = updateSprint.SprintEnd;
@@ -73,7 +46,7 @@ namespace DataLayer.repos.sprint
         {
             var sprint = await _DataContext.sprint.FromSqlInterpolated($"SELECT * FROM dbo.sprint WHERE SprintId = {sprintId}").FirstOrDefaultAsync();
             if (sprint == null)
-                throw new Exception("Sprint not found!");
+                throw new ResourceNotFoundException("Sprint not found!");
             return sprint;
         }
 

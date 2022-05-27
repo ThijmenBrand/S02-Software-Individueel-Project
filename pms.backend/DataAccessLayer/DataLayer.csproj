@@ -22,4 +22,8 @@
     <Folder Include="migrations\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ExceptionMiddleware\ExceptionMiddleware.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -15,31 +15,14 @@ namespace DataLayer.repos.task
 
         public async Task<bool> Create(Tasks task, int? userId)
         {
-            try { 
+            _DataContext.Add(task);
+            await _DataContext.SaveChangesAsync();
 
-                if (task != null)
-                {
-                    _DataContext.Add(task);
-                    await _DataContext.SaveChangesAsync();
-
-                    return true;
-                }
-                else
-                {
-                    throw new ArgumentNullException("The input is not a valid project");
-                }
-
-            } catch (Exception)
-            {
-                throw;
-            }
+            return true;
         }
 
         public async Task<List<Tasks>> GetTasksBySprint(int sprintId)
         {
-            if (sprintId == 0)
-                throw new Exception("sprintId cant be null");
-
             //return await _DataContext.task.Where(x => x.SprintId == sprintId).ToListAsync();
 
             return await _DataContext.task.FromSqlInterpolated($"SELECT * FROM dbo.task WHERE SprintId = {sprintId}").ToListAsync();
@@ -47,40 +30,24 @@ namespace DataLayer.repos.task
 
         public async Task<bool> UpdateTaskTag(int taskId, string taskTag)
         {
-            try
-            {
-                _DataContext.task.FromSqlInterpolated($"UPDATE dbo.task SET TaskTag = {taskTag} WHERE TaskId = {taskId}");
-                await _DataContext.SaveChangesAsync();
+            _DataContext.task.FromSqlInterpolated($"UPDATE dbo.task SET TaskTag = {taskTag} WHERE TaskId = {taskId}");
+            await _DataContext.SaveChangesAsync();
 
-                return true;
-            } catch(Exception)
-            {
-                throw;
-            }
+            return true;
         }
 
         public async Task Update(Tasks updatedTask)
         {
-            try
-            {
-                if (updatedTask == null)
-                    throw new Exception("updated task cant be null");
+            var task = await _DataContext.task.FindAsync(updatedTask.TaskId);
+            task.TaskName = updatedTask.TaskName;
+            task.TaskStartTime = updatedTask.TaskStartTime;
+            task.TaskEndTime = updatedTask.TaskEndTime;
+            task.TaskDescription = updatedTask.TaskDescription;
+            task.TaskTag = updatedTask.TaskTag;
+            task.TaskImportance = updatedTask.TaskImportance;
+            task.TaskWorkLoad = updatedTask.TaskWorkLoad;
 
-                var task = await _DataContext.task.FindAsync(updatedTask.TaskId);
-                task.TaskName = updatedTask.TaskName;
-                task.TaskStartTime = updatedTask.TaskStartTime;
-                task.TaskEndTime = updatedTask.TaskEndTime;
-                task.TaskDescription = updatedTask.TaskDescription;
-                task.TaskTag = updatedTask.TaskTag;
-                task.TaskImportance = updatedTask.TaskImportance;
-                task.TaskWorkLoad = updatedTask.TaskWorkLoad;
-
-                await _DataContext.SaveChangesAsync();
-
-            } catch (Exception)
-            {
-                throw;
-            }
+            await _DataContext.SaveChangesAsync();
         }
 
         public async Task Delete(int id)

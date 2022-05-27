@@ -2200,6 +2200,7 @@
           "AutoMapper.Extensions.Microsoft.DependencyInjection": "11.0.0",
           "BCrypt.Net-Next": "4.0.3",
           "EntityFramework": "6.4.4",
+          "ExceptionMiddleware": "1.0.0",
           "Microsoft.AspNet.WebApi.Cors": "5.2.7",
           "Microsoft.EntityFrameworkCore": "6.0.3",
           "Microsoft.EntityFrameworkCore.SqlServer": "6.0.3",
