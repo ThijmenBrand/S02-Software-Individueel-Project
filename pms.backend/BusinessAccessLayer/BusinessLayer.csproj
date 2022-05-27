@@ -18,6 +18,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DataAccessLayer\DataLayer.csproj" />
+    <ProjectReference Include="..\ValidatorMiddleware\ValidatorMiddleware.csproj" />
   </ItemGroup>
 
 </Project>

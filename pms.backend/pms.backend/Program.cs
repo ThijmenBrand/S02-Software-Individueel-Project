@@ -14,6 +14,7 @@ using Helpers;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using ValidatorMiddleware;
 
 var AllowFrontend = "_AllowFrontend";
 
@@ -38,14 +39,18 @@ var builder = WebApplication.CreateBuilder(args);
 
     // configure DI for application services
     services.AddScoped<IServiceProject, ServiceProject>();
+    services.AddScoped<IExcecuteServiceProject, ProjectExcecute>();
     services.AddScoped<IProjectRepo<Project>, RepositoryProject>();
     services.AddScoped<ITasksRepo<Tasks>, TasksRepo>();
+    services.AddScoped<IExcecuteSprintService, ExcecuteSprintService>();
     services.AddScoped<ITasksService, TasksService>();
+    services.AddScoped<IExcecuteTasksService, ExcecuteTasksService>();
     services.AddScoped<ISprintRepo<Sprint>, SprintsRepo>();
     services.AddScoped<ISprintService, SprintService>();
     services.AddScoped<IUsersRepo<User>, UsersRepo>();
     services.AddScoped<IUsersService, UserService>();
     services.AddScoped<IJwtUtils, JwtUtils>();
+    services.AddScoped<IInputMiddleWare, InputMiddleWare>();
     services.AddHttpContextAccessor();
 
     services.AddSwaggerGen();

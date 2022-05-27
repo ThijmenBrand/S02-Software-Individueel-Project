@@ -1,99 +1,52 @@
 ﻿using DataAccessLayer.Models;
 using DataLayer.repos.sprint;
+using ValidatorMiddleware;
 
 namespace BusinessLayer.services.sprint
 {
     public class SprintService : ISprintService
     {
-        private readonly ISprintRepo<Sprint> _repository;
-
-        public SprintService(ISprintRepo<Sprint> _repository)
+        private readonly IExcecuteSprintService _excecuteSprintService;
+        private readonly IInputMiddleWare _inputMiddleware;
+        public SprintService(IExcecuteSprintService excecuteSprintService, IInputMiddleWare _inputMiddleware)
         {
-            this._repository = _repository;
+            _excecuteSprintService = excecuteSprintService;
+            this._inputMiddleware = _inputMiddleware;
         }
 
-        public async Task<bool> AddSprint(Sprint sprint)
+        public Task<bool> AddSprint(Sprint sprint)
         {
-            try
-            {
-                if(sprint == null)
-                    throw new Exception("Sprint cant be null!");
+          _inputMiddleware.ValidateNull(sprint);
 
-                var res = await _repository.Create(sprint, null);
-
-                if (!res)
-                    throw new Exception("Something went wrong while adding this sprint");
-            
-                return true;
-                
-            } catch (Exception)
-            {
-                throw;
-            }
+            return _excecuteSprintService.ExcecuteAddSprint(sprint);
         }
 
-        public IEnumerable<Sprint> GetAllSprintsByProject(int ProjectId)
+        public IEnumerable<Sprint> GetAllSprintsByProject(int projectId)
         {
-                if(ProjectId == 0)
-                    throw new Exception("ProjectId cant be null");
+            _inputMiddleware.ValidateZero(projectId);
 
-                var sprints = _repository.GetAllByProject(ProjectId);
-                
-                if(sprints == null)
-                   return Enumerable.Empty<Sprint>();
-
-            return sprints;
+            return _excecuteSprintService.ExcecuteGetAllSprintsByProject(projectId);
         }
 
-        public Sprint GetCurrentSprint(int ProjectId)
+        public Sprint GetCurrentSprint(int projectId)
         {
-            if(ProjectId == 0)
-            {
-                throw new Exception("ProjectId  cant be null");
-            }
+            _inputMiddleware.ValidateZero(projectId);
 
-            var allSprints = _repository.GetAllByProject(ProjectId);
-            DateTime today = DateTime.Today;
-
-            foreach (Sprint sprint in allSprints)
-            {
-                DateTime sprintStart = sprint.SprintStart;
-                DateTime sprintEnd = sprint.SprintEnd;
-
-                if (today >= sprintStart && today <= sprintEnd)
-                {
-                    return sprint;
-                }
-            }
-
-            Sprint closestSprint = new Sprint();
-            closestSprint = allSprints.LastOrDefault();
-            foreach (Sprint sprint in allSprints)
-            {
-                if (sprint.SprintStart > today && sprint.SprintStart < closestSprint.SprintStart)
-                {
-                    closestSprint = sprint;
-                }
-            }
-
-            return closestSprint;
+            return _excecuteSprintService.ExcecuteGetCurrentSprint(projectId);
         }
 
-        public async Task<Sprint> GetSprintDetails(int sprintId)
+        public Task<Sprint> GetSprintDetails(int sprintId)
         {
-            if (sprintId == 0)
-                throw new Exception("SprintId cant be null");
+            _inputMiddleware.ValidateZero(sprintId);
 
-            return await _repository.GetById(sprintId);
+            return _excecuteSprintService.ExcecuteGetSprintDetails(sprintId);
         }
 
-        public async Task<bool> UpdateSprint(Sprint sprint)
+        public Task<bool> UpdateSprint(Sprint sprint)
         {
-            if (sprint == null)
-                throw new Exception("sprint cant be null");
+            _inputMiddleware.ValidateNull(sprint);
 
-            await _repository.Update(sprint);
-            return true;
+            return _excecuteSprintService.ExcecuteUpdateSprint(sprint);
         }
     }
 }

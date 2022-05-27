@@ -15,7 +15,7 @@ namespace Helpers
                     (src, dest, prop) =>
                     {
                         if (prop == null) return false;
-                        if (prop.GetType() == typeof(string) && string.IsNullOrEmpty((string)prop)) return false;
+                        if ((prop is string) && string.IsNullOrEmpty((string)prop)) return false;
 
                         return true;
                     }

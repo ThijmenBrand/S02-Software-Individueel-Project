@@ -11,6 +11,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BusinessLayer", "BusinessAc
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "pms.unittests", "pms.unittests\pms.unittests.csproj", "{5E9B4ED2-C35C-40BE-8708-7F9F60B6A90C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ValidatorMiddleware", "ValidatorMiddleware\ValidatorMiddleware.csproj", "{0754145D-49E6-4B16-BEA1-382B4C5A0079}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExceptionMiddleware", "ExceptionMiddleware\ExceptionMiddleware.csproj", "{FC1CBC16-B66D-43DF-8021-F074B51F8273}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +37,14 @@ Global
 		{5E9B4ED2-C35C-40BE-8708-7F9F60B6A90C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5E9B4ED2-C35C-40BE-8708-7F9F60B6A90C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5E9B4ED2-C35C-40BE-8708-7F9F60B6A90C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0754145D-49E6-4B16-BEA1-382B4C5A0079}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0754145D-49E6-4B16-BEA1-382B4C5A0079}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0754145D-49E6-4B16-BEA1-382B4C5A0079}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0754145D-49E6-4B16-BEA1-382B4C5A0079}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FC1CBC16-B66D-43DF-8021-F074B51F8273}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC1CBC16-B66D-43DF-8021-F074B51F8273}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC1CBC16-B66D-43DF-8021-F074B51F8273}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC1CBC16-B66D-43DF-8021-F074B51F8273}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -14,13 +14,13 @@ namespace DataLayer.repos.project
             _DataContext = dataContext;
         }
 
-        public async Task<bool> Create(Project project, int? UserId)
+        public async Task<bool> Create(Project project, int? userId)
         {
             try
             {
                 if (project != null)
                 {
-                    project.ProjectOwnerId = UserId ?? default;
+                    project.ProjectOwnerId = userId ?? default;
                     _DataContext.Add(project);
                     await _DataContext.SaveChangesAsync();
 

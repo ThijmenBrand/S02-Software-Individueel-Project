@@ -2211,6 +2211,30 @@
         "runtime": {
           "bin/placeholder/DataLayer.dll": {}
         }
+      },
+      "ExceptionMiddleware/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "compile": {
+          "bin/placeholder/ExceptionMiddleware.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/ExceptionMiddleware.dll": {}
+        }
+      },
+      "ValidatorMiddleware/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "DataLayer": "1.0.0",
+          "ExceptionMiddleware": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/ValidatorMiddleware.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/ValidatorMiddleware.dll": {}
+        }
       }
     }
   },
@@ -7628,6 +7652,16 @@
       "type": "project",
       "path": "../DataAccessLayer/DataLayer.csproj",
       "msbuildProject": "../DataAccessLayer/DataLayer.csproj"
+    },
+    "ExceptionMiddleware/1.0.0": {
+      "type": "project",
+      "path": "../ExceptionMiddleware/ExceptionMiddleware.csproj",
+      "msbuildProject": "../ExceptionMiddleware/ExceptionMiddleware.csproj"
+    },
+    "ValidatorMiddleware/1.0.0": {
+      "type": "project",
+      "path": "../ValidatorMiddleware/ValidatorMiddleware.csproj",
+      "msbuildProject": "../ValidatorMiddleware/ValidatorMiddleware.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -7638,7 +7672,8 @@
       "Microsoft.AspNet.WebApi.Cors >= 5.2.7",
       "Microsoft.EntityFrameworkCore >= 6.0.3",
       "Microsoft.EntityFrameworkCore.SqlServer >= 6.0.3",
-      "Swashbuckle.AspNetCore >= 6.3.0"
+      "Swashbuckle.AspNetCore >= 6.3.0",
+      "ValidatorMiddleware >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -7675,6 +7710,9 @@
           "projectReferences": {
             "C:\\Users\\Thijmen\\OneDrive\\Fontys\\S02\\S02-Software-Individueel-Project-\\pms.backend\\DataAccessLayer\\DataLayer.csproj": {
               "projectPath": "C:\\Users\\Thijmen\\OneDrive\\Fontys\\S02\\S02-Software-Individueel-Project-\\pms.backend\\DataAccessLayer\\DataLayer.csproj"
+            },
+            "C:\\Users\\Thijmen\\OneDrive\\Fontys\\S02\\S02-Software-Individueel-Project-\\pms.backend\\ValidatorMiddleware\\ValidatorMiddleware.csproj": {
+              "projectPath": "C:\\Users\\Thijmen\\OneDrive\\Fontys\\S02\\S02-Software-Individueel-Project-\\pms.backend\\ValidatorMiddleware\\ValidatorMiddleware.csproj"
             }
           }
         }

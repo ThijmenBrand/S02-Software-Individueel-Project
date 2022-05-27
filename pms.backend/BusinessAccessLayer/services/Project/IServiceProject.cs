@@ -1,12 +1,11 @@
 ﻿using DataAccessLayer.Models;
 
-namespace BusinessLayer.services.project
+namespace BusinessLayer.services.project;
+
+public interface IServiceProject
 {
-    public interface IServiceProject
-    {
-        Task<bool> AddProject(Project project, int UserId);
-        void DeleteProject(int id);
-        IEnumerable<Project> GetAllProjects(int UserId);
-        Task<Project> GetProjectById(int id);
-    }
+    Task<bool> AddProject(Project project, int userId);
+    void DeleteProject(int projectId);
+    IEnumerable<Project> GetAllProjects(int userId);
+    Task<Project> GetProjectById(int projectId);
 }

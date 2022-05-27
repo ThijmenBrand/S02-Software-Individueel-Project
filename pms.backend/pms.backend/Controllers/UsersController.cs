@@ -13,7 +13,7 @@ namespace ApiLayer.Controllers
     [Route("api/[controller]")]
     public class UsersController : ControllerBase
     {
-        private IUsersService _usersService;
+        private readonly IUsersService _usersService;
         private readonly IMapper _mapper;
         private readonly IJwtUtils _jwtUtils;
 
