@@ -1,50 +1,47 @@
 ﻿using DataAccessLayer.Models;
-using DataLayer.repos.sprint;
-using ValidatorMiddleware;
+using Ardalis.GuardClauses;
 
 namespace BusinessLayer.services.sprint
 {
     public class SprintService : ISprintService
     {
         private readonly IExcecuteSprintService _excecuteSprintService;
-        private readonly IInputMiddleWare _inputMiddleware;
-        public SprintService(IExcecuteSprintService excecuteSprintService, IInputMiddleWare _inputMiddleware)
+        public SprintService(IExcecuteSprintService excecuteSprintService)
         {
             _excecuteSprintService = excecuteSprintService;
-            this._inputMiddleware = _inputMiddleware;
         }
 
         public Task<bool> AddSprint(Sprint sprint)
         {
-          _inputMiddleware.ValidateNull(sprint);
+            Guard.Against.Null<Sprint>(sprint, nameof(sprint));
 
             return _excecuteSprintService.ExcecuteAddSprint(sprint);
         }
 
         public IEnumerable<Sprint> GetAllSprintsByProject(int projectId)
         {
-            _inputMiddleware.ValidateZero(projectId);
+            Guard.Against.NegativeOrZero(projectId, nameof(projectId));
 
             return _excecuteSprintService.ExcecuteGetAllSprintsByProject(projectId);
         }
 
         public Sprint GetCurrentSprint(int projectId)
         {
-            _inputMiddleware.ValidateZero(projectId);
+            Guard.Against.NegativeOrZero(projectId, nameof(projectId));
 
             return _excecuteSprintService.ExcecuteGetCurrentSprint(projectId);
         }
 
         public Task<Sprint> GetSprintDetails(int sprintId)
         {
-            _inputMiddleware.ValidateZero(sprintId);
+            Guard.Against.NegativeOrZero(sprintId, nameof(sprintId));
 
             return _excecuteSprintService.ExcecuteGetSprintDetails(sprintId);
         }
 
         public Task<bool> UpdateSprint(Sprint sprint)
         {
-            _inputMiddleware.ValidateNull(sprint);
+            Guard.Against.Null<Sprint>(sprint, nameof(sprint));
 
             return _excecuteSprintService.ExcecuteUpdateSprint(sprint);
         }

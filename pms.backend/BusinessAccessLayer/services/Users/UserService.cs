@@ -2,7 +2,6 @@
 using DataAccessLayer.Models;
 using DataLayer.models.users;
 using DataLayer.repos.users;
-using Microsoft.AspNetCore.Http;
 
 namespace BusinessLayer.services.Users
 {
@@ -54,7 +53,7 @@ namespace BusinessLayer.services.Users
 
             _mapper.Map(request, user);
 
-            _repository.Update(user);
+            await _repository.Update(user);
         }
 
         public void DeleteUser(int UserId)

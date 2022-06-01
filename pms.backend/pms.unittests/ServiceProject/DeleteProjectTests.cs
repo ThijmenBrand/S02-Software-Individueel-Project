@@ -18,8 +18,8 @@ namespace pms.unittests.ServiceProjectTests
             Project project = new Project();
             int projectId = 0;
 
-            var RepoMock = new Mock<IProjectRepo<Project>>();
-            RepoMock.Setup(x => x.Delete(project));
+            var RepoMock = new Mock<IExecuteServiceProject<Project>>();
+            RepoMock.Setup(x => x.Delete(projectId));
 
             var sut = new ServiceProject(RepoMock.Object);
 

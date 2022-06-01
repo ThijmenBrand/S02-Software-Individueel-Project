@@ -2192,14 +2192,14 @@
           "lib/netstandard1.3/System.Xml.XmlDocument.dll": {}
         }
       },
-      "ExceptionMiddleware/1.0.0": {
+      "CustomExceptions/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "compile": {
-          "bin/placeholder/ExceptionMiddleware.dll": {}
+          "bin/placeholder/CustomExceptions.dll": {}
         },
         "runtime": {
-          "bin/placeholder/ExceptionMiddleware.dll": {}
+          "bin/placeholder/CustomExceptions.dll": {}
         }
       }
     }
@@ -7614,10 +7614,10 @@
         "system.xml.xmldocument.nuspec"
       ]
     },
-    "ExceptionMiddleware/1.0.0": {
+    "CustomExceptions/1.0.0": {
       "type": "project",
-      "path": "../ExceptionMiddleware/ExceptionMiddleware.csproj",
-      "msbuildProject": "../ExceptionMiddleware/ExceptionMiddleware.csproj"
+      "path": "../ExceptionMiddleware/CustomExceptions.csproj",
+      "msbuildProject": "../ExceptionMiddleware/CustomExceptions.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -7625,8 +7625,8 @@
       "AutoMapper >= 11.0.1",
       "AutoMapper.Extensions.Microsoft.DependencyInjection >= 11.0.0",
       "BCrypt.Net-Next >= 4.0.3",
+      "CustomExceptions >= 1.0.0",
       "EntityFramework >= 6.4.4",
-      "ExceptionMiddleware >= 1.0.0",
       "Microsoft.AspNet.WebApi.Cors >= 5.2.7",
       "Microsoft.EntityFrameworkCore >= 6.0.3",
       "Microsoft.EntityFrameworkCore.SqlServer >= 6.0.3",
@@ -7665,8 +7665,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Users\\Thijmen\\OneDrive\\Fontys\\S02\\S02-Software-Individueel-Project-\\pms.backend\\ExceptionMiddleware\\ExceptionMiddleware.csproj": {
-              "projectPath": "C:\\Users\\Thijmen\\OneDrive\\Fontys\\S02\\S02-Software-Individueel-Project-\\pms.backend\\ExceptionMiddleware\\ExceptionMiddleware.csproj"
+            "C:\\Users\\Thijmen\\OneDrive\\Fontys\\S02\\S02-Software-Individueel-Project-\\pms.backend\\ExceptionMiddleware\\CustomExceptions.csproj": {
+              "projectPath": "C:\\Users\\Thijmen\\OneDrive\\Fontys\\S02\\S02-Software-Individueel-Project-\\pms.backend\\ExceptionMiddleware\\CustomExceptions.csproj"
             }
           }
         }

@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DataLayer.repos.project
 {
-    public class RepositoryProject : IProjectRepo<Project>
+    public class RepositoryProject : IExecuteServiceProject<Project>
     {
         private readonly DataContext _DataContext;
 

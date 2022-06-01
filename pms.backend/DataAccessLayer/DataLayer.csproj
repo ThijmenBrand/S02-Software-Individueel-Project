@@ -23,7 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ExceptionMiddleware\ExceptionMiddleware.csproj" />
+    <ProjectReference Include="..\ExceptionMiddleware\CustomExceptions.csproj" />
   </ItemGroup>
 
 </Project>

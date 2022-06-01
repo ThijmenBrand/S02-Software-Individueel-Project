@@ -3,7 +3,6 @@ using DataAccessLayer.Models;
 using NUnit.Framework;
 using Moq;
 using System;
-using System.Threading.Tasks;
 using DataLayer.repos.sprint;
 
 namespace pms.unittests.SprintServiceTest

@@ -8,7 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DataAccessLayer\DataLayer.csproj" />
-    <ProjectReference Include="..\ExceptionMiddleware\ExceptionMiddleware.csproj" />
+    <ProjectReference Include="..\ExceptionMiddleware\CustomExceptions.csproj" />
   </ItemGroup>
 
 </Project>

@@ -5,8 +5,8 @@ namespace BusinessLayer.services.project;
 
 public class ProjectExcecute : IExcecuteServiceProject
 {
-    private readonly IProjectRepo<Project> _repository;
-    public ProjectExcecute(IProjectRepo<Project> _repository)
+    private readonly IExecuteServiceProject<Project> _repository;
+    public ProjectExcecute(IExecuteServiceProject<Project> _repository)
     {
         this._repository = _repository;
     }

@@ -2,7 +2,7 @@
 
 namespace DataLayer.repos.project
 {
-    public interface IProjectRepo<T> : IGenericRepo<T>
+    public interface IExecuteServiceProject<T> : IGenericRepo<T>
     {
         public IEnumerable<T> GetAll(int UserId);
     }

@@ -19,7 +19,7 @@ namespace pms.unittests.ServiceProjectTest
             bool expected = false;
 
 
-            var RepoMock = new Mock<IProjectRepo<Project>>();
+            var RepoMock = new Mock<IExecuteServiceProject<Project>>();
             RepoMock.Setup(x => x.Create(project, 1)).ReturnsAsync(expected);
 
             var sut = new ServiceProject(RepoMock.Object);
@@ -38,7 +38,7 @@ namespace pms.unittests.ServiceProjectTest
             project.ProjectDescription = "";
             bool expected = false;
 
-            var RepoMock = new Mock<IProjectRepo<Project>>();
+            var RepoMock = new Mock<IExecuteServiceProject<Project>>();
             RepoMock.Setup(x => x.Create(project, 1)).ReturnsAsync(expected);
 
             var sut = new ServiceProject(RepoMock.Object);
@@ -58,7 +58,7 @@ namespace pms.unittests.ServiceProjectTest
 
             bool expected = true;
 
-            var RepoMock = new Mock<IProjectRepo<Project>>();
+            var RepoMock = new Mock<IExecuteServiceProject<Project>>();
             RepoMock.Setup(x => x.Create(project, project.ProjectOwnerId)).ReturnsAsync(expected);
 
             var sut = new ServiceProject(RepoMock.Object);
