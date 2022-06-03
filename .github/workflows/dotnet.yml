@@ -11,4 +11,4 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: ./.github/actions/backend/check-code-quality
+      - uses: ./.github/actions/backend/check-code-quality.yml
