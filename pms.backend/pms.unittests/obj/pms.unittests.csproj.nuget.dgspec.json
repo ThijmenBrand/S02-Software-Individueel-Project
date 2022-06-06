@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Thijmen\\OneDrive\\Fontys\\S02\\S02-Software-Individueel-Project-\\pms.backend\\pms.unittests\\pms.unittests.csproj": {}
+    "C:\\Users\\Thijmen\\OneDrive - Office 365 Fontys\\S02\\S02-Software-Individueel-Project\\pms.backend\\pms.unittests\\pms.unittests.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Thijmen\\OneDrive\\Fontys\\S02\\S02-Software-Individueel-Project-\\pms.backend\\BusinessAccessLayer\\BusinessLayer.csproj": {
+    "C:\\Users\\Thijmen\\OneDrive - Office 365 Fontys\\S02\\S02-Software-Individueel-Project\\pms.backend\\BusinessAccessLayer\\BusinessLayer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Thijmen\\OneDrive\\Fontys\\S02\\S02-Software-Individueel-Project-\\pms.backend\\BusinessAccessLayer\\BusinessLayer.csproj",
+        "projectUniqueName": "C:\\Users\\Thijmen\\OneDrive - Office 365 Fontys\\S02\\S02-Software-Individueel-Project\\pms.backend\\BusinessAccessLayer\\BusinessLayer.csproj",
         "projectName": "BusinessLayer",
-        "projectPath": "C:\\Users\\Thijmen\\OneDrive\\Fontys\\S02\\S02-Software-Individueel-Project-\\pms.backend\\BusinessAccessLayer\\BusinessLayer.csproj",
+        "projectPath": "C:\\Users\\Thijmen\\OneDrive - Office 365 Fontys\\S02\\S02-Software-Individueel-Project\\pms.backend\\BusinessAccessLayer\\BusinessLayer.csproj",
         "packagesPath": "C:\\Users\\Thijmen\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Thijmen\\OneDrive\\Fontys\\S02\\S02-Software-Individueel-Project-\\pms.backend\\BusinessAccessLayer\\obj\\",
+        "outputPath": "C:\\Users\\Thijmen\\OneDrive - Office 365 Fontys\\S02\\S02-Software-Individueel-Project\\pms.backend\\BusinessAccessLayer\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -32,8 +32,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\Thijmen\\OneDrive\\Fontys\\S02\\S02-Software-Individueel-Project-\\pms.backend\\DataAccessLayer\\DataLayer.csproj": {
-                "projectPath": "C:\\Users\\Thijmen\\OneDrive\\Fontys\\S02\\S02-Software-Individueel-Project-\\pms.backend\\DataAccessLayer\\DataLayer.csproj"
+              "C:\\Users\\Thijmen\\OneDrive - Office 365 Fontys\\S02\\S02-Software-Individueel-Project\\pms.backend\\DataAccessLayer\\DataLayer.csproj": {
+                "projectPath": "C:\\Users\\Thijmen\\OneDrive - Office 365 Fontys\\S02\\S02-Software-Individueel-Project\\pms.backend\\DataAccessLayer\\DataLayer.csproj"
               }
             }
           }
@@ -96,14 +96,14 @@
         }
       }
     },
-    "C:\\Users\\Thijmen\\OneDrive\\Fontys\\S02\\S02-Software-Individueel-Project-\\pms.backend\\DataAccessLayer\\DataLayer.csproj": {
+    "C:\\Users\\Thijmen\\OneDrive - Office 365 Fontys\\S02\\S02-Software-Individueel-Project\\pms.backend\\DataAccessLayer\\DataLayer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Thijmen\\OneDrive\\Fontys\\S02\\S02-Software-Individueel-Project-\\pms.backend\\DataAccessLayer\\DataLayer.csproj",
+        "projectUniqueName": "C:\\Users\\Thijmen\\OneDrive - Office 365 Fontys\\S02\\S02-Software-Individueel-Project\\pms.backend\\DataAccessLayer\\DataLayer.csproj",
         "projectName": "DataLayer",
-        "projectPath": "C:\\Users\\Thijmen\\OneDrive\\Fontys\\S02\\S02-Software-Individueel-Project-\\pms.backend\\DataAccessLayer\\DataLayer.csproj",
+        "projectPath": "C:\\Users\\Thijmen\\OneDrive - Office 365 Fontys\\S02\\S02-Software-Individueel-Project\\pms.backend\\DataAccessLayer\\DataLayer.csproj",
         "packagesPath": "C:\\Users\\Thijmen\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Thijmen\\OneDrive\\Fontys\\S02\\S02-Software-Individueel-Project-\\pms.backend\\DataAccessLayer\\obj\\",
+        "outputPath": "C:\\Users\\Thijmen\\OneDrive - Office 365 Fontys\\S02\\S02-Software-Individueel-Project\\pms.backend\\DataAccessLayer\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -124,8 +124,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\Thijmen\\OneDrive\\Fontys\\S02\\S02-Software-Individueel-Project-\\pms.backend\\ExceptionMiddleware\\CustomExceptions.csproj": {
-                "projectPath": "C:\\Users\\Thijmen\\OneDrive\\Fontys\\S02\\S02-Software-Individueel-Project-\\pms.backend\\ExceptionMiddleware\\CustomExceptions.csproj"
+              "C:\\Users\\Thijmen\\OneDrive - Office 365 Fontys\\S02\\S02-Software-Individueel-Project\\pms.backend\\ExceptionMiddleware\\CustomExceptions.csproj": {
+                "projectPath": "C:\\Users\\Thijmen\\OneDrive - Office 365 Fontys\\S02\\S02-Software-Individueel-Project\\pms.backend\\ExceptionMiddleware\\CustomExceptions.csproj"
               }
             }
           }
@@ -192,14 +192,14 @@
         }
       }
     },
-    "C:\\Users\\Thijmen\\OneDrive\\Fontys\\S02\\S02-Software-Individueel-Project-\\pms.backend\\ExceptionMiddleware\\CustomExceptions.csproj": {
+    "C:\\Users\\Thijmen\\OneDrive - Office 365 Fontys\\S02\\S02-Software-Individueel-Project\\pms.backend\\ExceptionMiddleware\\CustomExceptions.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Thijmen\\OneDrive\\Fontys\\S02\\S02-Software-Individueel-Project-\\pms.backend\\ExceptionMiddleware\\CustomExceptions.csproj",
+        "projectUniqueName": "C:\\Users\\Thijmen\\OneDrive - Office 365 Fontys\\S02\\S02-Software-Individueel-Project\\pms.backend\\ExceptionMiddleware\\CustomExceptions.csproj",
         "projectName": "CustomExceptions",
-        "projectPath": "C:\\Users\\Thijmen\\OneDrive\\Fontys\\S02\\S02-Software-Individueel-Project-\\pms.backend\\ExceptionMiddleware\\CustomExceptions.csproj",
+        "projectPath": "C:\\Users\\Thijmen\\OneDrive - Office 365 Fontys\\S02\\S02-Software-Individueel-Project\\pms.backend\\ExceptionMiddleware\\CustomExceptions.csproj",
         "packagesPath": "C:\\Users\\Thijmen\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Thijmen\\OneDrive\\Fontys\\S02\\S02-Software-Individueel-Project-\\pms.backend\\ExceptionMiddleware\\obj\\",
+        "outputPath": "C:\\Users\\Thijmen\\OneDrive - Office 365 Fontys\\S02\\S02-Software-Individueel-Project\\pms.backend\\ExceptionMiddleware\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -250,14 +250,14 @@
         }
       }
     },
-    "C:\\Users\\Thijmen\\OneDrive\\Fontys\\S02\\S02-Software-Individueel-Project-\\pms.backend\\pms.unittests\\pms.unittests.csproj": {
+    "C:\\Users\\Thijmen\\OneDrive - Office 365 Fontys\\S02\\S02-Software-Individueel-Project\\pms.backend\\pms.unittests\\pms.unittests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Thijmen\\OneDrive\\Fontys\\S02\\S02-Software-Individueel-Project-\\pms.backend\\pms.unittests\\pms.unittests.csproj",
+        "projectUniqueName": "C:\\Users\\Thijmen\\OneDrive - Office 365 Fontys\\S02\\S02-Software-Individueel-Project\\pms.backend\\pms.unittests\\pms.unittests.csproj",
         "projectName": "pms.unittests",
-        "projectPath": "C:\\Users\\Thijmen\\OneDrive\\Fontys\\S02\\S02-Software-Individueel-Project-\\pms.backend\\pms.unittests\\pms.unittests.csproj",
+        "projectPath": "C:\\Users\\Thijmen\\OneDrive - Office 365 Fontys\\S02\\S02-Software-Individueel-Project\\pms.backend\\pms.unittests\\pms.unittests.csproj",
         "packagesPath": "C:\\Users\\Thijmen\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Thijmen\\OneDrive\\Fontys\\S02\\S02-Software-Individueel-Project-\\pms.backend\\pms.unittests\\obj\\",
+        "outputPath": "C:\\Users\\Thijmen\\OneDrive - Office 365 Fontys\\S02\\S02-Software-Individueel-Project\\pms.backend\\pms.unittests\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -278,11 +278,11 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\Thijmen\\OneDrive\\Fontys\\S02\\S02-Software-Individueel-Project-\\pms.backend\\BusinessAccessLayer\\BusinessLayer.csproj": {
-                "projectPath": "C:\\Users\\Thijmen\\OneDrive\\Fontys\\S02\\S02-Software-Individueel-Project-\\pms.backend\\BusinessAccessLayer\\BusinessLayer.csproj"
+              "C:\\Users\\Thijmen\\OneDrive - Office 365 Fontys\\S02\\S02-Software-Individueel-Project\\pms.backend\\BusinessAccessLayer\\BusinessLayer.csproj": {
+                "projectPath": "C:\\Users\\Thijmen\\OneDrive - Office 365 Fontys\\S02\\S02-Software-Individueel-Project\\pms.backend\\BusinessAccessLayer\\BusinessLayer.csproj"
               },
-              "C:\\Users\\Thijmen\\OneDrive\\Fontys\\S02\\S02-Software-Individueel-Project-\\pms.backend\\DataAccessLayer\\DataLayer.csproj": {
-                "projectPath": "C:\\Users\\Thijmen\\OneDrive\\Fontys\\S02\\S02-Software-Individueel-Project-\\pms.backend\\DataAccessLayer\\DataLayer.csproj"
+              "C:\\Users\\Thijmen\\OneDrive - Office 365 Fontys\\S02\\S02-Software-Individueel-Project\\pms.backend\\DataAccessLayer\\DataLayer.csproj": {
+                "projectPath": "C:\\Users\\Thijmen\\OneDrive - Office 365 Fontys\\S02\\S02-Software-Individueel-Project\\pms.backend\\DataAccessLayer\\DataLayer.csproj"
               }
             }
           }
