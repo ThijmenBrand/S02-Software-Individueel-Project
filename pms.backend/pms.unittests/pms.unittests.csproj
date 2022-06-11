@@ -27,6 +27,7 @@
   <ItemGroup>
     <ProjectReference Include="..\BusinessAccessLayer\BusinessLayer.csproj" />
     <ProjectReference Include="..\DataAccessLayer\DataLayer.csproj" />
+    <ProjectReference Include="..\ExceptionMiddleware\CustomExceptions.csproj" />
   </ItemGroup>
 
 </Project>

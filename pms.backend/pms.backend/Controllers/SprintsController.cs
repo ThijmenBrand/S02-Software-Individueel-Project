@@ -10,9 +10,9 @@ namespace ApiLayer.Controllers
     [ApiController]
     public class SprintsController : ControllerBase
     {
-        private readonly ISprintService _sprintService;
+        private readonly IValidateSprint _sprintService;
 
-        public SprintsController(ISprintService sprintService)
+        public SprintsController(IValidateSprint sprintService)
         {
             _sprintService = sprintService;
         }

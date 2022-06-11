@@ -37,15 +37,15 @@ var builder = WebApplication.CreateBuilder(args);
     services.Configure<AppSettings>(builder.Configuration.GetSection("AppSettings"));
 
     // configure DI for application services
-    services.AddScoped<IServiceProject, ServiceProject>();
-    services.AddScoped<IExcecuteServiceProject, ProjectExcecute>();
+    services.AddScoped<IValidateProject, ValidateProject>();
+    services.AddScoped<IExcecuteProject, ExcecuteProject>();
     services.AddScoped<IExecuteServiceProject<Project>, RepositoryProject>();
     services.AddScoped<ITasksRepo<Tasks>, TasksRepo>();
     services.AddScoped<IExcecuteSprintService, ExcecuteSprintService>();
     services.AddScoped<ITasksService, TasksService>();
     services.AddScoped<IExcecuteTasksService, ExcecuteTasksService>();
     services.AddScoped<ISprintRepo<Sprint>, SprintsRepo>();
-    services.AddScoped<ISprintService, SprintService>();
+    services.AddScoped<IValidateSprint, ValidateSprint>();
     services.AddScoped<IUsersRepo<User>, UsersRepo>();
     services.AddScoped<IUsersService, UserService>();
     services.AddScoped<IJwtUtils, JwtUtils>();

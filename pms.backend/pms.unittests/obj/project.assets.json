@@ -7434,6 +7434,7 @@
       "AutoMapper.Extensions.Microsoft.DependencyInjection >= 11.0.0",
       "BCrypt.Net-Next >= 4.0.3",
       "BusinessLayer >= 1.0.0",
+      "CustomExceptions >= 1.0.0",
       "DataLayer >= 1.0.0",
       "MSTest.TestFramework >= 2.2.8",
       "Microsoft.NET.Test.Sdk >= 17.1.0",
@@ -7480,6 +7481,9 @@
             },
             "C:\\Users\\Thijmen\\OneDrive - Office 365 Fontys\\S02\\S02-Software-Individueel-Project\\pms.backend\\DataAccessLayer\\DataLayer.csproj": {
               "projectPath": "C:\\Users\\Thijmen\\OneDrive - Office 365 Fontys\\S02\\S02-Software-Individueel-Project\\pms.backend\\DataAccessLayer\\DataLayer.csproj"
+            },
+            "C:\\Users\\Thijmen\\OneDrive - Office 365 Fontys\\S02\\S02-Software-Individueel-Project\\pms.backend\\ExceptionMiddleware\\CustomExceptions.csproj": {
+              "projectPath": "C:\\Users\\Thijmen\\OneDrive - Office 365 Fontys\\S02\\S02-Software-Individueel-Project\\pms.backend\\ExceptionMiddleware\\CustomExceptions.csproj"
             }
           }
         }

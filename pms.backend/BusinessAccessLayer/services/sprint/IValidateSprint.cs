@@ -2,7 +2,7 @@
 
 namespace BusinessLayer.services.sprint
 {
-    public interface ISprintService
+    public interface IValidateSprint
     {
         public Task<bool> AddSprint(Sprint sprint);
         public IEnumerable<Sprint> GetAllSprintsByProject(int projectId);

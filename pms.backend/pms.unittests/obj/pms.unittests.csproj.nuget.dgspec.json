@@ -283,6 +283,9 @@
               },
               "C:\\Users\\Thijmen\\OneDrive - Office 365 Fontys\\S02\\S02-Software-Individueel-Project\\pms.backend\\DataAccessLayer\\DataLayer.csproj": {
                 "projectPath": "C:\\Users\\Thijmen\\OneDrive - Office 365 Fontys\\S02\\S02-Software-Individueel-Project\\pms.backend\\DataAccessLayer\\DataLayer.csproj"
+              },
+              "C:\\Users\\Thijmen\\OneDrive - Office 365 Fontys\\S02\\S02-Software-Individueel-Project\\pms.backend\\ExceptionMiddleware\\CustomExceptions.csproj": {
+                "projectPath": "C:\\Users\\Thijmen\\OneDrive - Office 365 Fontys\\S02\\S02-Software-Individueel-Project\\pms.backend\\ExceptionMiddleware\\CustomExceptions.csproj"
               }
             }
           }

@@ -11,9 +11,9 @@ namespace ApiLayer.Controllers
     public class ProjectsController : ControllerBase
     {
 
-        private readonly IServiceProject serviceProject;
+        private readonly IValidateProject serviceProject;
 
-        public ProjectsController(IServiceProject serviceProject)
+        public ProjectsController(IValidateProject serviceProject)
         {
             this.serviceProject = serviceProject;
         }

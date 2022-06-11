@@ -1,5 +1,6 @@
 ﻿namespace ExceptionMiddleware;
 
+[Serializable]
 public class InputIdentifierCanNotBeNullException : Exception
 {
     public InputIdentifierCanNotBeNullException() { }

@@ -2,7 +2,7 @@
 
 namespace BusinessLayer.services.project;
 
-public interface IExcecuteServiceProject
+public interface IExcecuteProject
 {
     Task<Project> ExcecuteGetProjectById(int id);
     Task<bool> ExcecuteAddProject(Project project, int userId);

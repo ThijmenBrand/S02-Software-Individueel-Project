@@ -4,11 +4,11 @@ using Ardalis.GuardClauses;
 
 namespace BusinessLayer.services.project;
 
- public class ServiceProject : IServiceProject
+ public class ValidateProject : IValidateProject
  {
-     private readonly IExcecuteServiceProject _projectExcecute;
+     private readonly IExcecuteProject _projectExcecute;
 
-     public ServiceProject(IExcecuteServiceProject _projectExcecute)
+     public ValidateProject(IExcecuteProject _projectExcecute)
      {
          this._projectExcecute = _projectExcecute;
      }
@@ -22,13 +22,14 @@ namespace BusinessLayer.services.project;
 
      public Task<bool> AddProject(Project project, int userId)
      {
-        Guard.Against.Null<Project>(project, nameof(project));
+        Guard.Against.Null(project, nameof(project));
+        Guard.Against.ProjectParams(project, nameof(project));
         Guard.Against.NegativeOrZero(userId, nameof(userId));
 
          return _projectExcecute.ExcecuteAddProject(project, userId);
      }
 
-     public async void DeleteProject(int projectId)
+     public async Task DeleteProject(int projectId)
      {
         Guard.Against.NegativeOrZero(projectId, nameof(projectId));
          

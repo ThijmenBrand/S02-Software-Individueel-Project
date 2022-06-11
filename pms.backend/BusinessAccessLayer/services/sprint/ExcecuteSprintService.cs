@@ -1,5 +1,6 @@
 ﻿using DataAccessLayer.Models;
 using DataLayer.repos.sprint;
+using ExceptionMiddleware;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,7 +23,7 @@ namespace BusinessLayer.services.sprint;
         var res = await _repository.Create(sprint, null);
 
         if (!res)
-            throw new KeyNotFoundException("Something went wrong while adding this sprint");
+            throw new ResourceNotFoundException("Something went wrong while adding this sprint");
 
         return true;
     }

@@ -23,5 +23,11 @@ namespace DataAccessLayer.Models
         [NotMapped]
 
         public virtual ICollection<Asset>? Assets { get; set; }
+
+        public Project(string projectName, string projectDescription)
+        {
+            ProjectName = projectName;
+            ProjectDescription = projectDescription;
+        }
     }
 }

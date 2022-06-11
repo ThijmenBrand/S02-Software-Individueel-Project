@@ -3,10 +3,10 @@ using Ardalis.GuardClauses;
 
 namespace BusinessLayer.services.sprint
 {
-    public class SprintService : ISprintService
+    public class ValidateSprint : IValidateSprint
     {
         private readonly IExcecuteSprintService _excecuteSprintService;
-        public SprintService(IExcecuteSprintService excecuteSprintService)
+        public ValidateSprint(IExcecuteSprintService excecuteSprintService)
         {
             _excecuteSprintService = excecuteSprintService;
         }

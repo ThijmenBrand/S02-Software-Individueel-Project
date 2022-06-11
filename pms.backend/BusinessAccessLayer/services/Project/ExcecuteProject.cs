@@ -3,10 +3,10 @@ using DataLayer.repos.project;
 
 namespace BusinessLayer.services.project;
 
-public class ProjectExcecute : IExcecuteServiceProject
+public class ExcecuteProject : IExcecuteProject
 {
     private readonly IExecuteServiceProject<Project> _repository;
-    public ProjectExcecute(IExecuteServiceProject<Project> _repository)
+    public ExcecuteProject(IExecuteServiceProject<Project> _repository)
     {
         this._repository = _repository;
     }
